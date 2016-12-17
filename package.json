@@ -50,8 +50,10 @@
     "react-dom": "^15.4.1"
   },
   "scripts": {
-    "start":    "node server.js",
-    "lint":     "./node_modules/eslint/bin/eslint.js --config=./.eslintrc ./app/**/**/*.js{,x}",
-    "lint:fix": "./node_modules/eslint/bin/eslint.js --fix --config=./.eslintrc ./app/**/**/*.js{,x}"
+    "start":      "node server.js",
+    "spec":       "NODE_PATH=$NODE_PATH:$PWD/spec ./node_modules/mocha/bin/mocha --require spec/helpers/browser.js --recursive spec",
+    "spec:watch": "yarn run spec --watch",
+    "lint":       "./node_modules/eslint/bin/eslint.js --config=./.eslintrc ./app/**/**/*.js{,x}",
+    "lint:fix":   "./node_modules/eslint/bin/eslint.js --fix --config=./.eslintrc ./app/**/**/*.js{,x}"
   }
 }
