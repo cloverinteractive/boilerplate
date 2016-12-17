@@ -22,7 +22,7 @@ module.exports = {
       filename: 'index.html',
     }),
 
-    new webpack.optimize.UglifyPlugin({
+    new webpack.optimize.UglifyJsPlugin({
       minimize: true,
       compress: {
           warnings: false,
