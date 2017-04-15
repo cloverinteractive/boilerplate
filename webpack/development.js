@@ -2,7 +2,10 @@ const defaults = require('./defaults');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
-var devEntry = ['webpack-hot-middleware/client?reload=true'].concat(defaults.entry);
+var devEntry = [
+  'webpack-hot-middleware/client?reload=true',
+  defaults.entry
+]
 
 module.exports = {
   devtool: 'eval',
@@ -25,6 +28,6 @@ module.exports = {
     }),
 
     new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoErrorsPlugin(),
+    new webpack.NoEmitOnErrorsPlugin()
   ],
 };

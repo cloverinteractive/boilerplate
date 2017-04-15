@@ -1,7 +1,7 @@
 const path = require('path');
 
 module.exports = {
-  entry: [ path.join(__dirname, '..', 'app', 'index') ],
+  entry: path.join(__dirname, '..', 'app', 'index'),
 
   output: {
     path: path.join(__dirname, '..', 'build'),
@@ -10,41 +10,59 @@ module.exports = {
   },
 
   resolve: {
-    extensions: ['', '.js', '.jsx'],
-    root: path.join(__dirname, '..', 'app'),
-  },
-
-  resolveLoader: {
-    root: path.join(__dirname, '..', 'node_modules'),
+    extensions: ['.js', '.jsx', '.json'],
+    modules: [
+      path.join(__dirname, '..', 'app'),
+      path.join(__dirname, '..', 'node_modules')
+    ]
   },
 
   module: {
-    loaders: [
+    rules: [
       {
         test: /\.jsx?$/,
-        loader: 'babel',
-        target: 'app',
-        exclude: /node_modules/,
+        use: 'babel-loader',
+        exclude: /node_modules/
       },
 
       {
         test: /\.css$/,
-        loaders: [ 'style', 'css?sourceMap', 'resolve-url' ],
+        use: [
+          'style-loader',
+          'css-loader?sourceMap',
+          'resolve-url-loader'
+        ]
       },
 
       {
         test: /\.woff2?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-        loader: 'url?limit=10000&name=fonts/[name].[hash].[ext]',
+        use: {
+          loader: 'url-loader',
+          options: {
+            limit: 10000,
+            name: 'fonts/[name].[hash].[ext]'
+          }
+        }
       },
 
       {
         test: /\.(ttf|eot|svg)(\?[\s\S]+)$/,
-        loader: 'file?name=fonts/[name].[hash].[ext]',
+        use: {
+          loader: 'file-loader',
+          options: {
+            name: 'fonts/[name].[hash].[ext]'
+          }
+        }
       },
 
       {
         test: /\.(jpg|gif|png)$/,
-        loader: 'file?name=images/[name].[hash].[ext]',
+        use: {
+          loader: 'file-loader',
+          options: {
+            name: 'images/[name].[hash].[ext]'
+          }
+        }
       },
     ],
   },

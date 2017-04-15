@@ -23,10 +23,11 @@ module.exports = {
     }),
 
     new webpack.optimize.UglifyJsPlugin({
-      minimize: true,
-      compress: {
-          warnings: false,
-      },
+      sourceMap: true,
     }),
+
+    new webpack.LoaderOptionsPlugin({
+      minimize: true
+    })
   ],
 }
