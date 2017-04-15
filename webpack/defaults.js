@@ -1,4 +1,4 @@
-const path = require('path');
+const path = require('path')
 
 module.exports = {
   entry: path.join(__dirname, '..', 'app', 'index'),
@@ -13,8 +13,8 @@ module.exports = {
     extensions: ['.js', '.jsx', '.json'],
     modules: [
       path.join(__dirname, '..', 'app'),
-      path.join(__dirname, '..', 'node_modules')
-    ]
+      path.join(__dirname, '..', 'node_modules'),
+    ],
   },
 
   module: {
@@ -22,16 +22,16 @@ module.exports = {
       {
         test: /\.jsx?$/,
         use: 'babel-loader',
-        exclude: /node_modules/
+        exclude: /node_modules/,
       },
 
       {
         test: /\.css$/,
         use: [
-          'style-loader',
-          'css-loader?sourceMap',
-          'resolve-url-loader'
-        ]
+        { loader: 'style-loader' },
+        { loader: 'css-loader', options: { sourceMap: true } },
+        { loader: 'resolve-url-loader' },
+        ],
       },
 
       {
@@ -40,9 +40,9 @@ module.exports = {
           loader: 'url-loader',
           options: {
             limit: 10000,
-            name: 'fonts/[name].[hash].[ext]'
-          }
-        }
+            name: 'fonts/[name].[hash].[ext]',
+          },
+        },
       },
 
       {
@@ -50,9 +50,9 @@ module.exports = {
         use: {
           loader: 'file-loader',
           options: {
-            name: 'fonts/[name].[hash].[ext]'
-          }
-        }
+            name: 'fonts/[name].[hash].[ext]',
+          },
+        },
       },
 
       {
@@ -60,9 +60,9 @@ module.exports = {
         use: {
           loader: 'file-loader',
           options: {
-            name: 'images/[name].[hash].[ext]'
-          }
-        }
+            name: 'images/[name].[hash].[ext]',
+          },
+        },
       },
     ],
   },

@@ -1,10 +1,10 @@
-const defaults = require('./defaults');
-const webpack = require('webpack');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+const defaults = require('./defaults')
+const webpack = require('webpack')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 
-var devEntry = [
+const devEntry = [
   'webpack-hot-middleware/client?reload=true',
-  defaults.entry
+  defaults.entry,
 ]
 
 module.exports = {
@@ -28,6 +28,6 @@ module.exports = {
     }),
 
     new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoEmitOnErrorsPlugin()
+    new webpack.NoEmitOnErrorsPlugin(),
   ],
-};
+}

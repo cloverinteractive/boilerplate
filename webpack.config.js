@@ -1,16 +1,16 @@
-const PRODUCTION = 'production';
-const DEVELOPMENT = 'development';
+const PRODUCTION = 'production'
+const DEVELOPMENT = 'development'
 
-var config = {};
+let config = {}
 
-switch(process.env.NODE_ENV) {
+switch (process.env.NODE_ENV) {
   case PRODUCTION:
-    config = require('./webpack/production.js');
-    break;
+    config = require('./webpack/production.js')
+    break
 
   case DEVELOPMENT:
   default:
-    config = require('./webpack/development.js');
+    config = require('./webpack/development.js')
 }
 
-module.exports = config;
+module.exports = config
