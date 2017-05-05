@@ -1,4 +1,6 @@
 const path = require('path')
+const webpack = require('webpack')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
   entry: path.join(__dirname, '..', 'client', 'index'),
@@ -35,35 +37,52 @@ module.exports = {
       },
 
       {
-        test: /\.woff2?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-        use: {
-          loader: 'url-loader',
-          options: {
-            limit: 10000,
-            name: 'fonts/[name].[hash].[ext]',
+        test: /\.(ico|eot|otf|webp|ttf|woff|woff2)(\?.*)?$/,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              limit: 100000,
+              name: 'static/fonts/[name].[hash:8].[ext]',
+            },
           },
-        },
+        ],
       },
 
       {
-        test: /\.(ttf|eot|svg)(\?[\s\S]+)$/,
-        use: {
-          loader: 'file-loader',
-          options: {
-            name: 'fonts/[name].[hash].[ext]',
+        test: /\.(jpe?g|png|gif|svg)$/i,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              limit: 10000,
+              name: 'static/images/[name].[hash:8].[ext]',
+            },
           },
-        },
-      },
 
-      {
-        test: /\.(jpg|gif|png)$/,
-        use: {
-          loader: 'file-loader',
-          options: {
-            name: 'images/[name].[hash].[ext]',
+          {
+            loader: 'img-loader',
+            options: {
+              enabled: true,
+              optipng: true,
+            },
           },
-        },
+        ],
       },
     ],
   },
+
+  plugins: [
+    new webpack.DefinePlugin({
+      'process.env': {
+        NODE_ENV: JSON.stringify(process.env.NODE_ENV),
+      },
+    }),
+
+    new HtmlWebpackPlugin({
+      template: 'client/index.html',
+      inject: 'body',
+      filename: 'index.html',
+    }),
+  ],
 }

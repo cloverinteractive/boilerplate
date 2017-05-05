@@ -1,10 +1,15 @@
 const defaults = require('./defaults')
 const webpack = require('webpack')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 const devEntry = [
   'webpack-hot-middleware/client?reload=true',
   defaults.entry,
+]
+
+const plugins = [
+  ...defaults.plugins,
+  new webpack.HotModuleReplacementPlugin(),
+  new webpack.NoEmitOnErrorsPlugin(),
 ]
 
 module.exports = {
@@ -20,14 +25,5 @@ module.exports = {
 
   module: defaults.module,
 
-  plugins: [
-    new HtmlWebpackPlugin({
-      template: 'client/index.html',
-      inject: 'body',
-      filename: 'index.html',
-    }),
-
-    new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoEmitOnErrorsPlugin(),
-  ],
+  plugins,
 }
