@@ -1,0 +1,4 @@
+--compilers js:babel-register
+--full-trace
+--require ./spec/browser.js
+--recursive ./spec/**/*spec.js*
