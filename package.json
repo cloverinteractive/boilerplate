@@ -55,11 +55,11 @@
     "webpack-manifest-plugin": "^1.1.0"
   },
   "scripts": {
-    "start": "node server",
+    "start": "babel-node server",
     "build": "NODE_ENV=production yarn webpack -- --config ./webpack.config.js",
     "spec": "NODE_PATH=$NODE_PATH:$PWD/client yarn mocha -- --opts .mocha.opts",
     "spec:watch": "yarn run spec -- --watch",
     "lint": "yarn eslint -- --ext .js --ext .jsx ./client ./server",
-    "lint:fix": "yarn lit -- --fix"
+    "lint:fix": "yarn lint -- --fix"
   }
 }

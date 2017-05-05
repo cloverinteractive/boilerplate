@@ -23,5 +23,10 @@
     "import/no-duplicates": [0],
   },
 
-  "plugins": [ "import", "react" ]
+  "plugins": [ "import", "react" ],
+
+  "globals": {
+    "window": true,
+    "document": true,
+  }
 }
