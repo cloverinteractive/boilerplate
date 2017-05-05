@@ -2,15 +2,10 @@ const defaults = require('./defaults')
 const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 
-const devEntry = [
-  'webpack-hot-middleware/client?reload=true',
-  defaults.entry,
-]
-
 module.exports = {
-  devtool: 'eval',
+  devtool: 'source-map',
 
-  entry: devEntry,
+  entry: defaults.entry,
 
   output: defaults.output,
 
@@ -21,13 +16,24 @@ module.exports = {
   module: defaults.module,
 
   plugins: [
+    new webpack.DefinePlugin({
+      'process.env': {
+        NODE_ENV: JSON.stringify('production')
+      }
+    }),
+
     new HtmlWebpackPlugin({
-      template: 'app/index.html',
+      template: 'client/index.html',
       inject: 'body',
       filename: 'index.html',
     }),
 
-    new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoEmitOnErrorsPlugin(),
+    new webpack.optimize.UglifyJsPlugin({
+      sourceMap: true,
+    }),
+
+    new webpack.LoaderOptionsPlugin({
+      minimize: true,
+    }),
   ],
 }

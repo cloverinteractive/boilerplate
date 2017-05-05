@@ -2,10 +2,15 @@ const defaults = require('./defaults')
 const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 
-module.exports = {
-  devtool: 'source-map',
+const devEntry = [
+  'webpack-hot-middleware/client?reload=true',
+  defaults.entry,
+]
 
-  entry: defaults.entry,
+module.exports = {
+  devtool: 'eval',
+
+  entry: devEntry,
 
   output: defaults.output,
 
@@ -17,17 +22,12 @@ module.exports = {
 
   plugins: [
     new HtmlWebpackPlugin({
-      template: 'app/index.html',
+      template: 'client/index.html',
       inject: 'body',
       filename: 'index.html',
     }),
 
-    new webpack.optimize.UglifyJsPlugin({
-      sourceMap: true,
-    }),
-
-    new webpack.LoaderOptionsPlugin({
-      minimize: true,
-    }),
+    new webpack.HotModuleReplacementPlugin(),
+    new webpack.NoEmitOnErrorsPlugin(),
   ],
 }

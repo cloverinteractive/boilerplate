@@ -5,12 +5,12 @@ let config = {}
 
 switch (process.env.NODE_ENV) {
   case PRODUCTION:
-    config = require('./webpack/production.js')
+    config = require('./config/production.js')
     break
 
   case DEVELOPMENT:
   default:
-    config = require('./webpack/development.js')
+    config = require('./config/development.js')
 }
 
 module.exports = config

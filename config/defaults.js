@@ -1,7 +1,7 @@
 const path = require('path')
 
 module.exports = {
-  entry: path.join(__dirname, '..', 'app', 'index'),
+  entry: path.join(__dirname, '..', 'client', 'index'),
 
   output: {
     path: path.join(__dirname, '..', 'build'),
@@ -12,7 +12,7 @@ module.exports = {
   resolve: {
     extensions: ['.js', '.jsx', '.json'],
     modules: [
-      path.join(__dirname, '..', 'app'),
+      path.join(__dirname, '..', 'client'),
       path.join(__dirname, '..', 'node_modules'),
     ],
   },

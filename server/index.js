@@ -4,7 +4,7 @@ const express = require('express');
 const isDeveloping = process.env.NODE_ENV !== 'production';
 const port = process.env.PORT || 8080;
 const app = express();
-const config = require('./webpack.config.js');
+const config = require('../webpack.config.js');
 
 
 if (isDeveloping) {
@@ -31,14 +31,14 @@ if (isDeveloping) {
   app.use(webpackHotMiddleware(compiler));
 
   app.get('*', function(req, res) {
-    res.write(middleware.fileSystem.readFileSync(path.join(__dirname, 'build/index.html')));
+    res.write(middleware.fileSystem.readFileSync(path.join(__dirname, '../build/index.html')));
     res.end();
   });
 } else {
-  app.use(express.static(path.join(__dirname, 'build')));
+  app.use(express.static(path.join(__dirname, '../build')));
 
   app.get('*', function(req, res) {
-    res.sendFile(path.join(__dirname, 'build/index.html'));
+    res.sendFile(path.join(__dirname, '../build/index.html'));
   });
 }
 
