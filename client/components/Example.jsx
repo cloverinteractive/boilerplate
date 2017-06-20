@@ -1,7 +1,8 @@
 import React from 'react'
+import Elm from 'react-elm-components'
+import { Example } from 'elm/Example'
 
-const Example = () => (
-  <h1>Hello world</h1>
+export default () => (
+  <Elm src={Example} />
 )
 
-export default Example
