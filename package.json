@@ -51,7 +51,7 @@
     "redux": "^3.6.0",
     "style-loader": "^0.13.1",
     "url-loader": "^0.5.7",
-    "webpack": "^2.4.1",
+    "webpack": "^3.0.0",
     "webpack-manifest-plugin": "^1.1.0"
   },
   "scripts": {
