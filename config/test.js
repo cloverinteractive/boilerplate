@@ -6,13 +6,7 @@ module.exports = {
 
   entry: {
     base: path.join(__dirname, '..', 'client', 'index'),
-    test: path.join(__dirname, '..', 'spec'),
-  },
-
-  output: {
-    path: path.join(__dirname, '..', 'build'),
-    filename: 'test.js',
-    publicPath: '/',
+    test: path.join(__dirname, '..', 'spec', 'client', 'canary-spec'),
   },
 
   resolve: {
