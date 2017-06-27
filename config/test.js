@@ -4,11 +4,6 @@ const path = require('path')
 module.exports = {
   devtool: 'inline-cheap-module-source-map',
 
-  entry: {
-    base: path.join(__dirname, '..', 'client', 'index'),
-    test: path.join(__dirname, '..', 'spec', 'client', 'canary-spec'),
-  },
-
   resolve: {
     extensions: ['.css', '.elm', '.js', '.jsx', '.json'],
     modules: [
