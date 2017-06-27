@@ -9,6 +9,7 @@
   "devDependencies": {
     "babel-preset-react-hmre": "^1.1.1",
     "chai": "^4.0.2",
+    "elm-test": "^0.18.6",
     "enzyme": "^2.8.2",
     "eslint": "^4.1.1",
     "eslint-config-airbnb": "^15.0.1",
@@ -17,7 +18,6 @@
     "eslint-plugin-import": "^2.6.0",
     "eslint-plugin-jsx-a11y": "^6.0.0",
     "eslint-plugin-react": "^7.1.0",
-    "jsdom": "9.12.0",
     "karma": "^1.7.0",
     "karma-babel-preprocessor": "^6.0.1",
     "karma-chrome-launcher": "^2.2.0",
@@ -56,7 +56,7 @@
     "html-webpack-plugin": "^2.29.0",
     "react": "^15.5.4",
     "react-dom": "^15.5.4",
-    "react-elm-components": "^1.0.1",
+    "react-elm-components": "https://github.com/argshook/react-elm-components.git#chore/create-react-class",
     "react-redux": "^5.0.1",
     "react-router-dom": "^4.1.1",
     "react-router-redux": "^4.0.7",
@@ -69,8 +69,10 @@
   "scripts": {
     "start": "babel-node server",
     "build": "NODE_ENV=production yarn webpack -- --config ./webpack.config.js",
-    "spec": "NODE_PATH=$NODE_PATH:$PWD/client yarn mocha -- --opts .mocha.opts",
-    "spec:watch": "yarn run spec -- --watch",
+    "test": "yarn test:karma && yarn test:elm",
+    "test:elm": "yarn elm-test",
+    "test:karma": "yarn karma start -- --single-run",
+    "test:karma:watch": "yarn karma start",
     "lint": "yarn eslint -- --ext .js --ext .jsx ./client ./server",
     "lint:fix": "yarn lint -- --fix"
   }

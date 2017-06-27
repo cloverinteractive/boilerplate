@@ -3,6 +3,9 @@ import Elm from 'react-elm-components'
 import { Example } from 'elm/Example'
 
 export default () => (
-  <Elm src={Example} />
+  <div className="example">
+    <h1>Elm goes below</h1>
+    <Elm src={Example} />
+  </div>
 )
 
