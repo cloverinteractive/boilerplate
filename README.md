@@ -2,13 +2,15 @@
 
 You'll need a couple of things installed before you can get this app boilerplate to run:
 
-1. node
-2. yarn
+1. node.
+2. yarn.
+3. elm (this part is optional).
 
 ```sh
 # on a Mac
 brew install nodejs
 brew install yarn
+yarn
 ```
 
 # Running the app
@@ -34,8 +36,9 @@ If you're only running this app in development environment then no, you don't ne
 Every part of the app's boilerplate is organized in it's own folder, here's a quick rundown of how things are organized:
 
 1. Webpack configuration is in the *webpack* folder.
-2. Tests live inside of *specs* as a good practice make test files end in *_spec.js* and create subfolders to match components subfolders.
-3. Application files live in *app*.
+2. Javascript tests live inside of *specs* as a good practice make test files end in *-spec.js* and create subfolders to match components subfolders.
+3. Elm tests live in the tests folder and are ran separately with *elm-test*.
+3. Application files live in *client* for frontend and *server* for backend.
 
 ## Practices
 
@@ -66,24 +69,17 @@ yarn run eslint path/to/your/file.js
 If you're modifying or introducing a new test make sure to write/update a test for it, if you remove a file make sure you also remove the test cases/examples for the code you removed. To run the whole test suite run:
 
 ```
-yarn run spec
+yarn test
+```
+
+To only run ES6 tests run:
+
+```
+yarn test:karma
 ```
 
 You can set our test suite to watch for changes by running:
 
 ```
-yarn run spec:watch
+yarn test:karma:watch
 ```
-
-You can run any specific spec by doing:
-
-```
-NODE_PATH=$NODE_PATH:$PWD/app ./node_modules/mocha/bin/mocha --require spec/helpers/browser.js path/to/your/spec.js
-```
-
-It's a lot more involved but that's because we're doing multiple things:
-
-1. We're updating `NODE_PATH` to include our path's entry point so that we don't need absolute component paths in our files.
-2. We required the `browser.js` helper to run our spec.
-
-Yarn is pretty fast it may be easier to just run the whole suite.

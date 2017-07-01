@@ -12,7 +12,7 @@ module.exports = {
   },
 
   resolve: {
-    extensions: ['.js', '.jsx', '.json'],
+    extensions: ['.css', '.elm', '.js', '.jsx', '.json'],
     modules: [
       path.join(__dirname, '..', 'client'),
       path.join(__dirname, '..', 'node_modules'),
@@ -22,53 +22,64 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.jsx?$/,
-        use: 'babel-loader',
-        exclude: /node_modules/,
-      },
+      test: /\.elm$/,
+      exclude: [
+        /elm-stuff/,
+        /node_modules/
+      ],
+      use: {
+        loader: 'elm-webpack-loader',
+        options: {}
+      }
+    },
+    {
+      test: /\.jsx?$/,
+      use: 'babel-loader',
+      exclude: /node_modules/,
+    },
 
-      {
-        test: /\.css$/,
-        use: [
+    {
+      test: /\.css$/,
+      use: [
         { loader: 'style-loader' },
         { loader: 'css-loader', options: { sourceMap: true } },
         { loader: 'resolve-url-loader' },
-        ],
+      ],
+    },
+
+    {
+      test: /\.(ico|eot|otf|webp|ttf|woff|woff2)(\?.*)?$/,
+      use: [
+        {
+        loader: 'file-loader',
+        options: {
+          limit: 100000,
+          name: 'static/fonts/[name].[hash:8].[ext]',
+        },
+      },
+      ],
+    },
+
+    {
+      test: /\.(jpe?g|png|gif|svg)$/i,
+      use: [
+        {
+        loader: 'file-loader',
+        options: {
+          limit: 10000,
+          name: 'static/images/[name].[hash:8].[ext]',
+        },
       },
 
       {
-        test: /\.(ico|eot|otf|webp|ttf|woff|woff2)(\?.*)?$/,
-        use: [
-          {
-            loader: 'file-loader',
-            options: {
-              limit: 100000,
-              name: 'static/fonts/[name].[hash:8].[ext]',
-            },
-          },
-        ],
+        loader: 'img-loader',
+        options: {
+          enabled: true,
+          optipng: true,
+        },
       },
-
-      {
-        test: /\.(jpe?g|png|gif|svg)$/i,
-        use: [
-          {
-            loader: 'file-loader',
-            options: {
-              limit: 10000,
-              name: 'static/images/[name].[hash:8].[ext]',
-            },
-          },
-
-          {
-            loader: 'img-loader',
-            options: {
-              enabled: true,
-              optipng: true,
-            },
-          },
-        ],
-      },
+      ],
+    },
     ],
   },
 
