@@ -13,7 +13,6 @@
 
   "rules": {
     "no-unexpected-multiline": [1],
-    "semi": [1, "never"],
     "react/prop-types": [2],
     "import/extensions": [1, "never"],
     "import/no-named-as-default": [0],
@@ -21,12 +20,13 @@
     "import/no-absolute-path": [0],
     "import/no-extraneous-dependencies": [0],
     "import/no-duplicates": [0],
+    "import/no-unresolved": [0]
   },
 
   "plugins": [ "import", "react" ],
 
   "globals": {
     "window": true,
-    "document": true,
+    "document": true
   }
 }
