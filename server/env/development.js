@@ -1,11 +1,11 @@
-import webpack from 'webpack'
-import Middleware from 'webpack-dev-middleware'
-import HotMiddleware from 'webpack-hot-middleware'
-import path from 'path'
-import config from '../../webpack.config'
+import webpack from 'webpack';
+import Middleware from 'webpack-dev-middleware';
+import HotMiddleware from 'webpack-hot-middleware';
+import path from 'path';
+import config from '../../webpack.config';
 
 export default (app) => {
-  const compiler = webpack(config)
+  const compiler = webpack(config);
   const middleware = Middleware(compiler, {
     publicPath: config.output.publicPath,
     hot: true,
@@ -19,13 +19,13 @@ export default (app) => {
       chunkModules: false,
       modules: false,
     },
-  })
+  });
 
-  app.use(middleware)
-  app.use(HotMiddleware(compiler))
+  app.use(middleware);
+  app.use(HotMiddleware(compiler));
 
   app.get('*', (req, res) => {
-    res.write(middleware.fileSystem.readFileSync(path.join(__dirname, '../../build/index.html')))
-    res.end()
-  })
-}
+    res.write(middleware.fileSystem.readFileSync(path.join(__dirname, '../../build/index.html')));
+    res.end();
+  });
+};

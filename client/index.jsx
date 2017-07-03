@@ -1,5 +1,6 @@
-import React from 'react'
-import { render } from 'react-dom'
-import Example from './components/Example'
+import React from 'react';
+import ReactDOM from 'react-dom';
+import Routes from './routes';
+import './css/main';
 
-render(<Example />, document.getElementById('app'))
+ReactDOM.render(<Routes />, document.getElementById('app'));
