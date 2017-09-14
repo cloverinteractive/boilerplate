@@ -61,6 +61,14 @@ You can run eslint only in your file by running:
 yarn run eslint path/to/your/file.js
 ```
 
+# Flow
+
+We've included [flow](https://flow.org/) static typing, we recommend using it for your store and/or React components, check these two links out:
+
+* [Learn how to type React class components and stateless functional components with Flow](https://flow.org/en/docs/react/components/)
+* [Remove React PropTypes by using Flow Annotations (in CRA)](https://egghead.io/lessons/angular-1-x-remove-react-proptypes-by-using-flow-annotations-in-cra)
+
+
 ### Write tests, run tests
 
 If you're modifying or introducing a new test make sure to write/update a test for it, if you remove a file make sure you also remove the test cases/examples for the code you removed. To run the whole test suite run:
