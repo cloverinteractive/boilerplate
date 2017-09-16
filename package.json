@@ -68,6 +68,11 @@
     "webpack": "^3.0.0",
     "webpack-manifest-plugin": "^1.1.0"
   },
+  "engines": {
+    "node": "8.5.0",
+    "npm": "5.4.1",
+    "yarn": "1.0.1"
+  },
   "scripts": {
     "start": "babel-node server",
     "build": "NODE_ENV=production yarn webpack --config ./webpack.config.js",
