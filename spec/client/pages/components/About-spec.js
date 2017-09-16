@@ -18,6 +18,10 @@ context('Pages', () => {
     });
 
     describe('children', () => {
+      it('has a <Helmet />', () => {
+        expect(wrapper.find(Helmet)).to.have.length(1);
+      });
+
       it('has a <Container />', () => {
         expect(wrapper.find(Container)).to.have.length(1);
       });
