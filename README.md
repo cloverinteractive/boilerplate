@@ -36,7 +36,7 @@ If you're only running this app in development environment then no, you don't ne
 Every part of the app's boilerplate is organized in it's own folder, here's a quick rundown of how things are organized:
 
 1. Webpack configuration is in the *config* folder.
-2. Tests live inside of *specs* as a good practice make test files end in *_spec.js* and create subfolders to match components subfolders.
+2. Tests live inside of *specs* as a good practice make test files end in *-spec.js* and create subfolders to match components subfolders.
 3. Application files live in *client* for frontend and *server* for backend.
 
 ## Practices
