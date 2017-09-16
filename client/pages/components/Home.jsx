@@ -1,38 +1,8 @@
 import React from 'react';
 import { Container, Header, Segment } from 'semantic-ui-react';
 import { Helmet } from 'react-helmet';
+import { MAIN_TREE, PAGES_TREE } from 'pages/constants/home';
 import 'pages/styles/code';
-
-/* eslint-disable no-irregular-whitespace */
-const PAGES_TREE = `
-client/pages/
-├── components
-│   ├── Error404.jsx
-│   └── Home.jsx
-└── index.js
-`.trim();
-
-const MAIN_TREE = `
-client/main/
-├── components
-│   ├── Header.jsx
-│   ├── Messages.jsx
-│   └── Nav.jsx
-├── constants
-│   ├── action-types.js
-│   ├── index.js
-│   └── types.js
-├── flux
-│   ├── actions
-│   │   └── messages.js
-│   ├── reducers
-│   │   └── index.js
-│   └── selectors
-│       └── messages.js
-├── helpers
-└── index.js
-`.trim();
-/* eslint-enable no-irregular-whitespace */
 
 const Home = () => (
   <Container>
@@ -59,7 +29,7 @@ const Home = () => (
 
     <Segment className="code" inverted>
       <code>
-        <pre>{ PAGES_TREE }</pre>
+        <pre>{ PAGES_TREE.trim() }</pre>
       </code>
     </Segment>
 
@@ -71,14 +41,14 @@ const Home = () => (
 
     <Segment className="code" inverted>
       <code>
-        <pre>{ MAIN_TREE }</pre>
+        <pre>{ MAIN_TREE.trim() }</pre>
       </code>
     </Segment>
 
     <p>
-      Check out our
+      { 'Check out our ' }
       <strong><a href="https://github.com/cloverinteractive/boilerplate">README</a></strong>
-      for more details.
+      { ' for more details.' }
     </p>
   </Container>
 );

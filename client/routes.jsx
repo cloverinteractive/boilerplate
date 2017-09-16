@@ -14,6 +14,7 @@ const Routes = () => (
         <Main.Header />
         <Switch>
           <Route exact path="/" component={Pages.Home} />
+          <Route path="/about" component={Pages.About} />
           <Route component={Pages.Error404} />
         </Switch>
       </div>
