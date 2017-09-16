@@ -21,12 +21,10 @@ const removeMessage = (id: string): Action => ({
   id,
 });
 
-export const addError = (content: string) => (dispatch: Function) => (
-  dispatch(addMessage('Something went wrong', content, 'error'))
-);
+export const addError = (content: string): Action => (
+  addMessage('Something went wrong', content, 'error'));
 
-export const addWarning = (content: string) => (dispatch: Function) => (
-  dispatch(addMessage('Warning', content, 'warning'))
-);
+export const addWarning = (content: string): Action => (
+  addMessage('Warning', content, 'warning'));
 
 export default removeMessage;

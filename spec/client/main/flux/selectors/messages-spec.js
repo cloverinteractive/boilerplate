@@ -19,8 +19,10 @@ const store = {
   },
 }
 
-describe('Messages Selector', () => {
-  it('returns an array of messages', () => {
-    expect(selector(store.main)).to.include(message);
+context('Main', () => {
+  describe('Messages Selector', () => {
+    it('returns an array of messages', () => {
+      expect(selector(store.main)).to.include(message);
+    });
   });
 });

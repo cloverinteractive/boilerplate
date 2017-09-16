@@ -23,32 +23,34 @@ const withMessages = {
   },
 };
 
-describe('Reducer', () => {
-  context('Implemented actions', () => {
-    it(`${types.ADD_MESSAGE}`, () => {
-      const action = {
-        id: 'abc',
-        message,
-        type: types.ADD_MESSAGE,
-      };
+context('Main', () => {
+  describe('Reducer', () => {
+    context('Implemented actions', () => {
+      it(`${types.ADD_MESSAGE}`, () => {
+        const action = {
+          id: 'abc',
+          message,
+          type: types.ADD_MESSAGE,
+        };
 
-      expect(reducer(blankSlate, action)).to.eql(withMessages);
+        expect(reducer(blankSlate, action)).to.eql(withMessages);
+      });
+
+      it(`${types.DISMISS_MESSAGE}`, () => {
+        const action = {
+          id: 'abc',
+          type: types.DISMISS_MESSAGE,
+        };
+
+        expect(reducer(withMessages, action)).to.eql(blankSlate);
+      });
     });
 
-    it(`${types.DISMISS_MESSAGE}`, () => {
-      const action = {
-        id: 'abc',
-        type: types.DISMISS_MESSAGE,
-      };
-
-      expect(reducer(withMessages, action)).to.eql(blankSlate);
-    });
-  });
-
-  context('Not implemented actions', () => {
-    it('Return valid state', () => {
-      const action = { type: "FAKE_ACTION" };
-      expect(reducer(withMessages, action)).to.eql(withMessages);
+    context('Not implemented actions', () => {
+      it('Return valid state', () => {
+        const action = { type: "FAKE_ACTION" };
+        expect(reducer(withMessages, action)).to.eql(withMessages);
+      });
     });
   });
 });
