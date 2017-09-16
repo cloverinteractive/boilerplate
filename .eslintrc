@@ -21,6 +21,7 @@
     "import/no-duplicates": ["off"],
     "import/no-unresolved": ["off"],
     "no-unexpected-multiline": ["warn"],
+    "react/prop-types": ["off"]
   },
 
   "plugins": [ 

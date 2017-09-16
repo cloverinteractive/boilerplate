@@ -1,13 +1,21 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+// @flow
+/* eslint-disable react/sort-comp */
 
-const propTypes = {
-  children: PropTypes.element.isRequired,
-  dismiss: PropTypes.func.isRequired,
-  timeout: PropTypes.number,
+import React, { type Node } from 'react';
+
+type Props = {
+  children: Node,
+  dismiss: Function,
+  timeout: number,
 };
 
-class Dismissable extends React.PureComponent {
+export default class Dismissable extends React.PureComponent<Props> {
+  static defaultProps = {
+    timeout: 3000,
+  };
+
+  timer = null;
+
   componentDidMount() {
     const { dismiss, timeout } = this.props;
     this.timer = setTimeout(dismiss, timeout);
@@ -21,12 +29,3 @@ class Dismissable extends React.PureComponent {
     return this.props.children;
   }
 }
-
-
-Dismissable.defaultProps = {
-  timeout: 3000,
-};
-
-Dismissable.propTypes = propTypes;
-
-export default Dismissable;
