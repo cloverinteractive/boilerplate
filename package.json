@@ -78,8 +78,9 @@
     "build": "NODE_ENV=production yarn webpack --config ./webpack.config.js",
     "lint": "yarn eslint --ext .js --ext .jsx ./client ./server",
     "lint:fix": "yarn lint --fix",
-    "spec": "NODE_PATH=$NODE_PATH:$PWD/client yarn mocha --opts .mocha.opts",
+    "spec": "yarn spec:single --recursive spec",
     "spec:watch": "yarn spec --watch",
+    "spec:single": "NODE_PATH=$NODE_PATH:$PWD/client yarn mocha --opts .mocha.opts",
     "start": "babel-node server"
   }
 }
