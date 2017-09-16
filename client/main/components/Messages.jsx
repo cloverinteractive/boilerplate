@@ -1,19 +1,17 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { Container, Message } from 'semantic-ui-react';
-import Dismissable from '../../components/Dismissable';
+// @flow
 
-const propTypes = {
-  messages: PropTypes.arrayOf(PropTypes.shape({
-    content: PropTypes.string.isRequired,
-    header: PropTypes.string.isRequired,
-    id: PropTypes.string.isRequired,
-    type: PropTypes.string.isRequired,
-  })).isRequired,
-  dismiss: PropTypes.func.isRequired,
+import React from 'react';
+import { Container, Message } from 'semantic-ui-react';
+import Dismissable from 'components/Dismissable';
+
+import type { Message as MessageType } from 'main/constants/types';
+
+type Props = {
+  dismiss: Function,
+  messages: Array<MessageType>,
 };
 
-const Messages = ({ messages, dismiss }) => {
+const Messages = ({ messages, dismiss }: Props) => {
   const push = { marginBottom: 14 };
   const MessagesList = messages.map((message) => {
     const colors = { [message.type]: true };
@@ -22,7 +20,7 @@ const Messages = ({ messages, dismiss }) => {
     return (
       <Dismissable key={message.id} dismiss={handleDismiss}>
         <Message {...colors} floating onDismiss={handleDismiss}>
-          <Message.Header>{ message.heafer }</Message.Header>
+          <Message.Header>{ message.header }</Message.Header>
           <p>{ message.content }</p>
         </Message>
       </Dismissable>
@@ -36,7 +34,5 @@ const Messages = ({ messages, dismiss }) => {
     </Container>
   );
 };
-
-Messages.propTypes = propTypes;
 
 export default Messages;

@@ -1,29 +1,25 @@
+// @flow
+
 import React from 'react';
-import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Messages from './Messages';
 import Nav from './Nav';
 import removeMessage from '../flux/actions/messages';
 import selector from '../flux/selectors/messages';
 
-const propTypes = {
-  dismiss: PropTypes.func.isRequired,
-  messages: PropTypes.arrayOf(PropTypes.shape({
-    content: PropTypes.string.isRequired,
-    header: PropTypes.string.isRequired,
-    id: PropTypes.string.isRequired,
-    type: PropTypes.string.isRequired,
-  })).isRequired,
+import type { Message } from '../constants/types';
+
+type Props = {
+  dismiss: Function,
+  messages: Array<Message>,
 };
 
-const Header = ({ messages, dismiss }) => (
+const Header = ({ messages, dismiss }: Props) => (
   <div>
     <Nav />
     <Messages messages={messages} dismiss={dismiss} />
   </div>
 );
-
-Header.propTypes = propTypes;
 
 const mapStateToProps = ({ main }) => ({
   messages: selector(main),
