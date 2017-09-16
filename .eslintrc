@@ -8,22 +8,26 @@
   },
 
   "extends": [
-    "airbnb"
+    "airbnb",
+    "plugin:flowtype/recommended"
   ],
 
   "rules": {
-    "no-unexpected-multiline": [1],
-    "react/prop-types": [2],
-    "import/extensions": [1, "never"],
-    "import/no-named-as-default": [0],
-    "import/no-named-as-default-member": [0],
-    "import/no-absolute-path": [0],
-    "import/no-extraneous-dependencies": [0],
-    "import/no-duplicates": [0],
-    "import/no-unresolved": [0]
+    "import/extensions": ["warn", "never"],
+    "import/no-named-as-default": ["off"],
+    "import/no-named-as-default-member": ["off"],
+    "import/no-absolute-path": ["off"],
+    "import/no-extraneous-dependencies": ["off"],
+    "import/no-duplicates": ["off"],
+    "import/no-unresolved": ["off"],
+    "no-unexpected-multiline": ["warn"],
   },
 
-  "plugins": [ "import", "react" ],
+  "plugins": [ 
+    "flowtype",
+    "import", 
+    "react" 
+  ],
 
   "globals": {
     "window": true,
