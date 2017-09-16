@@ -2,7 +2,9 @@ import React from 'react';
 import { expect } from 'chai';
 import { mount } from 'enzyme';
 import { Provider } from 'react-redux';
+import { ConnectedRouter as Router } from 'react-router-redux';
 import { createStore, applyMiddleware } from 'redux';
+import { history } from 'store';
 import thunkMiddleware from 'redux-thunk';
 import rootReducer from 'root-reducer';
 
@@ -30,7 +32,9 @@ context('Main', () => {
   before(() => {
     wrapper = mount(
       <Provider store={store}>
-        <Header />
+        <Router history={history}>
+          <Header />
+        </Router>
       </Provider>
     );
 
