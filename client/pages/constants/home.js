@@ -10,7 +10,7 @@ client/pages/
 ├── index.js
 └── styles
     └── code.css
-`;
+`.trim();
 
 export const MAIN_TREE = `
 client/main/
@@ -31,5 +31,5 @@ client/main/
 │       └── messages.js
 ├── helpers
 └── index.js
-`;
+`.trim();
 /* eslint-enable no-irregular-whitespace */

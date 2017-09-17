@@ -21,6 +21,9 @@ const removeMessage = (id: string): Action => ({
   id,
 });
 
+export const addNotice = (content: string): Action => (
+  addMessage('Succes!', content, 'success'));
+
 export const addError = (content: string): Action => (
   addMessage('Something went wrong', content, 'error'));
 
