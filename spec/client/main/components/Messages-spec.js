@@ -24,7 +24,32 @@ context('Main', () => {
     });
 
     describe('children', () => {
-      it('renders dismissable messages', () => {
+      context('automatically dismissable messages', () => {
+        it('renders success alerts', () => {
+          const props = {
+            dismiss: sinon.spy(),
+            messages: [
+              {
+              content: 'Some Notice',
+              header: 'Yay! everything is awesome!',
+              id: 'abc',
+              type: 'success',
+            },
+            ],
+          };
+
+          const wrapper = mount(
+            <Messages {...props} />
+          );
+
+          const dismissable = wrapper.find(Dismissable)
+
+          expect(dismissable).to.have.length(1);
+          expect(dismissable.find(Message)).to.have.length(1);
+        });
+      });
+
+      it('renders errors', () => {
         const props = {
           dismiss: sinon.spy(),
           messages: [
@@ -41,10 +66,29 @@ context('Main', () => {
           <Messages {...props} />
         );
 
-        const dismissable = wrapper.find(Dismissable)
+        expect(wrapper.find(Dismissable)).to.have.length(0);
+        expect(wrapper.find(Message)).to.have.length(1);
+      });
 
-        expect(dismissable).to.have.length(1);
-        expect(dismissable.find(Message)).to.have.length(1);
+      it('renders warnings', () => {
+        const props = {
+          dismiss: sinon.spy(),
+          messages: [
+            {
+              content: 'Some Warning',
+              header: 'Something may have gone wrong',
+              id: 'abc',
+              type: 'warning',
+            },
+          ],
+        };
+
+        const wrapper = mount(
+          <Messages {...props} />
+        );
+
+        expect(wrapper.find(Dismissable)).to.have.length(0);
+        expect(wrapper.find(Message)).to.have.length(1);
       });
     });
   });
