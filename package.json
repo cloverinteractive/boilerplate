@@ -73,7 +73,7 @@
   "engines": {
     "node": "8.5.0",
     "npm": "5.4.1",
-    "yarn": "1.0.1"
+    "yarn": "1.0.2"
   },
   "scripts": {
     "build": "NODE_ENV=production yarn webpack --config ./webpack.config.js",
