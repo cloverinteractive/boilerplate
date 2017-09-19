@@ -2,21 +2,19 @@
 
 import React from 'react';
 import { v4 } from 'uuid';
-import libraries from 'pages/constants/libraries';
+import type { NpmLibrary } from 'pages/constants/types';
 
-type NpmLibrary = {
-  description: string,
-  library: string,
-  url: string,
+type Props = {
+  libraries: Array<NpmLibrary>,
 };
 
-const Library = ({ description, library, url }: NpmLibrary) => (
+export const Library = ({ description, library, url }: NpmLibrary) => (
   <li>
     <a href={url} rel="noopener noreferrer" target="_blank">{library}</a> - <em>{description}</em>
   </li>
 );
 
-const Libraries = () => {
+const Libraries = ({ libraries }: Props) => {
   const items = libraries.map(library => <Library key={v4()} {...library} />);
 
   return (

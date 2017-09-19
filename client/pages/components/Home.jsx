@@ -7,6 +7,7 @@ import { Helmet } from 'react-helmet';
 import { MAIN_TREE, PAGES_TREE } from 'pages/constants/home';
 import * as messages from 'main/flux/actions/messages';
 
+import libraries from 'pages/constants/libraries';
 import Libraries from 'pages/components/Libraries';
 
 import 'pages/styles/code.css';
@@ -31,7 +32,7 @@ const Home = (props: Props) => (
     <Segment vertical>
       <Header as="h2">Bundled goodies</Header>
       <p>Here&apos;s the list of the the packages this boiler plate configures for you.</p>
-      <Libraries />
+      <Libraries libraries={libraries} />
     </Segment>
 
     <Segment vertical>
