@@ -1,4 +1,5 @@
 import jsdom from 'jsdom';
+import 'ignore-styles';
 
 const document = new jsdom.jsdom('<!doctype html><html><body></body>body></html>html>');
 const window = document.defaultView;

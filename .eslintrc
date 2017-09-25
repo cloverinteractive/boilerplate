@@ -13,7 +13,7 @@
   ],
 
   "rules": {
-    "import/extensions": ["warn", "never"],
+    "import/extensions": ["off"],
     "import/no-named-as-default": ["off"],
     "import/no-named-as-default-member": ["off"],
     "import/no-absolute-path": ["off"],
@@ -21,6 +21,7 @@
     "import/no-duplicates": ["off"],
     "import/no-unresolved": ["off"],
     "no-unexpected-multiline": ["warn"],
+    "react/prop-types": ["off"]
   },
 
   "plugins": [ 

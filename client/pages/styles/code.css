@@ -1,0 +1,8 @@
+.ui.inverted.segment.code {
+  font-size: 0.9em;
+  padding: 5px;
+}
+
+.segment.code pre {
+  margin: 0;
+}
