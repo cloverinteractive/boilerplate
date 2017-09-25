@@ -32,7 +32,6 @@ client/main/
 │   │   └── index.js
 │   └── selectors
 │       └── messages.js
-├── helpers
 └── index.js
 `.trim();
 /* eslint-enable no-irregular-whitespace */
