@@ -4,9 +4,12 @@ client/pages/
 ├── components
 │   ├── About.jsx
 │   ├── Error404.jsx
-│   └── Home.jsx
+│   ├── Home.jsx
+│   └── Libraries.jsx
 ├── constants
-│   └── home.js
+│   ├── home.js
+│   ├── libraries.js
+│   └── types.js
 ├── index.js
 └── styles
     └── code.css
