@@ -1,4 +1,5 @@
 [ ![Codeship Status for cloverinteractive/boilerplate](https://app.codeship.com/projects/32a66b90-7cbd-0135-5c44-361f0802280c/status?branch=master)](https://app.codeship.com/projects/245775)
+[![Coverage Status](https://coveralls.io/repos/github/cloverinteractive/boilerplate/badge.svg)](https://coveralls.io/github/cloverinteractive/boilerplate)
 
 # Pre-requisites
 
