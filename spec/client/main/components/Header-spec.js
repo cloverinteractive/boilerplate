@@ -65,6 +65,7 @@ context('Main', () => {
       store.dispatch(addError('Some Error'));
 
       setTimeout(() => {
+        wrapper.update()
         expect(wrapper.find(Message)).to.have.length(1);
         done();
       }, 10);

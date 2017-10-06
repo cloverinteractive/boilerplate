@@ -60,7 +60,7 @@ context('Pages', () => {
       });
 
       it('has 2 code <Segment />', () => {
-        const code = component.find(Segment).find('.code');
+        const code = component.find(Segment).filterWhere(s => s.hasClass("code"));
         expect(code).to.have.length(2);
       });
 
