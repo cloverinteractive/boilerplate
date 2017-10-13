@@ -2,7 +2,7 @@ import webpack from 'webpack';
 import Middleware from 'webpack-dev-middleware';
 import HotMiddleware from 'webpack-hot-middleware';
 import path from 'path';
-import config from '../../webpack.config';
+import config from '../../../webpack.config';
 
 export default (app) => {
   const compiler = webpack(config);
@@ -25,7 +25,7 @@ export default (app) => {
   app.use(HotMiddleware(compiler));
 
   app.get('*', (req, res) => {
-    res.write(middleware.fileSystem.readFileSync(path.join(__dirname, '../../build/index.html')));
+    res.write(middleware.fileSystem.readFileSync(path.join(__dirname, '../../../build/index.html')));
     res.end();
   });
 };

@@ -2,7 +2,7 @@
   "name": "boilerplate",
   "version": "1.1.0",
   "description": "React App Boilerplate",
-  "main": "client/index.js",
+  "main": "src/index.js",
   "repository": "git@github.com:cloverinteractive/boilerplate.git",
   "author": "Enrique Vidal",
   "license": "MIT",
@@ -81,13 +81,13 @@
   },
   "scripts": {
     "build": "NODE_ENV=production yarn webpack --config ./webpack.config.js",
-    "lint": "yarn eslint --ext .js --ext .jsx ./client ./server",
+    "lint": "yarn eslint --ext .js --ext .jsx ./src",
     "lint:fix": "yarn lint --fix",
     "spec": "yarn spec:single --recursive spec",
     "spec:coverage": "yarn nyc --exclude=spec/ yarn spec",
     "coverage": "yarn nyc report --reporter=text-lcov | yarn coveralls",
     "spec:watch": "yarn spec --watch",
-    "spec:single": "NODE_ENV=test NODE_PATH=$NODE_PATH:$PWD/client yarn mocha --opts .mocha.opts",
-    "start": "babel-node server"
+    "spec:single": "NODE_ENV=test NODE_PATH=$NODE_PATH:$PWD/src yarn mocha --opts .mocha.opts",
+    "start": "babel-node ./src/server"
   }
 }

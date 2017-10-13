@@ -3,7 +3,7 @@ const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
-  entry: path.join(__dirname, '..', 'client', 'index'),
+  entry: path.join(__dirname, '..', 'src', 'index'),
 
   output: {
     path: path.join(__dirname, '..', 'build'),
@@ -14,7 +14,7 @@ module.exports = {
   resolve: {
     extensions: ['.css', '.js', '.jsx', '.json'],
     modules: [
-      path.join(__dirname, '..', 'client'),
+      path.join(__dirname, '..', 'src'),
       path.join(__dirname, '..', 'node_modules'),
     ],
   },
@@ -80,7 +80,7 @@ module.exports = {
     }),
 
     new HtmlWebpackPlugin({
-      template: 'client/index.html',
+      template: 'src/index.html',
       inject: 'body',
       filename: 'index.html',
     }),
