@@ -1,6 +1,6 @@
 import React from 'react';
 import { renderToString } from 'react-dom/server';
-import Layout from './components/Layout';
+import Layout from 'components/Layout';
 import { App } from 'routes';
 import { StaticRouter } from 'react-router';
 import { Provider } from 'react-redux';
@@ -15,7 +15,7 @@ export default (req, res) => {
           <App />
         </Layout>
       </StaticRouter>
-    </Provider>
+    </Provider>,
   );
 
   res.send(`<!doctype html>\n${html}`);

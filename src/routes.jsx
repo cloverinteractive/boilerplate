@@ -1,8 +1,8 @@
 import React from 'react';
-//import { ConnectedRouter as Router } from 'react-router-redux';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { ConnectedRouter as Router } from 'react-router-redux';
+import { Route, Switch } from 'react-router-dom';
 import { Provider } from 'react-redux';
-import store from 'store';
+import store, { history } from 'store';
 
 import Main from 'main';
 import Pages from 'pages';
@@ -20,9 +20,9 @@ export const App = () => (
 
 const Routes = () => (
   <Provider store={store}>
-    <BrowserRouter>
+    <Router history={history}>
       <App />
-    </BrowserRouter>
+    </Router>
   </Provider>
 );
 

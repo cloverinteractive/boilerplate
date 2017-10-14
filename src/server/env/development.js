@@ -1,11 +1,8 @@
 import webpack from 'webpack';
 import Middleware from 'webpack-dev-middleware';
 import HotMiddleware from 'webpack-hot-middleware';
-import path from 'path';
-import config from '../../../webpack.config';
 import StaticRouter from 'server/routes';
-
-const assetPath = path.join.bind(null, __dirname, '../../../build');
+import config from '../../../webpack.config';
 
 export default (app) => {
   const compiler = webpack(config);

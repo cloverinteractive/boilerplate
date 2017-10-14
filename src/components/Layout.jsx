@@ -1,7 +1,11 @@
 // @flow
 
+/*
+ * This component is only used by the server be careful before modifying as you may end up
+ * with an undesirable app layout
+ */
+
 import React, { type Node } from 'react';
-import isBrowser from 'helpers/env';
 
 type Props = {
   children: Node,
