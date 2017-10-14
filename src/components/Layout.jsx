@@ -22,7 +22,7 @@ export default ({ children }: Props) => (
       <div id="app">
         { children }
       </div>
+      <script src="/bundle.js" />
     </body>
-    <script src="/bundle.js" />
   </html>
 );

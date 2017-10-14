@@ -1,13 +1,13 @@
 import React from 'react';
 import { expect } from 'chai';
-import { mount } from 'enzyme';
+import { shallow } from 'enzyme';
 import Layout from 'components/Layout';
 
 let wrapper;
 
 describe('<Layout />', () => {
   before(() => {
-    wrapper = mount(
+    wrapper = shallow(
       <Layout>
         <h1>Hello world</h1>
       </Layout>
