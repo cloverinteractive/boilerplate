@@ -50,6 +50,7 @@
     "babel-preset-react-app": "^2.2.0",
     "babel-runtime": "^6.23.0",
     "body-parser": "^1.17.2",
+    "cross-env": "^5.0.5",
     "css-loader": "^0.28.4",
     "eslint-plugin-flowtype": "^2.35.1",
     "express": "^4.14.0",
@@ -83,14 +84,14 @@
     "yarn": "1.0.2"
   },
   "scripts": {
-    "build": "NODE_ENV=production yarn webpack --config ./webpack.config.js",
+    "build": "cross-env NODE_ENV=production yarn webpack --config ./webpack.config.js",
     "lint": "yarn eslint --ext .js --ext .jsx ./src",
     "lint:fix": "yarn lint --fix",
     "spec": "yarn spec:single --recursive spec",
     "spec:coverage": "yarn nyc --exclude=spec/ yarn spec",
     "coverage": "yarn nyc report --reporter=text-lcov | yarn coveralls",
     "spec:watch": "yarn spec --watch",
-    "spec:single": "NODE_ENV=test NODE_PATH=$NODE_PATH:$PWD/src yarn mocha --opts .mocha.opts",
-    "start": "BABEL_ENV=server NODE_PATH=$NODE_PATH:$PWD/src babel-node ./src/server"
+    "spec:single": "cross-env NODE_PATH=./src NODE_ENV=test yarn mocha --opts .mocha.opts",
+    "start": "cross-env BABEL_ENV=server NODE_PATH=./src babel-node ./src/server"
   }
 }

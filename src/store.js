@@ -6,12 +6,12 @@ import rootReducer from './root-reducer';
 
 const defaultState = {};
 
-const canLoadDevTools = () => {
+export const canLoadDevTools = () => {
   if (process.env.NODE_ENV !== 'production' && typeof window === 'object' && window.devToolsExtension) {
     return window.devToolsExtension();
   }
 
-  return (f => f);
+  return compose;
 };
 
 export const history = typeof window === 'object' ? createHistory() : {};
