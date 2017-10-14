@@ -1,10 +1,13 @@
 import express from 'express';
 import path from 'path';
+import StaticRouter from 'server/routes';
+
+const assetPath = path.join.bind(null, __dirname, '../../../build');
 
 export default (app) => {
-  app.use(express.static(path.join(__dirname, '../../build')));
-
-  app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, '../../build/index.html'));
+  app.get('/*.[a-z0-9]{0,5}', (req, res) => {
+    res.sendFile(assetPath(req.url));
   });
+
+  app.get('*', StaticRouter);
 };

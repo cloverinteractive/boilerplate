@@ -1,6 +1,8 @@
-const path = require('path')
-const webpack = require('webpack')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
+const autoprefixer = require('autoprefixer');
+const path = require('path');
+const webpack = require('webpack');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const ManifestPlugin = require('webpack-manifest-plugin')
 
 module.exports = {
   entry: path.join(__dirname, '..', 'src', 'index'),
@@ -29,11 +31,34 @@ module.exports = {
 
       {
         test: /\.css$/,
-        use: [
-        { loader: 'style-loader' },
-        { loader: 'css-loader', options: { sourceMap: true } },
-        { loader: 'resolve-url-loader' },
-        ],
+        loader: ExtractTextPlugin.extract({
+          fallback: 'style-loader',
+          use: [
+            {
+              loader: 'css-loader',
+              options: {
+                importLoaders: 1,
+              },
+            },
+
+            {
+              loader: 'postcss-loader',
+              options: {
+                ident: 'postcss',
+                plugins: [
+                  autoprefixer({
+                    browsers: [
+                      '>1%',
+                      'last 4 versions',
+                      'Firefox ESR',
+                      'not ie < 9', // React doesn't support IE8 anyway
+                    ],
+                  }),
+                ],
+              },
+            },
+          ],
+        }),
       },
 
       {
@@ -79,10 +104,13 @@ module.exports = {
       },
     }),
 
-    new HtmlWebpackPlugin({
-      template: 'src/index.html',
-      inject: 'body',
-      filename: 'index.html',
+    new ExtractTextPlugin({
+      allChunks: true,
+      filename: 'static/css/[name].css',
+    }),
+
+    new ManifestPlugin({
+      fileName: 'asset-manifest.json',
     }),
   ],
 }
