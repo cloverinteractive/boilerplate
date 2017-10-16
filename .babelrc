@@ -8,5 +8,16 @@
   "plugins": [ 
     "transform-class-properties", 
     "transform-object-rest-spread"
-  ]
+  ],
+  "env": {
+    "server": {
+      "plugins": [
+        [
+          "css-modules-transform", {
+            "extensions": [".css"],
+          }
+        ]
+      ]
+    }
+  }
 }

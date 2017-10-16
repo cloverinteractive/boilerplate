@@ -6,18 +6,18 @@ import rootReducer from './root-reducer';
 
 const defaultState = {};
 
-const canLoadDevTools = () => {
-  if (process.env.NODE_ENV !== 'production' && typeof window.devToolsExtension === 'function') {
+export const canLoadDevTools = () => {
+  if (process.env.NODE_ENV !== 'production' && typeof window === 'object' && window.devToolsExtension) {
     return window.devToolsExtension();
   }
 
-  return (f => f);
+  return compose;
 };
 
-export const history = createHistory();
+export const history = typeof window === 'object' ? createHistory() : {};
 const routeMiddleware = routerMiddleware(history);
-const enhancers = compose(applyMiddleware(routeMiddleware, thunkMiddleware), canLoadDevTools());
 
+const enhancers = compose(applyMiddleware(routeMiddleware, thunkMiddleware), canLoadDevTools());
 const store = createStore(rootReducer, defaultState, enhancers);
 
 export default store;
