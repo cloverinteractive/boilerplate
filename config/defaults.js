@@ -1,11 +1,15 @@
 const autoprefixer = require('autoprefixer');
 const path = require('path');
 const webpack = require('webpack');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const ManifestPlugin = require('webpack-manifest-plugin')
 
 module.exports = {
-  entry: path.join(__dirname, '..', 'src', 'index'),
+  entry: [
+    path.join(__dirname, '..', 'src', 'index'),
+
+    // Development does not extract files to disk make sure to keep
+    // this entry point up to date if this file changes.
+    'semantic-ui-css/semantic.css',
+  ],
 
   output: {
     path: path.join(__dirname, '..', 'build'),
@@ -14,7 +18,7 @@ module.exports = {
   },
 
   resolve: {
-    extensions: ['.css', '.js', '.jsx', '.json'],
+    extensions: ['.js', '.jsx', '.json', '.css'],
     modules: [
       path.join(__dirname, '..', 'src'),
       path.join(__dirname, '..', 'node_modules'),
@@ -30,35 +34,43 @@ module.exports = {
       },
 
       {
-        test: /\.css$/,
-        loader: ExtractTextPlugin.extract({
-          fallback: 'style-loader',
-          use: [
-            {
-              loader: 'css-loader',
-              options: {
-                importLoaders: 1,
-              },
-            },
+        test: /semantic-ui-css[\\\/]semantic\.css$/,
+        use: [
+          { loader: 'style-loader' },
+          { loader: 'css-loader' },
+        ],
+      },
 
-            {
-              loader: 'postcss-loader',
-              options: {
-                ident: 'postcss',
-                plugins: [
-                  autoprefixer({
-                    browsers: [
-                      '>1%',
-                      'last 4 versions',
-                      'Firefox ESR',
-                      'not ie < 9', // React doesn't support IE8 anyway
-                    ],
-                  }),
-                ],
-              },
+      {
+        test: /\.css$/,
+        exclude: /node_modules/,
+        use: [
+          { loader: 'style-loader' },
+          {
+            loader: 'css-loader',
+            options: {
+              importLoaders: 1,
+              localIdentName: '[name]-[local]-[hash:8]',
+              modules: true,
             },
-          ],
-        }),
+          },
+          {
+            loader: 'postcss-loader',
+            options: {
+              ident: 'postcss',
+              plugins: [
+                autoprefixer({
+                  browsers: [
+                    '>1%',
+                    'last 4 versions',
+                    'Firefox ESR',
+                    'not ie < 9', // React doesn't support IE8 anyway
+                  ],
+                }),
+              ],
+            },
+          },
+        ],
       },
 
       {
@@ -103,14 +115,5 @@ module.exports = {
         NODE_ENV: JSON.stringify(process.env.NODE_ENV),
       },
     }),
-
-    new ExtractTextPlugin({
-      allChunks: true,
-      filename: 'static/css/[name].css',
-    }),
-
-    new ManifestPlugin({
-      fileName: 'asset-manifest.json',
-    }),
   ],
-}
+};

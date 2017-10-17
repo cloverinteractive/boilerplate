@@ -1,9 +1,11 @@
 const defaults = require('./defaults')
 const webpack = require('webpack')
+const path = require('path');
 
 const devEntry = [
+  ...defaults.entry,
   'webpack-hot-middleware/client?reload=true',
-  defaults.entry,
+  path.join(__dirname, '../src/css/main.css'),
 ]
 
 const plugins = [

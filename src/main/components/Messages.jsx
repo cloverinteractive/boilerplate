@@ -3,7 +3,7 @@
 import React from 'react';
 import { Message } from 'semantic-ui-react';
 import Dismissable from 'components/Dismissable';
-
+import styles from '../../css/main.css';
 import type { Message as MessageType } from 'main/constants/types';
 
 type Props = {
@@ -18,8 +18,8 @@ class Messages extends React.PureComponent<Props> {
 
     const Alert = (
       <Message {...color} key={message.id} floating onDismiss={onDismiss}>
-        <Message.Header>{ message.header }</Message.Header>
-        <p>{ message.content }</p>
+        <Message.Header>{message.header}</Message.Header>
+        <p>{message.content}</p>
       </Message>
     );
 
@@ -28,7 +28,7 @@ class Messages extends React.PureComponent<Props> {
 
     return (
       <Dismissable key={message.id} dismiss={onDismiss}>
-        { Alert }
+        {Alert}
       </Dismissable>
     );
   }
@@ -38,8 +38,8 @@ class Messages extends React.PureComponent<Props> {
     const MessageList = messages.map(message => this.buildMessage(message));
 
     return (
-      <div className="messages">
-        { MessageList }
+      <div className={styles.messages}>
+        {MessageList}
       </div>
     );
   }

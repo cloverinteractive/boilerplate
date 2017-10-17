@@ -29,7 +29,7 @@ describe('<Layout />', () => {
     const style = wrapper.find('link');
 
     expect(style).to.have.length(1);
-    expect(style.props().href).to.eql('/static/css/main.css');
+    expect(style.props().href).to.eql('/style.css');
   });
 
   it('renders javascript bundle', () => {

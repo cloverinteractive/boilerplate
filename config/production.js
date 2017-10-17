@@ -2,26 +2,7 @@ const autoprefixer = require('autoprefixer');
 const defaults = require('./defaults');
 const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
-
-const plugins = [
-  new webpack.optimize.UglifyJsPlugin({
-    compress: {
-      warnings: false,
-    },
-
-    output: {
-      comments: false,
-    },
-
-    sourceMap: true,
-  }),
-
-  new webpack.LoaderOptionsPlugin({
-    minimize: true,
-  }),
-
-  ...defaults.plugins,
-]
+const ManifestPlugin = require('webpack-manifest-plugin');
 
 module.exports = {
   bail: true,
@@ -44,7 +25,16 @@ module.exports = {
       },
 
       {
+        test: /semantic-ui-css[\\\/]semantic\.css$/,
+        loader: ExtractTextPlugin.extract({
+          fallback: 'style-loader',
+          use: 'css-loader'
+        }),
+      },
+
+      {
         test: /\.css$/,
+        exclude: /node_modules/,
         loader: ExtractTextPlugin.extract({
           fallback: 'style-loader',
           use: [
@@ -52,7 +42,9 @@ module.exports = {
               loader: 'css-loader',
               options: {
                 importLoaders: 1,
+                localIdentName: '[name]-[local]-[hash:8]',
                 minimize: true,
+                modules: true,
               },
             },
 
@@ -91,11 +83,37 @@ module.exports = {
     ],
   },
 
-  plugins,
+  plugins: [
+    new webpack.optimize.UglifyJsPlugin({
+      compress: {
+        warnings: false,
+      },
+
+      output: {
+        comments: false,
+      },
+
+      sourceMap: true,
+    }),
+
+    new webpack.LoaderOptionsPlugin({
+      minimize: true,
+    }),
+
+    new ExtractTextPlugin({
+      allChunks: true,
+      filename: 'style.css',
+      ignoreOrder: true,
+    }),
+
+    new ManifestPlugin({
+      fileName: 'asset-manifest.json',
+    }),
+  ],
 
   node: {
     fs: 'empty',
     net: 'empty',
     tls: 'empty',
   },
-}
+};

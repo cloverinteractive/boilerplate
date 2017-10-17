@@ -16,11 +16,11 @@ export default ({ children }: Props) => (
     <head>
       <meta charSet="utf-8" />
       <meta content="width=device-width, maximum-scale=1.0" name="viewport" />
-      <link rel="stylesheet" type="text/css" href="/static/css/main.css" />
+      <link rel="stylesheet" href="/style.css" />
     </head>
     <body>
       <div id="app">
-        { children }
+        {children}
       </div>
       <script src="/bundle.js" />
     </body>
