@@ -1,11 +1,9 @@
 import webpack from 'webpack';
 import DevMiddleware from 'webpack-dev-middleware';
 import HotMiddleware from 'webpack-hot-middleware';
-import StaticRouter from 'server/routes';
-
 import config from '../../../webpack.config';
 
-export default (app) => {
+module.exports = (app) => {
   const compiler = webpack(config);
   const serverOptions = {
     publicPath: config.output.publicPath,
@@ -19,9 +17,8 @@ export default (app) => {
       modules: false,
     },
   };
+  const devMiddleware = DevMiddleware(compiler, serverOptions);
 
-  app.use(DevMiddleware(compiler, serverOptions));
+  app.use(devMiddleware);
   app.use(HotMiddleware(compiler));
-
-  app.get('*', StaticRouter);
 };

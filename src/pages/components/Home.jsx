@@ -10,7 +10,7 @@ import * as messages from 'main/flux/actions/messages';
 import libraries from 'pages/constants/libraries';
 import Libraries from 'pages/components/Libraries';
 
-import styles from 'pages/styles/code.css';
+import styles from 'pages/css/code.css';
 
 type Props = {
   addError: Function,

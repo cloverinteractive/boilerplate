@@ -84,7 +84,7 @@
     "yarn": "1.0.2"
   },
   "scripts": {
-    "build": "cross-env NODE_ENV=production yarn webpack --config ./webpack.config.js",
+    "build": "yarn webpack",
     "lint": "yarn eslint --ext .js --ext .jsx ./src",
     "lint:fix": "yarn lint --fix",
     "spec": "yarn spec:single --recursive spec",

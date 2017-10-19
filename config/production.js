@@ -20,20 +20,29 @@ module.exports = {
     rules: [
       {
         test: /\.jsx?$/,
-        use: 'babel-loader',
         exclude: /node_modules/,
+        use: {
+          loader: 'babel-loader',
+          options: {
+            forceEnv: 'webpack',
+          },
+        },
       },
 
       {
         test: /global\.css$/,
         loader: ExtractTextPlugin.extract({
           fallback: 'style-loader',
-          use: {
-            loader: 'css-loader',
-            options: {
-              minimize: true,
+          use: [
+            {
+              loader: 'css-loader',
+              options: {
+                minimize: true,
+              },
             },
-          },
+
+            { loader: 'resolve-url-loader' },
+          ],
         }),
       },
 
@@ -45,12 +54,14 @@ module.exports = {
             {
               loader: 'css-loader',
               options: {
-                importLoaders: 1,
+                importLoaders: 2,
                 localIdentName: '[name]-[local]-[hash:8]',
                 minimize: true,
                 modules: true,
               },
             },
+
+            { loader: 'resolve-url-loader' },
 
             {
               loader: 'postcss-loader',

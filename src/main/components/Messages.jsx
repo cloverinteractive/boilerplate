@@ -3,7 +3,7 @@
 import React from 'react';
 import { Message } from 'semantic-ui-react';
 import Dismissable from 'components/Dismissable';
-import styles from 'css/main.css';
+import styles from 'main/css/messages.css';
 import type { Message as MessageType } from 'main/constants/types';
 
 

@@ -12,6 +12,7 @@ const plugins = [
   ...defaults.plugins,
   new webpack.HotModuleReplacementPlugin(),
   new webpack.NoEmitOnErrorsPlugin(),
+
 ]
 
 module.exports = {

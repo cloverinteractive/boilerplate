@@ -1,4 +1,5 @@
 import express from 'express';
+import StaticRouter from './routes';
 
 const isDeveloping = process.env.NODE_ENV !== 'production';
 const port = process.env.PORT || 8080;
@@ -14,7 +15,8 @@ if (isDeveloping) {
 }
 /* eslint-enable global-require */
 
-server.default(app);
+server(app);
+app.get('*', StaticRouter);
 
 app.listen(port, '0.0.0.0', (err) => {
   /* eslint-disable no-console */

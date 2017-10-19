@@ -14,7 +14,7 @@ module.exports = {
   },
 
   resolve: {
-    extensions: ['.js', '.jsx', '.json', '.css'],
+    extensions: ['.js', '.jsx', '.json'],
     modules: [
       path.join(__dirname, '..', 'src'),
       path.join(__dirname, '..', 'node_modules'),
@@ -25,30 +25,39 @@ module.exports = {
     rules: [
       {
         test: /\.jsx?$/,
-        use: 'babel-loader',
         exclude: /node_modules/,
+        use:
+        {
+          loader: 'babel-loader',
+          options: {
+            forceEnv: 'webpack',
+          },
+        },
       },
 
       {
         test: /global\.css$/,
-        use: [
-          { loader: 'style-loader' },
-          { loader: 'css-loader' },
-        ],
+        include: path.resolve(__dirname, '../src'),
+        exclude: /node_modules/,
+        loaders: ['style-loader', 'css-loader', 'resolve-url-loader'],
       },
 
       {
         test: /[^global]\.css$/,
         use: [
           { loader: 'style-loader' },
+
           {
             loader: 'css-loader',
             options: {
-              importLoaders: 1,
+              importLoaders: 2,
               localIdentName: '[name]-[local]-[hash:8]',
               modules: true,
             },
           },
+
+          { loader: 'resolve-url-loader' },
+
           {
             loader: 'postcss-loader',
             options: {
