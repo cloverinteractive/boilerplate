@@ -5,10 +5,6 @@ const webpack = require('webpack');
 module.exports = {
   entry: [
     path.join(__dirname, '..', 'src', 'index'),
-
-    // Development does not extract files to disk make sure to keep
-    // this entry point up to date if this file changes.
-    'semantic-ui-css/semantic.css',
   ],
 
   output: {
@@ -34,7 +30,7 @@ module.exports = {
       },
 
       {
-        test: /semantic-ui-css[\\\/]semantic\.css$/,
+        test: /global\.css$/,
         use: [
           { loader: 'style-loader' },
           { loader: 'css-loader' },
@@ -42,8 +38,7 @@ module.exports = {
       },
 
       {
-        test: /\.css$/,
-        exclude: /node_modules/,
+        test: /[^global]\.css$/,
         use: [
           { loader: 'style-loader' },
           {

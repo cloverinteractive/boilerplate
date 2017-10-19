@@ -25,16 +25,20 @@ module.exports = {
       },
 
       {
-        test: /semantic-ui-css[\\\/]semantic\.css$/,
+        test: /global\.css$/,
         loader: ExtractTextPlugin.extract({
           fallback: 'style-loader',
-          use: 'css-loader'
+          use: {
+            loader: 'css-loader',
+            options: {
+              minimize: true,
+            },
+          },
         }),
       },
 
       {
-        test: /\.css$/,
-        exclude: /node_modules/,
+        test: /[^global]\.css$/,
         loader: ExtractTextPlugin.extract({
           fallback: 'style-loader',
           use: [
@@ -84,6 +88,12 @@ module.exports = {
   },
 
   plugins: [
+    new webpack.DefinePlugin({
+      'process.env': {
+        NODE_ENV: JSON.stringify(process.env.NODE_ENV),
+      },
+    }),
+
     new webpack.optimize.UglifyJsPlugin({
       compress: {
         warnings: false,
@@ -103,7 +113,6 @@ module.exports = {
     new ExtractTextPlugin({
       allChunks: true,
       filename: 'style.css',
-      ignoreOrder: true,
     }),
 
     new ManifestPlugin({

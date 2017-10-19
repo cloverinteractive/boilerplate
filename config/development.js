@@ -3,9 +3,9 @@ const webpack = require('webpack')
 const path = require('path');
 
 const devEntry = [
+  'webpack/hot/dev-server',
+  'webpack-hot-middleware/client',
   ...defaults.entry,
-  'webpack-hot-middleware/client?reload=true',
-  path.join(__dirname, '../src/css/main.css'),
 ]
 
 const plugins = [
@@ -15,7 +15,7 @@ const plugins = [
 ]
 
 module.exports = {
-  devtool: 'eval',
+  devtool: 'cheap-module-eval-source-map',
 
   entry: devEntry,
 

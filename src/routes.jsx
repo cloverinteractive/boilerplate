@@ -4,10 +4,10 @@ import { Route, Switch } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import store, { history } from 'store';
 
-import 'css/main.css';
-
 import Main from 'main';
 import Pages from 'pages';
+
+import 'css/global.css';
 
 export const App = () => (
   <div className="wrapper">
