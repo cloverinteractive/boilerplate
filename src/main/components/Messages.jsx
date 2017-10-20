@@ -1,35 +1,31 @@
 // @flow
 
 import React from 'react';
-import { Message } from 'semantic-ui-react';
 import Dismissable from 'components/Dismissable';
+import Alert from 'main/components/Alert';
 import styles from 'main/css/messages.css';
-import type { Message as MessageType } from 'main/constants/types';
-
+import type { Message } from 'main/constants/types';
 
 type Props = {
   dismiss: Function,
-  messages: Array<MessageType>,
+  messages: Array<Message>,
 };
 
 class Messages extends React.PureComponent<Props> {
-  buildMessage = (message: MessageType) => {
+  buildMessage = (message: Message) => {
     const color = { [message.type]: true };
     const onDismiss = this.props.dismiss.bind(null, message.id);
 
-    const Alert = (
-      <Message {...color} key={message.id} floating onDismiss={onDismiss}>
-        <Message.Header>{message.header}</Message.Header>
-        <p>{message.content}</p>
-      </Message>
+    const Flash = (
+      <Alert colors={color} key={message.id} message={message} onDismiss={onDismiss} />
     );
 
     // Only dismiss automatically if successful
-    if (message.type !== 'success') return Alert;
+    if (message.type !== 'success') return Flash;
 
     return (
       <Dismissable key={message.id} dismiss={onDismiss}>
-        {Alert}
+        {Flash}
       </Dismissable>
     );
   }

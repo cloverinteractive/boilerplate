@@ -15,9 +15,15 @@ export type Action = {
   id: string,
   message?: Message,
   type: string,
-}
+};
 
 export type State = {
   +entities: Alert<string, Message> | {},
   +ids: Array<string>,
-}
+};
+
+export type Colors = {
+  error?: boolean,
+  success?: boolean,
+  warning?: boolean,
+};

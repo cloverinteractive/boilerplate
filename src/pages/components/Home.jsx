@@ -96,9 +96,9 @@ const Home = ({ addError, addNotice, addWarning }: Props) => {
 
         <p>Folder structure looks like this: </p>
 
-        <Segment className="code" inverted>
+        <Segment className={styles.codeWrapper} inverted>
           <code>
-            <pre>{MAIN_TREE}</pre>
+            <pre className={styles.code}>{MAIN_TREE}</pre>
           </code>
         </Segment>
 
