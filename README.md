@@ -37,15 +37,25 @@ You'll need a couple of things installed before you can get this app boilerplate
 The server code lives in `src/server` the reason for this is Server Rendering, express will automatically render your components
 with every new request, the idea is that search engines can index pages with content instead of blank html templates.
 
+## CSS modules
+
+By default css-modules are turned on, meaning that your class names will change to somewhat semi-random strings, however
+this may not be ideal if you're using some vendor css framework (like semantic-ui or bootstrap), to work around this,
+you can create stysheet files suffixed with `global.css` and `css-modules` will be turned off for said file, this is meant
+to help you deal with vendor overrides, check `src/css/global.css` to see it in action.
+
 # Running the app
 
 The app reads your current `NODE_ENV` environment variable, when set to *production* it will run express with the statically built asset,
 when set to anything else it will run the app through *webpack-dev-server* with hmre.
 
 ```sh
-yarn start # Run in development environment unless NODE_ENV globally set
-NODE_ENV=production yarn start # Run in production environment
+yarn start:dev # Run in development environment unless NODE_ENV globally set
+yarn start:prod # Run in production environment
 ```
+
+*NOTE*: Keep in mind that starting in production relies on your code being built first and your `NODE_ENV` to be set to
+`production`. Read the [Building the app](#building-the-app) section for more info on this.
 
 ## Running in Docker
 
