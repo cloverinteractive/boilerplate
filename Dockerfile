@@ -19,4 +19,4 @@ COPY webpack.config.js .
 RUN yarn install --ignore-engines
 RUN yarn build
 
-CMD ["yarn", "start"]
+CMD ["yarn", "start:prod"]

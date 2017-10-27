@@ -92,6 +92,7 @@
     "coverage": "yarn nyc report --reporter=text-lcov | yarn coveralls",
     "spec:watch": "yarn spec --watch",
     "spec:single": "cross-env NODE_PATH=./src NODE_ENV=test yarn mocha --opts .mocha.opts",
-    "start": "cross-env BABEL_ENV=server NODE_PATH=./src babel-node ./src/server"
+    "start:prod": "cross-env BABEL_ENV=server NODE_PATH=./src babel-node ./src/server",
+    "start:dev": "cross-env BABEL_ENV=server NODE_PATH=./src nodemon ./src/server --exec babel-node"
   }
 }
