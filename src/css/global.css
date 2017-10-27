@@ -1,0 +1,6 @@
+/*
+* NOTICE: This section is for global css, it's meant to bypass css-modules and it's mainly
+* used for css framework overrides
+*/
+
+@import '~semantic-ui-css/semantic.css';

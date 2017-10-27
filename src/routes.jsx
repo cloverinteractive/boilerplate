@@ -7,6 +7,8 @@ import store, { history } from 'store';
 import Main from 'main';
 import Pages from 'pages';
 
+import 'css/global.css';
+
 export const App = () => (
   <div className="wrapper">
     <Main.Header />

@@ -1,20 +1,23 @@
 {
-  "presets": [ 
+  "presets": [
     "flow",
     "es2015",
-    "react" 
+    "react"
   ],
-
-  "plugins": [ 
-    "transform-class-properties", 
+  "plugins": [
+    "transform-class-properties",
     "transform-object-rest-spread"
   ],
   "env": {
     "server": {
       "plugins": [
         [
-          "css-modules-transform", {
-            "extensions": [".css"],
+          "css-modules-transform",
+          {
+            "extensions": [
+              ".css"
+            ],
+            "generateScopedName": "[name]-[local]-[hash:8]"
           }
         ]
       ]

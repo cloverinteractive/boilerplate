@@ -3,8 +3,8 @@ config
 node_modules
 spec
 
-
 [include]
+src
 
 [libs]
 flow-typed

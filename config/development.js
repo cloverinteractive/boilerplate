@@ -1,19 +1,22 @@
 const defaults = require('./defaults')
 const webpack = require('webpack')
+const path = require('path');
 
 const devEntry = [
-  'webpack-hot-middleware/client?reload=true',
-  defaults.entry,
+  'webpack/hot/dev-server',
+  'webpack-hot-middleware/client',
+  ...defaults.entry,
 ]
 
 const plugins = [
   ...defaults.plugins,
   new webpack.HotModuleReplacementPlugin(),
   new webpack.NoEmitOnErrorsPlugin(),
+
 ]
 
 module.exports = {
-  devtool: 'eval',
+  devtool: 'cheap-module-eval-source-map',
 
   entry: devEntry,
 

@@ -1,16 +1,13 @@
 import webpack from 'webpack';
-import Middleware from 'webpack-dev-middleware';
+import DevMiddleware from 'webpack-dev-middleware';
 import HotMiddleware from 'webpack-hot-middleware';
-import StaticRouter from 'server/routes';
 import config from '../../../webpack.config';
 
-export default (app) => {
+module.exports = (app) => {
   const compiler = webpack(config);
-  const middleware = Middleware(compiler, {
+  const serverOptions = {
     publicPath: config.output.publicPath,
-    hot: true,
-    historyApiFallback: true,
-    contentBase: 'src',
+    serverSideRender: true,
     stats: {
       colors: true,
       hash: false,
@@ -19,9 +16,9 @@ export default (app) => {
       chunkModules: false,
       modules: false,
     },
-  });
+  };
+  const devMiddleware = DevMiddleware(compiler, serverOptions);
 
-  app.use(middleware);
+  app.use(devMiddleware);
   app.use(HotMiddleware(compiler));
-  app.get('*', StaticRouter);
 };

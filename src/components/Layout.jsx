@@ -11,18 +11,27 @@ type Props = {
   children: Node,
 };
 
+// Stylesheets are only extracted in production, this prevents a 404 in the browser
+const Stylesheet = () => {
+  if (process.env.NODE_ENV !== 'production') return null;
+
+  return (
+    <link rel="stylesheet" href="/style.css" />
+  );
+};
+
 export default ({ children }: Props) => (
   <html lang="en-US">
     <head>
       <meta charSet="utf-8" />
+      <Stylesheet />
       <meta content="width=device-width, maximum-scale=1.0" name="viewport" />
-      <link rel="stylesheet" type="text/css" href="/static/css/main.css" />
     </head>
     <body>
       <div id="app">
-        { children }
+        {children}
       </div>
-      <script src="/bundle.js" />
+      <script rel="async" src="/bundle.js" />
     </body>
   </html>
 );

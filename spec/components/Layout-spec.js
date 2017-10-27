@@ -25,11 +25,9 @@ describe('<Layout />', () => {
     expect(child.text()).to.eql('Hello world');
   });
 
-  it('renders main stylesheet', () => {
+  it('does not render main stylesheet outside production', () => {
     const style = wrapper.find('link');
-
-    expect(style).to.have.length(1);
-    expect(style.props().href).to.eql('/static/css/main.css');
+    expect(style).to.have.length(0);
   });
 
   it('renders javascript bundle', () => {

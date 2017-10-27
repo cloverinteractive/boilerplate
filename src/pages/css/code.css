@@ -1,8 +1,8 @@
-.ui.inverted.segment.code {
+.codeWrapper {
   font-size: 0.9em;
   padding: 5px;
 }
 
-.segment.code pre {
+.code {
   margin: 0;
 }

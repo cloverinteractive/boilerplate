@@ -1,11 +1,11 @@
 const autoprefixer = require('autoprefixer');
 const path = require('path');
 const webpack = require('webpack');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const ManifestPlugin = require('webpack-manifest-plugin')
 
 module.exports = {
-  entry: path.join(__dirname, '..', 'src', 'index'),
+  entry: [
+    path.join(__dirname, '..', 'src', 'index'),
+  ],
 
   output: {
     path: path.join(__dirname, '..', 'build'),
@@ -14,7 +14,7 @@ module.exports = {
   },
 
   resolve: {
-    extensions: ['.css', '.js', '.jsx', '.json'],
+    extensions: ['.js', '.jsx', '.json'],
     modules: [
       path.join(__dirname, '..', 'src'),
       path.join(__dirname, '..', 'node_modules'),
@@ -25,40 +25,56 @@ module.exports = {
     rules: [
       {
         test: /\.jsx?$/,
-        use: 'babel-loader',
         exclude: /node_modules/,
+        use:
+        {
+          loader: 'babel-loader',
+          options: {
+            forceEnv: 'webpack',
+          },
+        },
       },
 
       {
-        test: /\.css$/,
-        loader: ExtractTextPlugin.extract({
-          fallback: 'style-loader',
-          use: [
-            {
-              loader: 'css-loader',
-              options: {
-                importLoaders: 1,
-              },
-            },
+        test: /global\.css$/,
+        include: path.resolve(__dirname, '../src'),
+        exclude: /node_modules/,
+        loaders: ['style-loader', 'css-loader', 'resolve-url-loader'],
+      },
 
-            {
-              loader: 'postcss-loader',
-              options: {
-                ident: 'postcss',
-                plugins: [
-                  autoprefixer({
-                    browsers: [
-                      '>1%',
-                      'last 4 versions',
-                      'Firefox ESR',
-                      'not ie < 9', // React doesn't support IE8 anyway
-                    ],
-                  }),
-                ],
-              },
+      {
+        test: /[^global]\.css$/,
+        use: [
+          { loader: 'style-loader' },
+
+          {
+            loader: 'css-loader',
+            options: {
+              importLoaders: 2,
+              localIdentName: '[name]-[local]-[hash:8]',
+              modules: true,
             },
-          ],
-        }),
+          },
+
+          { loader: 'resolve-url-loader' },
+
+          {
+            loader: 'postcss-loader',
+            options: {
+              ident: 'postcss',
+              plugins: [
+                autoprefixer({
+                  browsers: [
+                    '>1%',
+                    'last 4 versions',
+                    'Firefox ESR',
+                    'not ie < 9', // React doesn't support IE8 anyway
+                  ],
+                }),
+              ],
+            },
+          },
+        ],
       },
 
       {
@@ -103,14 +119,5 @@ module.exports = {
         NODE_ENV: JSON.stringify(process.env.NODE_ENV),
       },
     }),
-
-    new ExtractTextPlugin({
-      allChunks: true,
-      filename: 'static/css/[name].css',
-    }),
-
-    new ManifestPlugin({
-      fileName: 'asset-manifest.json',
-    }),
   ],
-}
+};

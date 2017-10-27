@@ -10,7 +10,7 @@ import * as messages from 'main/flux/actions/messages';
 import libraries from 'pages/constants/libraries';
 import Libraries from 'pages/components/Libraries';
 
-import 'pages/styles/code.css';
+import styles from 'pages/css/code.css';
 
 type Props = {
   addError: Function,
@@ -96,9 +96,9 @@ const Home = ({ addError, addNotice, addWarning }: Props) => {
 
         <p>Folder structure looks like this: </p>
 
-        <Segment className="code" inverted>
+        <Segment className={styles.codeWrapper} inverted>
           <code>
-            <pre>{ MAIN_TREE }</pre>
+            <pre className={styles.code}>{MAIN_TREE}</pre>
           </code>
         </Segment>
 
@@ -116,9 +116,9 @@ const Home = ({ addError, addNotice, addWarning }: Props) => {
           app&apos;s folder. Folder structure looks like this:
         </p>
 
-        <Segment className="code" inverted>
+        <Segment className={styles.codeWrapper} inverted>
           <code>
-            <pre>{ PAGES_TREE }</pre>
+            <pre className={styles.code}>{PAGES_TREE}</pre>
           </code>
         </Segment>
 

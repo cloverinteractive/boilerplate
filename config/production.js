@@ -2,26 +2,7 @@ const autoprefixer = require('autoprefixer');
 const defaults = require('./defaults');
 const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
-
-const plugins = [
-  new webpack.optimize.UglifyJsPlugin({
-    compress: {
-      warnings: false,
-    },
-
-    output: {
-      comments: false,
-    },
-
-    sourceMap: true,
-  }),
-
-  new webpack.LoaderOptionsPlugin({
-    minimize: true,
-  }),
-
-  ...defaults.plugins,
-]
+const ManifestPlugin = require('webpack-manifest-plugin');
 
 module.exports = {
   bail: true,
@@ -39,22 +20,48 @@ module.exports = {
     rules: [
       {
         test: /\.jsx?$/,
-        use: 'babel-loader',
         exclude: /node_modules/,
+        use: {
+          loader: 'babel-loader',
+          options: {
+            forceEnv: 'webpack',
+          },
+        },
       },
 
       {
-        test: /\.css$/,
+        test: /global\.css$/,
         loader: ExtractTextPlugin.extract({
           fallback: 'style-loader',
           use: [
             {
               loader: 'css-loader',
               options: {
-                importLoaders: 1,
                 minimize: true,
               },
             },
+
+            { loader: 'resolve-url-loader' },
+          ],
+        }),
+      },
+
+      {
+        test: /[^global]\.css$/,
+        loader: ExtractTextPlugin.extract({
+          fallback: 'style-loader',
+          use: [
+            {
+              loader: 'css-loader',
+              options: {
+                importLoaders: 2,
+                localIdentName: '[name]-[local]-[hash:8]',
+                minimize: true,
+                modules: true,
+              },
+            },
+
+            { loader: 'resolve-url-loader' },
 
             {
               loader: 'postcss-loader',
@@ -91,11 +98,42 @@ module.exports = {
     ],
   },
 
-  plugins,
+  plugins: [
+    new webpack.DefinePlugin({
+      'process.env': {
+        NODE_ENV: JSON.stringify(process.env.NODE_ENV),
+      },
+    }),
+
+    new webpack.optimize.UglifyJsPlugin({
+      compress: {
+        warnings: false,
+      },
+
+      output: {
+        comments: false,
+      },
+
+      sourceMap: true,
+    }),
+
+    new webpack.LoaderOptionsPlugin({
+      minimize: true,
+    }),
+
+    new ExtractTextPlugin({
+      allChunks: true,
+      filename: 'style.css',
+    }),
+
+    new ManifestPlugin({
+      fileName: 'asset-manifest.json',
+    }),
+  ],
 
   node: {
     fs: 'empty',
     net: 'empty',
     tls: 'empty',
   },
-}
+};
