@@ -7,7 +7,9 @@ import type { Action, Message } from 'main/constants/types';
 
 const addMessage = (header: string, content: string, type: string): Action => {
   const id = v4();
-  const message: Message = { content, header, id, type };
+  const message: Message = {
+    content, header, id, type,
+  };
 
   return {
     type: types.ADD_MESSAGE,

@@ -12,6 +12,7 @@ type Props = {
 };
 
 class Messages extends React.PureComponent<Props> {
+  /* eslint-disable react/jsx-no-bind */
   buildMessage = (message: Message) => {
     const color = { [message.type]: true };
     const onDismiss = this.props.dismiss.bind(null, message.id);
@@ -29,6 +30,7 @@ class Messages extends React.PureComponent<Props> {
       </Dismissable>
     );
   }
+  /* eslint-enable react/jsx-no-bind */
 
   render() {
     const { messages } = this.props;

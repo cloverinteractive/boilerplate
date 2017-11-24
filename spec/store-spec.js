@@ -18,7 +18,7 @@ const browserHistoryKeys = [
 
 describe('store', () => {
     context('client rendering', () => {
-        before(() => {
+        beforeEach(() => {
             global.window.devToolsExtension = compose;
             const store = require('store');
 
@@ -26,7 +26,7 @@ describe('store', () => {
             canLoadDevTools = store.canLoadDevTools;
         });
 
-        after(() => {
+        afterEach(() => {
             global.window.devToolsExtension = undefined;
             delete require.cache[require.resolve('store')];
         })
@@ -43,7 +43,7 @@ describe('store', () => {
     });
 
     context('server rendering', () => {
-        before(() => {
+        beforeEach(() => {
             global.window = undefined;
             const store = require('store');
 
@@ -51,7 +51,7 @@ describe('store', () => {
             canLoadDevTools = store.canLoadDevTools();
         });
 
-        after(() => {
+        afterEach(() => {
             global.window = global.document.defaultView
             delete require.cache[require.resolve('store')];
         })

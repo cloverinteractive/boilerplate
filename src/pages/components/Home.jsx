@@ -126,11 +126,15 @@ const Home = ({ addError, addNotice, addWarning }: Props) => {
 
       <Segment vertical>
         <p>
-          Check our <strong>
+          Check our
+          { ' ' }
+          <strong>
             <a href="https://github.com/cloverinteractive/boilerplate">
               README
             </a>
-          </strong> for more details.
+          </strong>
+          { ' ' }
+          for more details.
         </p>
       </Segment>
     </Container>
