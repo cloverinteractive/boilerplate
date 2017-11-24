@@ -1,15 +1,16 @@
-import jsdom from 'jsdom';
+import { JSDOM } from 'jsdom';
 import { configure } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import 'ignore-styles';
 
 configure({ adapter: new Adapter() });
 
-const document = new jsdom.jsdom('<!doctype html><html><body></body>body></html>html>');
-const window = document.defaultView;
+const jsdom = new JSDOM('<!doctype html><html><body></body>body></html>html>');
+const { window } = jsdom;
 
-global.document = document;
+global.document = window.document;
 global.window = window;
+global.HTMLElement = window.HTMLElement;
 
 Object.keys(window).forEach((property) => {
   if (!global[property]) {
