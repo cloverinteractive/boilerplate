@@ -27,12 +27,12 @@ module.exports = {
         test: /\.jsx?$/,
         exclude: /node_modules/,
         use:
-        {
-          loader: 'babel-loader',
-          options: {
-            forceEnv: 'webpack',
+          {
+            loader: 'babel-loader',
+            options: {
+              forceEnv: 'webpack',
+            },
           },
-        },
       },
 
       {
@@ -43,7 +43,7 @@ module.exports = {
       },
 
       {
-        test: /[^global]\.css$/,
+        test: /^(?!.*global.css$).*\.css$/,
         use: [
           { loader: 'style-loader' },
 

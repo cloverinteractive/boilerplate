@@ -47,7 +47,7 @@ module.exports = {
       },
 
       {
-        test: /[^global]\.css$/,
+        test: /^(?!.*global.css$).*\.css$/,
         loader: ExtractTextPlugin.extract({
           fallback: 'style-loader',
           use: [
