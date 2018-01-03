@@ -44,6 +44,8 @@ this may not be ideal if you're using some vendor css framework (like semantic-u
 you can create stysheet files suffixed with `global.css` and `css-modules` will be turned off for said file, this is meant
 to help you deal with vendor overrides, check `src/css/global.css` to see it in action.
 
+Because using `:global {}` and `@import` don't work together and there's no css-modules compatible version of every css framework, being able to have files ignored by css-modules make's it easy to import our css framework or global css and immediately override things in the same file.
+
 # Running the app
 
 The app reads your current `NODE_ENV` environment variable, when set to *production* it will run express with the statically built asset,
