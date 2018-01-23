@@ -1,21 +1,17 @@
 import express from 'express';
 import StaticRouter from './routes';
+import devServer from './env/development';
 
 const isDeveloping = process.env.NODE_ENV !== 'production';
 const port = process.env.PORT || 8080;
 const app = express();
 
-let server = null;
-
-/* eslint-disable global-require */
 if (isDeveloping) {
-  server = require('./env/development');
+  devServer(app);
 } else {
-  server = require('./env/production');
+  app.use(express.static('public'));
 }
-/* eslint-enable global-require */
 
-server(app);
 app.get('*', StaticRouter);
 
 app.listen(port, '0.0.0.0', (err) => {
