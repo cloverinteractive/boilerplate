@@ -1,8 +1,6 @@
 FROM node:alpine
 
 EXPOSE 8080
-ENV NODE_ENV=production
-ENV BABEL_ENV=server
 
 WORKDIR /opt/src
 
@@ -14,9 +12,13 @@ COPY yarn.lock .
 
 COPY src/ src/ 
 COPY config/ config/
-COPY webpack.config.js .
+COPY webpack.client.js .
+COPY webpack.server.js .
 
 RUN yarn install --ignore-engines
+
+ENV NODE_ENV=production
+
 RUN yarn build
 
 CMD ["yarn", "start:prod"]

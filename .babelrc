@@ -19,6 +19,17 @@
             ],
             "generateScopedName": "[name]-[local]-[hash:8]"
           }
+        ],
+        [
+          "transform-assets-import-to-string",
+          {
+            "extensions": [
+              ".gif",
+              ".jpg",
+              ".png",
+              ".svg"
+            ]
+          }
         ]
       ]
     }
