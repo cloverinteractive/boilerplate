@@ -1,11 +1,11 @@
 // @flow
-/* eslint-disable react/sort-comp */
 
 import React, { type Node } from 'react';
 
 type Props = {
   children: Node,
   dismiss: Function,
+  dismissArgs?: any,
   timeout: number,
 };
 
@@ -14,16 +14,24 @@ export default class Dismissable extends React.PureComponent<Props> {
     timeout: 3000,
   };
 
-  timer = null;
+  constructor(props: Props) {
+    super(props);
+
+    this.dismiss = props.dismiss.bind(this, props.dismissArgs);
+  }
 
   componentDidMount() {
-    const { dismiss, timeout } = this.props;
-    this.timer = setTimeout(dismiss, timeout);
+    const { timeout } = this.props;
+    this.timer = setTimeout(this.dismiss, timeout);
   }
 
   componentWillUnmount() {
     clearTimeout(this.timer);
   }
+
+  dismiss = null;
+
+  timer = null;
 
   render() {
     return this.props.children;

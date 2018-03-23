@@ -84,9 +84,9 @@
     "webpack-node-externals": "^1.6.0"
   },
   "engines": {
-    "node": "8.5.0",
+    "node": "9.9.0",
     "npm": "5.4.1",
-    "yarn": "1.0.2"
+    "yarn": "1.5.1"
   },
   "scripts": {
     "build": "npm-run-all --parallel build:*",
@@ -99,7 +99,7 @@
     "coverage": "yarn nyc report --reporter=text-lcov | yarn coveralls",
     "spec:watch": "yarn spec --watch",
     "spec:single": "cross-env NODE_PATH=./src NODE_ENV=test yarn mocha --opts .mocha.opts",
-    "start:dev": "cross-env BABEL_ENV=server NODE_PATH=./src nodemon ./src/server --exec babel-node",
+    "start:dev": "cross-env BABEL_ENV=node NODE_PATH=./src nodemon ./src/server --exec babel-node",
     "start:prod": "node build/bundle.js"
   }
 }

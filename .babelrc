@@ -9,7 +9,7 @@
     "transform-object-rest-spread"
   ],
   "env": {
-    "server": {
+    "node": {
       "plugins": [
         [
           "css-modules-transform",
@@ -23,6 +23,8 @@
         [
           "transform-assets-import-to-string",
           {
+            "baseDir": "/",
+            "flatten": true,
             "extensions": [
               ".gif",
               ".jpg",

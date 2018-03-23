@@ -12,25 +12,23 @@ type Props = {
 };
 
 class Messages extends React.PureComponent<Props> {
-  /* eslint-disable react/jsx-no-bind */
   buildMessage = (message: Message) => {
     const color = { [message.type]: true };
-    const onDismiss = this.props.dismiss.bind(null, message.id);
+    const { dismiss } = this.props;
 
     const Flash = (
-      <Alert colors={color} key={message.id} message={message} onDismiss={onDismiss} />
+      <Alert colors={color} key={message.id} message={message} onDismiss={dismiss} />
     );
 
     // Only dismiss automatically if successful
     if (message.type !== 'success') return Flash;
 
     return (
-      <Dismissable key={message.id} dismiss={onDismiss}>
+      <Dismissable key={message.id} dismiss={dismiss} dismissArgs={message.id}>
         {Flash}
       </Dismissable>
     );
   }
-  /* eslint-enable react/jsx-no-bind */
 
   render() {
     const { messages } = this.props;

@@ -1,6 +1,6 @@
 // @flow
 
-import React, { type Node } from 'react';
+import React from 'react';
 import { Message } from 'semantic-ui-react';
 import type { Colors, Message as MessageType } from 'main/constants/types';
 
@@ -10,11 +10,23 @@ type Props = {
   onDismiss: Function,
 };
 
-const Alert = ({ colors, message, onDismiss }: Props): Node => (
-  <Message {...colors} floating onDismiss={onDismiss}>
-    <Message.Header>{message.header}</Message.Header>
-    <p>{message.content}</p>
-  </Message>
-);
+export default class Alert extends React.PureComponent<Props> {
+  constructor(props: Props) {
+    super(props);
 
-export default Alert;
+    this.onDismiss = props.onDismiss.bind(this, props.message.id);
+  }
+
+  onDismiss: ?Function = null;
+
+  render() {
+    const { colors, message } = this.props;
+
+    return (
+      <Message {...colors} floating onDismiss={this.onDismiss}>
+        <Message.Header>{message.header}</Message.Header>
+        <p>{message.content}</p>
+      </Message>
+    );
+  }
+}

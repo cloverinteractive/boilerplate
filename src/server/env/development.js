@@ -1,9 +1,11 @@
+// @flow
+
 import webpack from 'webpack';
 import DevMiddleware from 'webpack-dev-middleware';
 import HotMiddleware from 'webpack-hot-middleware';
 import config from '../../../webpack.client';
 
-export default (app) => {
+export default (app: express$Application): void => {
   const compiler = webpack(config);
   const serverOptions = {
     publicPath: config.output.publicPath,
