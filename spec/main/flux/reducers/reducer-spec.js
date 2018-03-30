@@ -46,6 +46,17 @@ context('Main', () => {
       });
     });
 
+    context('Fault tolerance', () => {
+      it(`Accounts for lack of message in ${types.ADD_MESSAGE}`, () => {
+        const action = {
+          id: 'abc',
+          type: types.ADD_MESSAGE,
+        };
+
+        expect(reducer(blankSlate, action)).to.eql(blankSlate);
+      })
+    });
+
     context('Not implemented actions', () => {
       it('Return valid state', () => {
         const action = { type: "FAKE_ACTION" };

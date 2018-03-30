@@ -2,12 +2,12 @@
 
 import React from 'react';
 import { Message } from 'semantic-ui-react';
-import type { Colors, Message as MessageType } from 'main/constants/types';
+import type { Color, Message as MessageType } from 'main/constants/types';
 
 type Props = {
-  colors: Colors,
+  color: Color,
   message: MessageType,
-  onDismiss: Function,
+  onDismiss: (messageId: string) => void,
 };
 
 export default class Alert extends React.PureComponent<Props> {
@@ -20,10 +20,10 @@ export default class Alert extends React.PureComponent<Props> {
   onDismiss: ?Function = null;
 
   render() {
-    const { colors, message } = this.props;
+    const { color, message } = this.props;
 
     return (
-      <Message {...colors} floating onDismiss={this.onDismiss}>
+      <Message {...color} floating onDismiss={this.onDismiss}>
         <Message.Header>{message.header}</Message.Header>
         <p>{message.content}</p>
       </Message>

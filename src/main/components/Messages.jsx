@@ -4,20 +4,20 @@ import React from 'react';
 import Dismissable from 'components/Dismissable';
 import Alert from 'main/components/Alert';
 import styles from 'main/css/messages.css';
-import type { Message } from 'main/constants/types';
+import type { Color, Message } from 'main/constants/types';
 
 type Props = {
-  dismiss: Function,
+  dismiss: (messageId: string) => void,
   messages: Array<Message>,
 };
 
 class Messages extends React.PureComponent<Props> {
   buildMessage = (message: Message) => {
-    const color = { [message.type]: true };
+    const color: Color = { [message.type]: true };
     const { dismiss } = this.props;
 
     const Flash = (
-      <Alert colors={color} key={message.id} message={message} onDismiss={dismiss} />
+      <Alert color={color} key={message.id} message={message} onDismiss={dismiss} />
     );
 
     // Only dismiss automatically if successful

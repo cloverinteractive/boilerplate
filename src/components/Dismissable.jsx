@@ -21,17 +21,23 @@ export default class Dismissable extends React.PureComponent<Props> {
   }
 
   componentDidMount() {
+    if (!this.dismiss) return null;
+
     const { timeout } = this.props;
     this.timer = setTimeout(this.dismiss, timeout);
+
+    return this.timer;
   }
 
   componentWillUnmount() {
-    clearTimeout(this.timer);
+    if (!this.timer) return null;
+
+    return clearTimeout(this.timer);
   }
 
-  dismiss = null;
+  dismiss: ?Function = null;
 
-  timer = null;
+  timer: ?TimeoutID = null;
 
   render() {
     return this.props.children;
