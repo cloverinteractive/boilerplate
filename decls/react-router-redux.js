@@ -7,7 +7,7 @@ declare module 'react-router-redux' {
   };
 
   declare type State = {
-    location?: LocationPayload,
+    location: ?LocationPayload,
   };
 
   declare type External = {

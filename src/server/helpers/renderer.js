@@ -1,12 +1,11 @@
 // @flow
 
-import type { Element } from 'react';
 import { renderToString } from 'react-dom/server';
 import { Helmet } from 'react-helmet';
 
 const isDevelop: boolean = process.env.NODE_ENV !== 'production';
 
-export default (Component: Element<any>): string => {
+export default (Component: React$Element<any>): string => {
   const content = renderToString(Component);
   const helmet = Helmet.renderStatic();
   const styles = isDevelop ? '' : '<link rel="stylesheet" href="/styles.css">';

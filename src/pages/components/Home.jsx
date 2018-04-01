@@ -1,6 +1,6 @@
 // @flow
 
-import React, { type Node } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import { Button, Container, Header, Popup, Segment } from 'semantic-ui-react';
 import { Helmet } from 'react-helmet';
@@ -19,7 +19,7 @@ type Props = {
   addWarning: AlertCreator,
 };
 
-const Home = ({ addError, addNotice, addWarning }: Props): Node => {
+const Home = ({ addError, addNotice, addWarning }: Props): React$Node => {
   const errorButton = (
     <Button color="red" onClick={() => { addError('This is an error message'); }}>
       Error
