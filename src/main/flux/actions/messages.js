@@ -1,35 +1,40 @@
 // @flow
 
-import { v4 } from 'uuid';
-import * as types from 'main/constants/action-types';
+import v4 from 'uuid/v4';
+import { ADD_MESSAGE, DISMISS_MESSAGE } from 'main/constants/action-types';
+import type {
+  AddMessage,
+  AlertCreator,
+  Message,
+  MessageType,
+  RemoveMessage,
+} from 'main/constants/types';
 
-import type { Action, Message } from 'main/constants/types';
-
-const addMessage = (header: string, content: string, type: string): Action => {
+const addMessage = (header: string, content: string, type: MessageType): AddMessage => {
   const id = v4();
   const message: Message = {
     content, header, id, type,
   };
 
   return {
-    type: types.ADD_MESSAGE,
+    type: ADD_MESSAGE,
     message,
     id,
   };
 };
 
-const removeMessage = (id: string): Action => ({
-  type: types.DISMISS_MESSAGE,
+const removeMessage = (id: string): RemoveMessage => ({
+  type: DISMISS_MESSAGE,
   id,
 });
 
-export const addNotice = (content: string): Action => (
+export const addNotice: AlertCreator = (content: string): AddMessage => (
   addMessage('Succes!', content, 'success'));
 
-export const addError = (content: string): Action => (
+export const addError: AlertCreator = (content: string): AddMessage => (
   addMessage('Something went wrong', content, 'error'));
 
-export const addWarning = (content: string): Action => (
+export const addWarning: AlertCreator = (content: string): AddMessage => (
   addMessage('Warning', content, 'warning'));
 
 export default removeMessage;

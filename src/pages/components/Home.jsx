@@ -6,6 +6,7 @@ import { Button, Container, Header, Popup, Segment } from 'semantic-ui-react';
 import { Helmet } from 'react-helmet';
 import { MAIN_TREE, PAGES_TREE } from 'pages/constants/home';
 import * as messages from 'main/flux/actions/messages';
+import type { AlertCreator } from 'main/constants/types';
 
 import libraries from 'pages/constants/libraries';
 import Libraries from 'pages/components/Libraries';
@@ -13,12 +14,12 @@ import Libraries from 'pages/components/Libraries';
 import styles from 'pages/css/code.css';
 
 type Props = {
-  addError: Function,
-  addNotice: Function,
-  addWarning: Function,
+  addError: AlertCreator,
+  addNotice: AlertCreator,
+  addWarning: AlertCreator,
 };
 
-const Home = ({ addError, addNotice, addWarning }: Props) => {
+const Home = ({ addError, addNotice, addWarning }: Props): React$Node => {
   const errorButton = (
     <Button color="red" onClick={() => { addError('This is an error message'); }}>
       Error

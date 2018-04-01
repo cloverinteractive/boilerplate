@@ -1,7 +1,7 @@
 // @flow
 
 import React from 'react';
-import { v4 } from 'uuid';
+import v4 from 'uuid/v4';
 import type { NpmLibrary } from 'pages/constants/types';
 
 type Props = {

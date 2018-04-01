@@ -1,10 +1,12 @@
+// @flow
+
 import express from 'express';
 import StaticRouter from './routes';
 import devServer from './env/development';
 
-const isDeveloping = process.env.NODE_ENV !== 'production';
-const port = process.env.PORT || 8080;
-const app = express();
+const isDeveloping: boolean = process.env.NODE_ENV !== 'production';
+const port: number = parseInt(process.env.PORT, 10) || 8080;
+const app: express$Application = express();
 
 if (isDeveloping) {
   devServer(app);

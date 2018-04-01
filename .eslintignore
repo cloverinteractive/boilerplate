@@ -1,2 +1,4 @@
 spec/*
 node_modules/*
+decls/*
+flow-typed/*

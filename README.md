@@ -82,10 +82,10 @@ If you're only running this app in development environment then no, you only nee
 
 Every part of the app's boilerplate is organized in it's own folder, here's a quick rundown of how things are organized:
 
-1. Webpack configuration is in the *config* folder.
+1. Webpack configuration is in the `config/` folder.
 1. All code live in the `src/` folder.
 1. Server code specifically can ben found at `src/server`.
-1. Tests live inside of *specs* folder, spec filenames are suffixed with *-spec.js* and folder structure will match that of the `src/` folder structure.
+1. Tests live inside of the `specs/` folder, spec filenames are suffixed with *-spec.js* and folder structure will match that of the `src/` folder structure.
 
 ## Practices
 
@@ -98,8 +98,8 @@ Even if we're sure we haven't introduced anything new, it can't hurt to lint che
 ```sh
 yarn lint # Lint the whole codebase
 yarn lint:fix # Lint and try to automatically fix lint errors
-yarn eslint --ext .jsx src/components/Layout.jsx # Lint a single file
-yarn eslint --fix --ext .jsx src/components/Layout.jsx # Lint and try to fix a single file
+yarn eslint --ext .jsx src/components/Dismissable.jsx # Lint a single file
+yarn eslint --fix --ext .jsx src/components/Dismissable.jsx # Lint and try to fix a single file
 ```
 
 ### Write tests, run tests
@@ -110,7 +110,7 @@ the code you removed.
 ```sh
 yarn spec # Runs the whole test suite
 yarn spec:coverage # Runs full test suite and calculates code coverage
-yarn spec:single spec/components/Layout-spec.js # Runs a single spec file
+yarn spec:single spec/components/Dismissable-spec.js # Runs a single spec file
 yarn spec:watch # Runs the test suite and watches the file system for changes
 ```
 
@@ -131,17 +131,17 @@ This boilerplate is very opinonated, however there are no enforced rules on how 
 However you should do what makes sense to you and your app.
 
 * Use `.jsx` extension for React components.
-* Use [feature](#feature-structure) struture/approach to writing new components.
+* Use [domain](#domain-structure) struture/approach to writing new components.
 * When writing new tests make the folder structure match that of the feature you're testing.
 * Use flow types over prop-types
 
-# Feature structure
+# Domain structure
 
 I recommend that rather than having a single folder for every component in your app and having a single folder for the store and another for the actions, instead you
-write a folder per feature containing every layer that feature requires, the reason for this is scalability, think of your features as independent npm packages that
+write a folder by domain/feature containing every layer that feature requires, the reason for this is scalability, think of your features as independent npm packages that
 can be removed or added into your app.
 
-If you look into this projects `src` folder you can see that there are two feature folders `main` and `pages` and general `components` folder where standalone
+If you look into this projects `src` folder you can see that there are two feature folders `main` and `pages` and a general `components` folder where standalone
 components live. I recommend reading these two articles by [Jack Hsu](https://jaysoo.ca) that go over this in a more eloquently.
 
 * [Three Rules For Structuring (Redux) Applications](https://jaysoo.ca/2016/02/28/organizing-redux-application/)
