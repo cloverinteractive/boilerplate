@@ -1,5 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Routes from 'routes';
+import Router from 'router';
 
-ReactDOM.hydrate(<Routes />, document.getElementById('app'));
+ReactDOM.hydrate(<Router />, document.getElementById('app'));

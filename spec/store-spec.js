@@ -41,29 +41,4 @@ describe('store', () => {
             expect(canLoadDevTools()).to.not.throw();
         })
     });
-
-    context('server rendering', () => {
-        beforeEach(() => {
-            global.window = undefined;
-            const store = require('store');
-
-            history = store.history;
-            canLoadDevTools = store.canLoadDevTools();
-        });
-
-        afterEach(() => {
-            global.window = global.document.defaultView
-            delete require.cache[require.resolve('store')];
-        })
-
-        it('sets history blank when rendered from server', () => {
-            expect(window).to.not.exist;
-            expect(history).to.eql({});
-        });
-
-        it('safely ignores redux-devtools-extension when not present', () => {
-            expect(window).to.not.exist;
-            expect(canLoadDevTools()).to.not.throw();
-        })
-    });
 })
