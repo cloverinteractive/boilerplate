@@ -1,8 +1,8 @@
 // @flow
 
 import express from 'express';
-import StaticRouter from './routes';
-import devServer from './env/development';
+import devServer from 'server/env/development';
+import StaticRouter from 'server/routes';
 
 const isDeveloping: boolean = process.env.NODE_ENV !== 'production';
 const port: number = parseInt(process.env.PORT, 10) || 8080;

@@ -1,16 +1,6 @@
-const PRODUCTION = 'production'
-const DEVELOPMENT = 'development'
+const prodConfig = require('./config/production');
+const devConfig = require('./config/development');
 
-let config = {}
+const PRODUCTION = 'production';
 
-switch (process.env.NODE_ENV) {
-  case PRODUCTION:
-    config = require('./config/production.js')
-    break
-
-  case DEVELOPMENT:
-  default:
-    config = require('./config/development.js')
-}
-
-module.exports = config
+module.exports = process.env.NODE_ENV === PRODUCTION ? prodConfig : devConfig;

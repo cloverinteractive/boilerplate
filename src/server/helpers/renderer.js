@@ -2,10 +2,15 @@
 
 import { renderToString } from 'react-dom/server';
 import { Helmet } from 'react-helmet';
+import serialize from 'serialize-javascript';
 
 const isDevelop: boolean = process.env.NODE_ENV !== 'production';
 
-export default (Component: React$Element<any>): string => {
+type Store = {
+  getState: () => {} | empty | void,
+};
+
+export default (Component: React$Element<any>, store: Store): string => {
   const content = renderToString(Component);
   const helmet = Helmet.renderStatic();
   const styles = isDevelop ? '' : '<link rel="stylesheet" href="/styles.css">';
@@ -22,6 +27,9 @@ export default (Component: React$Element<any>): string => {
       </head>
       <body>
         <div id="app">${content}</div>
+        <script>
+          window.INITIAL_STATE = ${serialize(store.getState())};
+        </script>
         <script async src="/bundle.js"></script>
       </body>
     </html>`;
