@@ -1,7 +1,7 @@
 import first from 'lodash/first';
 import React from 'react';
 import { Provider } from 'react-redux';
-import { ConnectedRouter as Router } from 'react-router-redux';
+import { ConnectedRouter as Router } from 'connected-react-router';
 import store, { history } from 'store';
 import { expect } from 'chai';
 import { mount } from 'enzyme';

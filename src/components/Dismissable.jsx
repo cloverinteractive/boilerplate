@@ -11,6 +11,7 @@ type Props = {
 
 export default class Dismissable extends React.PureComponent<Props> {
   static defaultProps = {
+    dismissArgs: null,
     timeout: 3000,
   };
 
