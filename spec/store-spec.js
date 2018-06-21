@@ -1,7 +1,7 @@
 import { expect } from 'chai';
 import { compose } from 'redux';
 
-let canLoadDevTools, history;
+let history;
 const browserHistoryKeys = [
     'action',
     'block',
@@ -23,7 +23,6 @@ describe('store', () => {
             const store = require('store');
 
             history = store.history;
-            canLoadDevTools = store.canLoadDevTools;
         });
 
         afterEach(() => {
@@ -35,10 +34,5 @@ describe('store', () => {
             expect(window).to.exist;
             expect(history).to.have.all.keys(browserHistoryKeys);
         });
-
-        it('sets redux-devtools-extension if present', () => {
-            expect(window.devToolsExtension).to.exist;
-            expect(canLoadDevTools()).to.not.throw();
-        })
     });
 })

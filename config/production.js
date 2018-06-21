@@ -1,16 +1,23 @@
 const autoprefixer = require('autoprefixer');
 const defaults = require('./defaults');
 const webpack = require('webpack');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const ManifestPlugin = require('webpack-manifest-plugin');
+const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+
+const output = Object.assign({}, defaults.output, { chunkFilename: '[name].js' });
 
 module.exports = {
+  mode: 'production',
+
   bail: true,
+
   devtool: 'source-map',
 
   entry: defaults.entry,
 
-  output: defaults.output,
+  output,
 
   resolve: defaults.resolve,
 
@@ -31,56 +38,54 @@ module.exports = {
 
       {
         test: /global\.css$/,
-        loader: ExtractTextPlugin.extract({
-          fallback: 'style-loader',
-          use: [
-            {
-              loader: 'css-loader',
-              options: {
-                minimize: true,
-              },
-            },
+        use: [
+          MiniCssExtractPlugin.loader,
 
-            { loader: 'resolve-url-loader' },
-          ],
-        }),
+          {
+            loader: 'css-loader',
+            options: {
+              minimize: true,
+            },
+          },
+
+          'resolve-url-loader',
+        ],
       },
 
       {
         test: /^(?!.*global.css$).*\.css$/,
-        loader: ExtractTextPlugin.extract({
-          fallback: 'style-loader',
-          use: [
-            {
-              loader: 'css-loader',
-              options: {
-                importLoaders: 2,
-                localIdentName: '[name]-[local]-[hash:8]',
-                minimize: true,
-                modules: true,
-              },
-            },
+        use: [
+          MiniCssExtractPlugin.loader,
 
-            { loader: 'resolve-url-loader' },
-
-            {
-              loader: 'postcss-loader',
-              options: {
-                ident: 'postcss',
-                plugins: [
-                  autoprefixer({
-                    browsers: [
-                      '>1%',
-                      'last 4 versions',
-                      'Firefox ESR',
-                      'not ie < 9', // React doesn't support IE8 anyway
-                    ],
-                  }),
-                ],
-              },
+          {
+            loader: 'css-loader',
+            options: {
+              importLoaders: 2,
+              localIdentName: '[name]-[local]-[hash:8]',
+              minimize: true,
+              modules: true,
             },
-          ],
-        }),
+          },
+
+          { loader: 'resolve-url-loader' },
+
+          {
+            loader: 'postcss-loader',
+            options: {
+              ident: 'postcss',
+              plugins: [
+                autoprefixer({
+                  browsers: [
+                    '>1%',
+                    'last 4 versions',
+                    'Firefox ESR',
+                    'not ie < 9', // React doesn't support IE8 anyway
+                  ],
+                }),
+              ],
+            },
+          },
+        ],
       },
 
       {
@@ -98,6 +103,43 @@ module.exports = {
     ],
   },
 
+  optimization: {
+    minimizer: [
+      new UglifyJsPlugin({
+        uglifyOptions: {
+          parse: {
+            ecma: 8,
+          },
+          compress: {
+            ecma: 5,
+            warnings: false,
+            comparisons: false,
+          },
+          mangle: {
+            safari10: true,
+          },
+          output: {
+            ecma: 5,
+            comments: false,
+            ascii_only: true,
+          },
+        },
+        parallel: true,
+        cache: true,
+        sourceMap: false,
+      }),
+
+      new OptimizeCSSAssetsPlugin({
+        cssProcessorOptions: { safe: true, discardComments: { removeAll: true } },
+      }),
+    ],
+
+    splitChunks: {
+      chunks: 'all',
+      name: 'vendors',
+    },
+  },
+
   plugins: [
     new webpack.DefinePlugin({
       'process.env': {
@@ -105,25 +147,10 @@ module.exports = {
       },
     }),
 
-    new webpack.optimize.UglifyJsPlugin({
-      compress: {
-        warnings: false,
-      },
-
-      output: {
-        comments: false,
-      },
-
-      sourceMap: true,
-    }),
-
-    new webpack.LoaderOptionsPlugin({
-      minimize: true,
-    }),
-
-    new ExtractTextPlugin({
+    new MiniCssExtractPlugin({
       allChunks: true,
-      filename: 'style.css',
+      filename: 'styles.css',
+      chunkFilename: '[name].css',
     }),
 
     new ManifestPlugin({
