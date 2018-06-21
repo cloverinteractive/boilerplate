@@ -5,6 +5,8 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const ManifestPlugin = require('webpack-manifest-plugin');
 
 module.exports = {
+  mode: 'production',
+
   bail: true,
   devtool: 'source-map',
 
@@ -98,23 +100,16 @@ module.exports = {
     ],
   },
 
+  optimization: {
+    minimize: true,
+
+  },
+
   plugins: [
     new webpack.DefinePlugin({
       'process.env': {
         NODE_ENV: JSON.stringify(process.env.NODE_ENV),
       },
-    }),
-
-    new webpack.optimize.UglifyJsPlugin({
-      compress: {
-        warnings: false,
-      },
-
-      output: {
-        comments: false,
-      },
-
-      sourceMap: true,
     }),
 
     new webpack.LoaderOptionsPlugin({

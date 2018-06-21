@@ -7,7 +7,6 @@ import {
   connectRouter,
   routerMiddleware
 } from 'connected-react-router';
-import {  } from 'connected-react-router';
 import { createStore, applyMiddleware } from 'redux';
 import { history } from 'store';
 import thunkMiddleware from 'redux-thunk';
