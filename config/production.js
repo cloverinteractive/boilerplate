@@ -3,6 +3,10 @@ const defaults = require('./defaults');
 const webpack = require('webpack');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const ManifestPlugin = require('webpack-manifest-plugin');
+const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+
+const output = Object.assign({}, defaults.output, { chunkFilename: '[name].js' });
 
 module.exports = {
   mode: 'production',
@@ -13,7 +17,7 @@ module.exports = {
 
   entry: defaults.entry,
 
-  output: defaults.output,
+  output,
 
   resolve: defaults.resolve,
 
@@ -100,7 +104,40 @@ module.exports = {
   },
 
   optimization: {
-    minimize: true,
+    minimizer: [
+      new UglifyJsPlugin({
+        uglifyOptions: {
+          parse: {
+            ecma: 8,
+          },
+          compress: {
+            ecma: 5,
+            warnings: false,
+            comparisons: false,
+          },
+          mangle: {
+            safari10: true,
+          },
+          output: {
+            ecma: 5,
+            comments: false,
+            ascii_only: true,
+          },
+        },
+        parallel: true,
+        cache: true,
+        sourceMap: false,
+      }),
+
+      new OptimizeCSSAssetsPlugin({
+        cssProcessorOptions: { safe: true, discardComments: { removeAll: true } },
+      }),
+    ],
+
+    splitChunks: {
+      chunks: 'all',
+      name: 'vendors',
+    },
   },
 
   plugins: [
@@ -110,13 +147,10 @@ module.exports = {
       },
     }),
 
-    new webpack.LoaderOptionsPlugin({
-      minimize: true,
-    }),
-
     new MiniCssExtractPlugin({
       allChunks: true,
       filename: 'styles.css',
+      chunkFilename: '[name].css',
     }),
 
     new ManifestPlugin({

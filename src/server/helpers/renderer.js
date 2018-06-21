@@ -13,7 +13,13 @@ type Store = {
 export default (Component: React$Element<any>, store: Store): string => {
   const content = renderToString(Component);
   const helmet = Helmet.renderStatic();
-  const styles = isDevelop ? '' : '<link rel="stylesheet" href="/styles.css">';
+
+  const productionStyles =
+    `<link rel="stylesheet" href="/vendors.css">
+    <link rel="stylesheet" href="/styles.css">`;
+
+  const styles = isDevelop ? '' : productionStyles;
+  const vendorScripts = isDevelop ? '' : '<script src="/vendors.js"></script>';
 
   const template =
     `<!doctype html>
@@ -24,11 +30,12 @@ export default (Component: React$Element<any>, store: Store): string => {
         ${helmet.title.toString()}
         ${helmet.meta.toString()}
         ${styles}
+        ${vendorScripts}
       </head>
       <body>
         <div id="app">${content}</div>
         <script>
-          window.INITIAL_STATE = ${serialize(store.getState())};
+          window.__INITIAL_STATE__ = ${serialize(store.getState())};
         </script>
         <script async src="/bundle.js"></script>
       </body>
