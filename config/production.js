@@ -1,13 +1,14 @@
 const autoprefixer = require('autoprefixer');
 const defaults = require('./defaults');
 const webpack = require('webpack');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const ManifestPlugin = require('webpack-manifest-plugin');
 
 module.exports = {
   mode: 'production',
 
   bail: true,
+
   devtool: 'source-map',
 
   entry: defaults.entry,
@@ -33,56 +34,54 @@ module.exports = {
 
       {
         test: /global\.css$/,
-        loader: ExtractTextPlugin.extract({
-          fallback: 'style-loader',
-          use: [
-            {
-              loader: 'css-loader',
-              options: {
-                minimize: true,
-              },
-            },
+        use: [
+          MiniCssExtractPlugin.loader,
 
-            { loader: 'resolve-url-loader' },
-          ],
-        }),
+          {
+            loader: 'css-loader',
+            options: {
+              minimize: true,
+            },
+          },
+
+          'resolve-url-loader',
+        ],
       },
 
       {
         test: /^(?!.*global.css$).*\.css$/,
-        loader: ExtractTextPlugin.extract({
-          fallback: 'style-loader',
-          use: [
-            {
-              loader: 'css-loader',
-              options: {
-                importLoaders: 2,
-                localIdentName: '[name]-[local]-[hash:8]',
-                minimize: true,
-                modules: true,
-              },
-            },
+        use: [
+          MiniCssExtractPlugin.loader,
 
-            { loader: 'resolve-url-loader' },
-
-            {
-              loader: 'postcss-loader',
-              options: {
-                ident: 'postcss',
-                plugins: [
-                  autoprefixer({
-                    browsers: [
-                      '>1%',
-                      'last 4 versions',
-                      'Firefox ESR',
-                      'not ie < 9', // React doesn't support IE8 anyway
-                    ],
-                  }),
-                ],
-              },
+          {
+            loader: 'css-loader',
+            options: {
+              importLoaders: 2,
+              localIdentName: '[name]-[local]-[hash:8]',
+              minimize: true,
+              modules: true,
             },
-          ],
-        }),
+          },
+
+          { loader: 'resolve-url-loader' },
+
+          {
+            loader: 'postcss-loader',
+            options: {
+              ident: 'postcss',
+              plugins: [
+                autoprefixer({
+                  browsers: [
+                    '>1%',
+                    'last 4 versions',
+                    'Firefox ESR',
+                    'not ie < 9', // React doesn't support IE8 anyway
+                  ],
+                }),
+              ],
+            },
+          },
+        ],
       },
 
       {
@@ -102,7 +101,6 @@ module.exports = {
 
   optimization: {
     minimize: true,
-
   },
 
   plugins: [
@@ -116,9 +114,9 @@ module.exports = {
       minimize: true,
     }),
 
-    new ExtractTextPlugin({
+    new MiniCssExtractPlugin({
       allChunks: true,
-      filename: 'style.css',
+      filename: 'styles.css',
     }),
 
     new ManifestPlugin({
