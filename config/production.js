@@ -6,7 +6,38 @@ const ManifestPlugin = require('webpack-manifest-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
-const output = Object.assign({}, defaults.output, { chunkFilename: '[name].js' });
+const optimization = Object.assign({}, {
+  minimizer: [
+    new UglifyJsPlugin({
+      uglifyOptions: {
+        parse: {
+          ecma: 8,
+        },
+        compress: {
+          ecma: 5,
+          warnings: false,
+          comparisons: false,
+        },
+        mangle: {
+          safari10: true,
+        },
+        output: {
+          ecma: 5,
+          comments: false,
+          ascii_only: true,
+        },
+      },
+      parallel: true,
+      cache: true,
+      sourceMap: false,
+    }),
+
+    new OptimizeCSSAssetsPlugin({
+      cssProcessorOptions: { safe: true, discardComments: { removeAll: true } },
+    }),
+  ],
+},
+  defaults.optimization);
 
 module.exports = {
   mode: 'production',
@@ -17,7 +48,7 @@ module.exports = {
 
   entry: defaults.entry,
 
-  output,
+  output: defaults.output,
 
   resolve: defaults.resolve,
 
@@ -103,42 +134,7 @@ module.exports = {
     ],
   },
 
-  optimization: {
-    minimizer: [
-      new UglifyJsPlugin({
-        uglifyOptions: {
-          parse: {
-            ecma: 8,
-          },
-          compress: {
-            ecma: 5,
-            warnings: false,
-            comparisons: false,
-          },
-          mangle: {
-            safari10: true,
-          },
-          output: {
-            ecma: 5,
-            comments: false,
-            ascii_only: true,
-          },
-        },
-        parallel: true,
-        cache: true,
-        sourceMap: false,
-      }),
-
-      new OptimizeCSSAssetsPlugin({
-        cssProcessorOptions: { safe: true, discardComments: { removeAll: true } },
-      }),
-    ],
-
-    splitChunks: {
-      chunks: 'all',
-      name: 'vendors',
-    },
-  },
+  optimization,
 
   plugins: [
     new webpack.DefinePlugin({
