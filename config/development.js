@@ -29,5 +29,7 @@ module.exports = {
 
   module: defaults.module,
 
+  optimization: defaults.optimization,
+
   plugins,
 };

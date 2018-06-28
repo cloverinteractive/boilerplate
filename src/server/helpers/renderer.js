@@ -19,7 +19,6 @@ export default (Component: React$Element<any>, store: Store): string => {
     <link rel="stylesheet" href="/styles.css">`;
 
   const styles = isDevelop ? '' : productionStyles;
-  const vendorScripts = isDevelop ? '' : '<script src="/vendors.js"></script>';
 
   const template =
     `<!doctype html>
@@ -30,7 +29,7 @@ export default (Component: React$Element<any>, store: Store): string => {
         ${helmet.title.toString()}
         ${helmet.meta.toString()}
         ${styles}
-        ${vendorScripts}
+        <script src="/vendors.js"></script>
       </head>
       <body>
         <div id="app">${content}</div>

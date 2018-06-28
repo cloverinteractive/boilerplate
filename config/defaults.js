@@ -8,6 +8,7 @@ module.exports = {
   ],
 
   output: {
+    chunkFilename: '[name].js',
     path: path.join(__dirname, '..', 'public'),
     filename: 'bundle.js',
     publicPath: '/',
@@ -111,6 +112,13 @@ module.exports = {
         ],
       },
     ],
+  },
+
+  optimization: {
+    splitChunks: {
+      chunks: 'all',
+      name: 'vendors',
+    },
   },
 
   plugins: [
