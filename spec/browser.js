@@ -5,7 +5,11 @@ import 'ignore-styles';
 
 configure({ adapter: new Adapter() });
 
-const jsdom = new JSDOM('<!doctype html><html><body></body>body></html>html>');
+const jsdom = new JSDOM('<!doctype html><html><body></body>body></html>html>', {
+  beforeParse(window) {
+    window.requestAnimationFrame = f => f;
+  }
+});
 const { window } = jsdom;
 
 global.document = window.document;

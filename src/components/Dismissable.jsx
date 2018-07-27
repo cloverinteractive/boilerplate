@@ -15,15 +15,7 @@ export default class Dismissable extends React.PureComponent<Props> {
     timeout: 3000,
   };
 
-  constructor(props: Props) {
-    super(props);
-
-    this.dismiss = props.dismiss.bind(this, props.dismissArgs);
-  }
-
   componentDidMount() {
-    if (!this.dismiss) return null;
-
     const { timeout } = this.props;
     this.timer = setTimeout(this.dismiss, timeout);
 
@@ -31,14 +23,12 @@ export default class Dismissable extends React.PureComponent<Props> {
   }
 
   componentWillUnmount() {
-    if (!this.timer) return null;
-
-    return clearTimeout(this.timer);
+    clearTimeout(this.timer);
   }
 
-  dismiss: ?Function;
+  timer: TimeoutID;
 
-  timer: ?TimeoutID;
+  dismiss: Function = this.props.dismiss.bind(this, this.props.dismissArgs);
 
   render() {
     return this.props.children;
