@@ -11,13 +11,7 @@ type Props = {
 };
 
 export default class Alert extends React.PureComponent<Props> {
-  constructor(props: Props) {
-    super(props);
-
-    this.onDismiss = props.onDismiss.bind(this, props.message.id);
-  }
-
-  onDismiss: ?Function = null;
+  onDismiss: Function = this.props.onDismiss.bind(this, this.props.message.id);
 
   render() {
     const { color, message } = this.props;

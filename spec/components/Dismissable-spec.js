@@ -1,7 +1,7 @@
 import React from 'react';
 import { expect } from 'chai';
 import { mount } from 'enzyme';
-import sinon from 'sinon';
+import sinon, { stub } from 'sinon';
 import Dismissable from 'components/Dismissable';
 
 const dismiss = sinon.spy();
@@ -26,6 +26,7 @@ describe('<Dismissable />', () => {
     );
 
     setTimeout(() => {
+      wrapper.unmount();
       expect(dismiss.callCount).to.eql(1);
       done();
     }, 10);

@@ -42,6 +42,19 @@ context('Pages', () => {
       expect(component).to.exist;
     });
 
+    const getMessageCount = () => store.getState().main.messages.ids.length;
+
+    describe('buttons', () => {
+      it('creates messages by clicking alert buttons', () => {
+        component.find(Button).forEach((button) => {
+          const initialCount = getMessageCount();
+
+          button.simulate('click');
+          expect(getMessageCount()).to.eql(initialCount + 1)
+        });
+      });
+    });
+
     describe('children', () => {
       it('has a title via <Helmet />', () => {
         expect(component.find(Helmet)).to.have.length(1);
