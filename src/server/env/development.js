@@ -8,14 +8,7 @@ export default (app) => {
   const serverOptions = {
     publicPath: config.output.publicPath,
     serverSideRender: true,
-    stats: {
-      colors: true,
-      hash: false,
-      timings: true,
-      chunks: false,
-      chunkModules: false,
-      modules: false,
-    },
+    stats: 'errors-only',
   };
   const devMiddleware = DevMiddleware(compiler, serverOptions);
 
