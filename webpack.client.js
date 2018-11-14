@@ -1,5 +1,5 @@
-const prodConfig = require('./config/production');
-const devConfig = require('./config/development');
+const prodConfig = require('./config/webpack/production');
+const devConfig = require('./config/webpack/development');
 
 const PRODUCTION = 'production';
 

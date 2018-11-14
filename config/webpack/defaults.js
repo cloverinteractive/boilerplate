@@ -2,14 +2,17 @@ const autoprefixer = require('autoprefixer');
 const path = require('path');
 const webpack = require('webpack');
 
+const projectRoot = path.join.bind(null, __dirname, '../..');
+
+
 module.exports = {
   entry: [
-    path.join(__dirname, '..', 'src', 'index'),
+    projectRoot('src/index'),
   ],
 
   output: {
     chunkFilename: '[name].js',
-    path: path.join(__dirname, '..', 'public'),
+    path: projectRoot('public'),
     filename: 'bundle.js',
     publicPath: '/',
   },
@@ -17,8 +20,8 @@ module.exports = {
   resolve: {
     extensions: ['.js', '.jsx', '.json'],
     modules: [
-      path.join(__dirname, '..', 'src'),
-      path.join(__dirname, '..', 'node_modules'),
+      projectRoot('src'),
+      projectRoot('node_modules'),
     ],
   },
 
@@ -38,7 +41,7 @@ module.exports = {
 
       {
         test: /global\.css$/,
-        include: path.resolve(__dirname, '../src'),
+        include: projectRoot('src'),
         exclude: /node_modules/,
         loaders: ['style-loader', 'css-loader', 'resolve-url-loader'],
       },
