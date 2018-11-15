@@ -1,15 +1,16 @@
-import webpack from 'webpack';
-import DevMiddleware from 'webpack-dev-middleware';
-import HotMiddleware from 'webpack-hot-middleware';
-import config from '../../../webpack.client';
+const webpack = require('webpack');
+const DevMiddleware = require('webpack-dev-middleware');
+const HotMiddleware = require('webpack-hot-middleware');
+const config = require('../webpack.client');
 
-export default (app) => {
+module.exports = function(app) {
   const compiler = webpack(config);
   const serverOptions = {
     publicPath: config.output.publicPath,
     serverSideRender: true,
     stats: 'errors-only',
   };
+
   const devMiddleware = DevMiddleware(compiler, serverOptions);
 
   app.use(devMiddleware);
