@@ -3,8 +3,7 @@
 import { renderToString } from 'react-dom/server';
 import { Helmet } from 'react-helmet';
 import serialize from 'serialize-javascript';
-
-const isDevelop: boolean = process.env.NODE_ENV !== 'production';
+import { isDevelopment } from 'server/helpers/env-access';
 
 type Store = {
   getState: () => {} | empty | void,
@@ -18,7 +17,7 @@ export default (Component: React$Element<any>, store: Store): string => {
     `<link rel="stylesheet" href="/vendors.css">
     <link rel="stylesheet" href="/styles.css">`;
 
-  const styles = isDevelop ? '' : productionStyles;
+  const styles = isDevelopment ? '' : productionStyles;
 
   const template =
     `<!doctype html>
