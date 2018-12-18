@@ -1,25 +1,7 @@
-// @flow
 import nodemailer from 'nodemailer';
 import { env, isDevelopment } from 'server/helpers/env-access';
 
-type Config = {
-  auth: {
-    pass: string,
-    user: string,
-  },
-  host: string,
-  port: number,
-  secure: boolean,
-};
-
-type Message = {
-  from: string,
-  html: string,
-  subject: string,
-  to: string,
-};
-
-const fetchConfig = (): Config => {
+const fetchConfig = () => {
   if (isDevelopment) {
     return {
       auth: {
@@ -43,9 +25,8 @@ const fetchConfig = (): Config => {
   };
 };
 
-export default (options: Message, res: express$Response) => {
+export default (options, res) => {
   const transporter = nodemailer.createTransport(fetchConfig());
-
 
   transporter.sendMail(options, (error, info) => {
     if (isDevelopment) return res.send(`You can view your email here: ${nodemailer.getTestMessageUrl(info)}`);

@@ -1,6 +1,4 @@
-// @flow
-
-export const env = (key: string, fallback: any = ''): any => process.env[key] || fallback;
+export const env = (key, fallback = '') => process.env[key] || fallback;
 
 export const isDevelopment = env('NODE_ENV') !== 'production';
 

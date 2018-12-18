@@ -1,5 +1,3 @@
-// @flow
-
 import express from 'express';
 import StaticRouter from 'server/routes';
 import { isDevelopment } from 'server/helpers/env-access';
@@ -7,8 +5,8 @@ import dotEnv from 'dotenv';
 
 dotEnv.config();
 
-const port: number = parseInt(process.env.PORT, 10) || 8080;
-const app: express$Application = express();
+const port = parseInt(process.env.PORT, 10) || 8080;
+const app = express();
 
 if (isDevelopment) {
   /* eslint-disable global-require */

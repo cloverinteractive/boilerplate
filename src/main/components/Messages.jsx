@@ -1,19 +1,11 @@
-// @flow
-
 import React from 'react';
 import Dismissable from 'components/Dismissable';
 import Alert from 'main/components/Alert';
 import styles from 'main/css/messages.css';
-import type { Color, Message } from 'main/constants/types';
 
-type Props = {
-  dismiss: (messageId: string) => void,
-  messages: Array<Message>,
-};
-
-class Messages extends React.PureComponent<Props> {
-  buildMessage = (message: Message) => {
-    const color: Color = { [message.type]: true };
+class Messages extends React.PureComponent {
+  buildMessage = (message) => {
+    const color = { [message.type]: true };
     const { dismiss } = this.props;
 
     const Flash = (

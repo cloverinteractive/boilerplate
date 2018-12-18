@@ -3,7 +3,9 @@ const path = require('path');
 const webpack = require('webpack');
 
 const projectRoot = path.join.bind(null, __dirname, '../..');
-
+const options = {
+  forceEnv: 'webpack',
+};
 
 module.exports = {
   entry: [
@@ -18,7 +20,7 @@ module.exports = {
   },
 
   resolve: {
-    extensions: ['.js', '.jsx', '.json'],
+    extensions: ['.js', '.jsx', '.json', '.ts', '.tsx'],
     modules: [
       projectRoot('src'),
       projectRoot('node_modules'),
@@ -30,13 +32,19 @@ module.exports = {
       {
         test: /\.jsx?$/,
         exclude: /node_modules/,
-        use:
-          {
-            loader: 'babel-loader',
-            options: {
-              forceEnv: 'webpack',
-            },
-          },
+        use: {
+          loader: 'babel-loader',
+          options,
+        }
+      },
+
+      {
+        test: /\.tsx?$/,
+        exclude: /node_modules/,
+        use: [
+          { loader: 'babel-loader', options },
+          { loader: 'awesome-typescript-loader', options }
+        ],
       },
 
       {

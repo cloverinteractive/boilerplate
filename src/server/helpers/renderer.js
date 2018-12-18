@@ -1,15 +1,9 @@
-// @flow
-
 import { renderToString } from 'react-dom/server';
 import { Helmet } from 'react-helmet';
 import serialize from 'serialize-javascript';
 import { isDevelopment } from 'server/helpers/env-access';
 
-type Store = {
-  getState: () => {} | empty | void,
-};
-
-export default (Component: React$Element<any>, store: Store): string => {
+export default (Component, store) => {
   const content = renderToString(Component);
   const helmet = Helmet.renderStatic();
 

@@ -17,7 +17,7 @@ module.exports = {
   },
 
   resolve: {
-    extensions: ['.js', '.jsx'],
+    extensions: ['.js', '.jsx', '.ts', '.tsx'],
     modules: [
       path.join(__dirname, 'src'),
       path.join(__dirname, 'node_modules'),
@@ -30,6 +30,12 @@ module.exports = {
         test: /\.jsx?$/,
         exclude: /node_modules/,
         loader: 'babel-loader',
+      },
+
+      {
+        test: /\.tsx?$/,
+        exclude: /node_modules/,
+        loader: ['babel-loader', 'awesome-typescript-loader'],
       },
 
       {

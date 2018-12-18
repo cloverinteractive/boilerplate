@@ -1,19 +1,10 @@
-// @flow
-
 import React from 'react';
 
-type Props = {
-  children: React$Node,
-  dismiss: Function,
-  dismissArgs?: any,
-  timeout: number,
-};
-
-export default class Dismissable extends React.PureComponent<Props> {
+export default class Dismissable extends React.PureComponent {
   static defaultProps = {
     dismissArgs: null,
     timeout: 3000,
-  };
+  }
 
   componentDidMount() {
     const { timeout } = this.props;
@@ -26,9 +17,7 @@ export default class Dismissable extends React.PureComponent<Props> {
     clearTimeout(this.timer);
   }
 
-  timer: TimeoutID;
-
-  dismiss: Function = this.props.dismiss.bind(this, this.props.dismissArgs);
+  dismiss = this.props.dismiss.bind(this, this.props.dismissArgs);
 
   render() {
     return this.props.children;
