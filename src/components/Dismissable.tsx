@@ -1,10 +1,18 @@
 import React from 'react';
 
-export default class Dismissable extends React.PureComponent {
+type Props = {
+  dismissArgs: any,
+  dismiss: Function,
+  timeout: number,
+};
+
+export default class Dismissable extends React.PureComponent<Props> {
   static defaultProps = {
     dismissArgs: null,
     timeout: 3000,
   }
+
+  timer: any = null;
 
   componentDidMount() {
     const { timeout } = this.props;
@@ -14,7 +22,7 @@ export default class Dismissable extends React.PureComponent {
   }
 
   componentWillUnmount() {
-    clearTimeout(this.timer);
+    if (this.timer) clearTimeout(this.timer);
   }
 
   dismiss = this.props.dismiss.bind(this, this.props.dismissArgs);

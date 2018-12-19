@@ -1,18 +1,14 @@
 {
   "compilerOptions": {
     "allowJs": true,
-    "outDir": "build",
     "module": "es6",
     "target": "es6",
     "jsx": "react",
-    "alwaysStrict": true,
     "moduleResolution": "node",
-    "noImplicitAny": true,
-    "noImplicitThis": true,
-    "strictNullChecks": true,
-    "strictFunctionTypes": true
+    "noEmit": true,
+    "esModuleInterop": true
   },
   "include": [
-    "./src/**/*"
+    "src"
   ]
 }

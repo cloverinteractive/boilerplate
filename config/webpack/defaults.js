@@ -4,7 +4,7 @@ const webpack = require('webpack');
 
 const projectRoot = path.join.bind(null, __dirname, '../..');
 const options = {
-  forceEnv: 'webpack',
+  envName: 'webpack',
 };
 
 module.exports = {
@@ -30,21 +30,12 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.jsx?$/,
+        test: /\.[jt]sx?$/,
         exclude: /node_modules/,
         use: {
           loader: 'babel-loader',
           options,
         }
-      },
-
-      {
-        test: /\.tsx?$/,
-        exclude: /node_modules/,
-        use: [
-          { loader: 'babel-loader', options },
-          { loader: 'awesome-typescript-loader', options }
-        ],
       },
 
       {

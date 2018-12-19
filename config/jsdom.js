@@ -1,9 +1,10 @@
-import { JSDOM } from 'jsdom';
-import { configure } from 'enzyme';
-import Adapter from 'enzyme-adapter-react-16';
-import 'ignore-styles';
+require('ignore-styles');
 
-configure({ adapter: new Adapter() });
+const JSDOM = require('jsdom').JSDOM;
+const Enzyme = require('enzyme');
+const Adapter = require('enzyme-adapter-react-16');
+
+Enzyme.configure({ adapter: new Adapter() });
 
 // Storage Mock
 const storageMock = () => {
@@ -29,24 +30,28 @@ const storageMock = () => {
   };
 };
 
-const jsdom = new JSDOM('<!doctype html><html><body></body>body></html>html>', {
-  beforeParse(window) {
-    window.requestAnimationFrame = f => f;
-    window.localStorage = storageMock();
-  }
-});
+const jsdom = new JSDOM('<!doctype html><html><body></body></html>');
 const { window } = jsdom;
 
-global.document = window.document;
+function copyProps(src, target) {
+  Object.defineProperties(target, {
+    ...Object.getOwnPropertyDescriptors(src),
+    ...Object.getOwnPropertyDescriptors(target),
+  });
+}
+
 global.window = window;
-global.HTMLElement = window.HTMLElement;
-
-Object.keys(window).forEach((property) => {
-  if (!global[property]) {
-    global[property] = window[property];
-  }
-});
-
+global.document = window.document;
 global.navigator = {
   userAgent: 'node.js'
 };
+
+global.requestAnimationFrame = function (callback) {
+  return setTimeout(callback, 0);
+};
+
+global.cancelAnimationFrame = function (id) {
+  clearTimeout(id);
+};
+
+copyProps(window, global);
