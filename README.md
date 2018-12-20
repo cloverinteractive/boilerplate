@@ -91,13 +91,36 @@ Every part of the app's boilerplate is organized in it's own folder, here's a qu
 
 Make sure you do the following whenever you're coding:
 
-### Run eslint
+### Use TypeScript
 
-Even if we're sure we haven't introduced anything new, it can't hurt to lint check our files, you can run `eslint` on the whole project by running:
+We've included [TypeScript](https://www.typescriptlang.org/) support, we recommend using it for your store and/or React components, check
+[this](https://www.typescriptlang.org/docs/handbook/react-&-webpack.html#write-some-code) guide on how to write React components with TypeScript.
+
+Note that this is completely optional, but we recommend you start writing statically typed code.
 
 ```sh
-npm run lint # Lint the whole codebase
-npm run lint:fix # Lint and try to automatically fix lint errors
+npm run check-types # Check all TypeScript files
+```
+
+You can still access `tsc` directly via `npx` like so:
+
+```sh
+npx tsc
+```
+
+### Run eslint and tslint
+
+Even if we're sure we haven't introduced anything new, it can't hurt to lint check our files, you can lint your whole project by running:
+
+```sh
+npm run lint # Runs eslint and tslint against the whole codebase
+npm run lint:eslint # Only runs eslint agains the whole project
+npm run lint:tslint # Only runs tslint agains the whole project
+```
+
+You can access `eslint` and `tslint` directly via `npx` like so:
+
+```sh
 npx eslint --ext .jsx src/components/Dismissable.jsx # Lint a single file
 npx eslint --fix --ext .jsx src/components/Dismissable.jsx # Lint and try to fix a single file
 ```
@@ -112,15 +135,6 @@ npm test # Runs the whole test suite
 npm test -- spec/components/Dismissable-spec.js # Runs a single test file
 npm test -- --watch # Runs the test suite and watches the file system for changes
 npm run test:coverage # Runs full test suite and calculates code coverage
-```
-
-### Use TypeScript
-
-We've included [TypeScript](https://www.typescriptlang.org/) support, we recommend using it for your store and/or React components, check
-[this](https://www.typescriptlang.org/docs/handbook/react-&-webpack.html#write-some-code) guide on how to write React components with TypeScript.
-
-```sh
-npx tsc # Check all TypeScript files
 ```
 
 # Recommendations
