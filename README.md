@@ -4,7 +4,20 @@
 # Faster application bootstrapping
 
 Tired of having to configure a pretty large boilerplate each time you're about to start a new React project? This project
-may be right up your alley, to start using this in a new project you can just clone and start hacking away.
+may be right up your alley.
+
+## Pre-requisites
+
+There is only one pre-requisite to successfully run this boilerplate and that is a recent installation of **Node.js®** you can find an installer for your OS [here](https://nodejs.org/en/)
+or use your OS's favorite package manager.
+
+## Installation
+
+To start using this you have a couple of options:
+
+### Use curl to download
+
+If you have `curl`, `gzip` and `tar` you can curl straight into `tar` like this:
 
 ```sh
 curl -L "https://github.com/cloverinteractive/boilerplate/archive/stable.tar.gz" | tar -zxvf -
@@ -12,16 +25,27 @@ cd boilerplate-stable # Go into the boilerplate folder
 npm install
 ```
 
-## Pre-requisites
+### Download zip file from browser
 
-You'll need a couple of things installed before you can get this app boilerplate to run:
+If you prefer using a browser just click [here](https://github.com/cloverinteractive/boilerplate/archive/stable.zip) to get the latest stable zip file.
+Once unziped just go into the project folder and run `npm install`
 
-1. node
+
+### Git clone this repository
+
+You can always just clone this repository using git:
+
+```sh
+git clone --branch stable git@github.com:cloverinteractive/boilerplate.git
+cd boilerplate
+npm install
+```
 
 # Bundled libraries
 
 * [Babel](https://babeljs.io/) - The compiler for writing next generation JavaScript
 * [Eslint](https://eslint.org/) - Pluggable JavaScript linter
+* [Tslint](https://palantir.github.io/tslint/) - An extensible linter for the TypeScript Language
 * [Express](https://expressjs.com/) - Fast, unopinionated, minimalist web framework for Node.js
 * [TypeScript](https://www.typescriptlang.org/) - A typed superset of JavaScript that compiles to plain Javascript.
 * [Mocha](https://mochajs.org/) - The fun, simple, flexible JavaScript test framework
@@ -85,7 +109,7 @@ Every part of the app's boilerplate is organized in it's own folder, here's a qu
 1. Webpack configuration is in the `config/webpack` folder.
 1. All code live in the `src/` folder.
 1. Server code specifically can ben found at `src/server`.
-1. Tests live inside of the `test/` folder, spec filenames are suffixed with *-test.js* and folder structure will match that of the `src/` folder structure.
+1. Tests live inside of the `test/` folder, test filenames are suffixed with *-test.js* and folder structure will match that of the `src/` folder structure.
 
 ## Practices
 
@@ -132,7 +156,7 @@ the code you removed.
 
 ```sh
 npm test # Runs the whole test suite
-npm test -- spec/components/Dismissable-spec.js # Runs a single test file
+npm test -- test/components/Dismissable-test.js # Runs a single test file
 npm test -- --watch # Runs the test suite and watches the file system for changes
 npm run test:coverage # Runs full test suite and calculates code coverage
 ```
