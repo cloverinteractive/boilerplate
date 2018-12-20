@@ -116,18 +116,16 @@
     "test:karma": "karma start --single-run",
     "test:karma:watch": "karma start",
     "test": "cross-env NODE_ENV=test npx mocha-webpack --opts .mocha.opts --webpack-config config/webpack/mocha.js --recursive",
-    "test:coverage": "nyc npm test",
+    "test:coverage": "cross-env MOCHA_ENV=coverage nyc npm test",
     "coverage": "nyc report --reporter=text-lcov | npx coveralls",
     "start": "cross-env NODE_ENV=development BABEL_ENV=node NODE_PATH=./src nodemon ./src/server --exec babel-node --extensions \".ts,.tsx,.js,.jsx\"",
     "start:prod": "cross-env NODE_ENV=production node build/bundle.js"
   },
   "nyc": {
-    "exclude": [
-      "config",
-      "node_modules",
-      "test"
+    "include": [
+      "src"
     ],
-    "sourceMap": true,
-    "instrument": true
+    "instrument": false,
+    "sourceMap": false
   }
 }

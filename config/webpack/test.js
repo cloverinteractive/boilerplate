@@ -2,6 +2,19 @@ const webpack = require('webpack');
 const defaults = require('./defaults');
 const path = require('path');
 
+const isCoverage = process.env.MOCHA_ENV === 'coverage';
+const instrumenter = {
+  test: /\.[jt]sx?$/,
+  loaders: 'istanbul-instrumenter-loader',
+  options: { esModules: true },
+  include: path.resolve(__dirname, "../../src")
+};
+
+const rules = [].concat(
+  isCoverage ? instrumenter : [],
+  defaults.module.rules
+);
+
 module.exports = {
   mode: 'development',
 
@@ -9,7 +22,9 @@ module.exports = {
 
   resolve: defaults.resolve,
 
-  module: defaults.module,
+  module: {
+    rules,
+  },
 
   externals: {
     'react/addons': true,
