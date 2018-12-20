@@ -10,14 +10,19 @@ export default [
     url: 'https://eslint.org',
   },
   {
+    description: 'An extensible linter for the TypeScript Language',
+    library: 'Tslint',
+    url: 'https://palantir.github.io/tslint/',
+  },
+  {
     description: 'Fast, unopinionated, minimalist web framework for Node.js',
     library: 'Express',
     url: 'https://expressjs.com',
   },
   {
-    description: 'A Static Type Checker for JavaScript',
-    library: 'Flow',
-    url: 'https://flow.org',
+    description: 'A typed superset of JavaScript that compiles to plain Javascript',
+    library: 'TypeScript',
+    url: 'https://www.typescriptlang.org/',
   },
   {
     description: 'The fun, simple, flexible JavaScript test framework',
