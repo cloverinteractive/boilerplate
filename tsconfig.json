@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "allowJs": true,
+    "module": "es6",
+    "target": "es6",
+    "jsx": "react",
+    "moduleResolution": "node",
+    "noEmit": true,
+    "esModuleInterop": true
+  },
+  "include": [
+    "src"
+  ]
+}

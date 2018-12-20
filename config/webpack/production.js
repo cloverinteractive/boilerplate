@@ -57,12 +57,12 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.jsx?$/,
+        test: /\.[jt]sx?$/,
         exclude: /node_modules/,
         use: {
           loader: 'babel-loader',
           options: {
-            forceEnv: 'webpack',
+            envName: 'webpack',
           },
         },
       },
@@ -123,6 +123,7 @@ module.exports = {
         exclude: [
           /\.html$/,
           /\.jsx?$/,
+          /\.tsx?$/,
           /\.css$/,
           /\.json$/,
         ],

@@ -1,15 +1,17 @@
-// @flow
-
 import express from 'express';
-import devServer from 'server/env/development';
 import StaticRouter from 'server/routes';
+import { isDevelopment } from 'server/helpers/env-access';
+import dotEnv from 'dotenv';
 
-const isDeveloping: boolean = process.env.NODE_ENV !== 'production';
-const port: number = parseInt(process.env.PORT, 10) || 8080;
-const app: express$Application = express();
+dotEnv.config();
 
-if (isDeveloping) {
-  devServer(app);
+const port = parseInt(process.env.PORT, 10) || 8080;
+const app = express();
+
+if (isDevelopment) {
+  /* eslint-disable global-require */
+  require('../../config/dev-server')(app);
+  /* eslint-enable global-require */
 } else {
   app.use(express.static('public'));
 }

@@ -1,5 +1,3 @@
-// @flow
-
 import React from 'react';
 import Routes from 'routes';
 import { StaticRouter } from 'react-router';
@@ -7,12 +5,7 @@ import { Provider } from 'react-redux';
 import render from 'server/helpers/renderer';
 import store from 'server/store';
 
-type Props = {
-  context: Object,
-  location: string,
-};
-
-const SSR = ({ context, location }: Props) => (
+const SSR = ({ context, location }) => (
   <Provider store={store}>
     <StaticRouter context={context} location={location}>
       <Routes />
@@ -20,8 +13,7 @@ const SSR = ({ context, location }: Props) => (
   </Provider>
 );
 
-export default (req: express$Request, res: express$Response) => {
+export default (req, res) => {
   const context = {};
-
   res.send(render(<SSR context={context} location={req.url} />, store));
 };

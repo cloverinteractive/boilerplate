@@ -1,0 +1,23 @@
+{
+    "defaultSeverity": "error",
+    "extends": [
+        "tslint:latest",
+        "tslint-react"
+    ],
+    "jsRules": {},
+    "rules": {
+      "interface-name": [true, "never-prefix"],
+      "jsx-alignment": true,
+      "jsx-ban-props": true,
+      "jsx-equals-spacing": "always",
+      "jsx-key": true,
+      "jsx-no-bind": true,
+      "jsx-no-lambda": true,
+      "jsx-no-string-ref": true,
+      "jsx-self-close": true,
+      "jsx-space-before-trailing-slash": true,
+      "jsx-wrap-multiline": true,
+      "quotemark": [true, "single", "jsx-double"]
+    },
+    "rulesDirectory": []
+}

@@ -1,15 +1,17 @@
 {
   "presets": [
-    "env",
-    "flow",
-    "react"
+    "@babel/env",
+    "@babel/react",
+    "@babel/typescript"
   ],
   "plugins": [
-    "react-hot-loader/babel",
-    "transform-class-properties",
-    "transform-object-rest-spread"
+    "@babel/proposal-class-properties",
+    "@babel/proposal-object-rest-spread"
   ],
   "env": {
+    "production": {
+      "plugins": ["transform-react-remove-prop-types"]
+    },
     "node": {
       "plugins": [
         [

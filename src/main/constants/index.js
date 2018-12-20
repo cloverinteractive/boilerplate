@@ -1,8 +1,6 @@
-// @flow
-
 import * as actionTypes from './action-types';
 
-const NAME: string = 'main';
+const NAME = 'main';
 
 export default {
   NAME,

@@ -1,16 +1,9 @@
-// @flow
-
 import { renderToString } from 'react-dom/server';
 import { Helmet } from 'react-helmet';
 import serialize from 'serialize-javascript';
+import { isDevelopment } from 'server/helpers/env-access';
 
-const isDevelop: boolean = process.env.NODE_ENV !== 'production';
-
-type Store = {
-  getState: () => {} | empty | void,
-};
-
-export default (Component: React$Element<any>, store: Store): string => {
+export default (Component, store) => {
   const content = renderToString(Component);
   const helmet = Helmet.renderStatic();
 
@@ -18,7 +11,7 @@ export default (Component: React$Element<any>, store: Store): string => {
     `<link rel="stylesheet" href="/vendors.css">
     <link rel="stylesheet" href="/styles.css">`;
 
-  const styles = isDevelop ? '' : productionStyles;
+  const styles = isDevelopment ? '' : productionStyles;
 
   const template =
     `<!doctype html>

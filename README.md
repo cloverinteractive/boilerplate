@@ -4,27 +4,50 @@
 # Faster application bootstrapping
 
 Tired of having to configure a pretty large boilerplate each time you're about to start a new React project? This project
-may be right up your alley, to start using this in a new project you can just clone and start hacking away.
-
-```sh
-git clone git@github.com:cloverinteractive/boilerplate.git # Clone the boilerplate
-cd boilerplate # Go into the boilerplate folder
-rm -fr .git # Remove this projects .git folder to start fresh
-```
+may be right up your alley.
 
 ## Pre-requisites
 
-You'll need a couple of things installed before you can get this app boilerplate to run:
+There is only one pre-requisite to successfully run this boilerplate and that is a recent installation of **Node.js®** you can find an installer for your OS [here](https://nodejs.org/en/)
+or use your OS's favorite package manager.
 
-1. node
-1. yarn
+## Installation
+
+To start using this you have a couple of options:
+
+### Use curl to download
+
+If you have `curl`, `gzip` and `tar` you can curl straight into `tar` like this:
+
+```sh
+curl -L "https://github.com/cloverinteractive/boilerplate/archive/stable.tar.gz" | tar -zxvf -
+cd boilerplate-stable # Go into the boilerplate folder
+npm install
+```
+
+### Download zip file from browser
+
+If you prefer using a browser just click [here](https://github.com/cloverinteractive/boilerplate/archive/stable.zip) to get the latest stable zip file.
+Once unziped just go into the project folder and run `npm install`
+
+
+### Git clone this repository
+
+You can always just clone this repository using git:
+
+```sh
+git clone --branch stable git@github.com:cloverinteractive/boilerplate.git
+cd boilerplate
+npm install
+```
 
 # Bundled libraries
 
 * [Babel](https://babeljs.io/) - The compiler for writing next generation JavaScript
 * [Eslint](https://eslint.org/) - Pluggable JavaScript linter
+* [Tslint](https://palantir.github.io/tslint/) - An extensible linter for the TypeScript Language
 * [Express](https://expressjs.com/) - Fast, unopinionated, minimalist web framework for Node.js
-* [Flow](https://flow.org/) - A Static Type Checker for JavaScript
+* [TypeScript](https://www.typescriptlang.org/) - A typed superset of JavaScript that compiles to plain Javascript.
 * [Mocha](https://mochajs.org/) - The fun, simple, flexible JavaScript test framework
 * [React](https://facebook.github.io/react/) - A JavaScript library for building user interfaces
 * [React Router](https://reacttraining.com/react-router/) - Declarative Routing for React.js
@@ -52,8 +75,8 @@ The app reads your current `NODE_ENV` environment variable, when set to *product
 when set to anything else it will run the app through *webpack-dev-server* with hmre.
 
 ```sh
-yarn start:dev # Run in development environment unless NODE_ENV globally set
-yarn start:prod # Run in production environment
+npm start # Run in development mode
+npm run start:prod # Run in production mode
 ```
 
 *NOTE*: Keep in mind that starting in production relies on your code being built first and your `NODE_ENV` to be set to
@@ -72,7 +95,8 @@ After running this you should be able to visit the production build via `http://
 
 ## Building the app
 
-We use *webpack* to build our bundles, just run `yarn build` this will build your bundle into the `build` directory with every asset in packaged.
+We use *webpack* to build our bundles, just run `npm run build` this will build your bundle into the `build` (server code) and `public` (browser code)
+directories with every asset in packaged.
 
 ### Do I need to build?
 
@@ -82,24 +106,47 @@ If you're only running this app in development environment then no, you only nee
 
 Every part of the app's boilerplate is organized in it's own folder, here's a quick rundown of how things are organized:
 
-1. Webpack configuration is in the `config/` folder.
+1. Webpack configuration is in the `config/webpack` folder.
 1. All code live in the `src/` folder.
 1. Server code specifically can ben found at `src/server`.
-1. Tests live inside of the `specs/` folder, spec filenames are suffixed with *-spec.js* and folder structure will match that of the `src/` folder structure.
+1. Tests live inside of the `test/` folder, test filenames are suffixed with *-test.js* and folder structure will match that of the `src/` folder structure.
 
 ## Practices
 
 Make sure you do the following whenever you're coding:
 
-### Run eslint
+### Use TypeScript
 
-Even if we're sure we haven't introduced anything new, it can't hurt to lint check our files, you can run `eslint` on the whole project by running:
+We've included [TypeScript](https://www.typescriptlang.org/) support, we recommend using it for your store and/or React components, check
+[this](https://www.typescriptlang.org/docs/handbook/react-&-webpack.html#write-some-code) guide on how to write React components with TypeScript.
+
+Note that this is completely optional, but we recommend you start writing statically typed code.
 
 ```sh
-yarn lint # Lint the whole codebase
-yarn lint:fix # Lint and try to automatically fix lint errors
-yarn eslint --ext .jsx src/components/Dismissable.jsx # Lint a single file
-yarn eslint --fix --ext .jsx src/components/Dismissable.jsx # Lint and try to fix a single file
+npm run check-types # Check all TypeScript files
+```
+
+You can still access `tsc` directly via `npx` like so:
+
+```sh
+npx tsc
+```
+
+### Run eslint and tslint
+
+Even if we're sure we haven't introduced anything new, it can't hurt to lint check our files, you can lint your whole project by running:
+
+```sh
+npm run lint # Runs eslint and tslint against the whole codebase
+npm run lint:eslint # Only runs eslint agains the whole project
+npm run lint:tslint # Only runs tslint agains the whole project
+```
+
+You can access `eslint` and `tslint` directly via `npx` like so:
+
+```sh
+npx eslint --ext .jsx src/components/Dismissable.jsx # Lint a single file
+npx eslint --fix --ext .jsx src/components/Dismissable.jsx # Lint and try to fix a single file
 ```
 
 ### Write tests, run tests
@@ -108,21 +155,10 @@ If you're modifying or introducing a new feature, make sure to write/update a te
 the code you removed.
 
 ```sh
-yarn spec # Runs the whole test suite
-yarn spec:coverage # Runs full test suite and calculates code coverage
-yarn spec:single spec/components/Dismissable-spec.js # Runs a single spec file
-yarn spec:watch # Runs the test suite and watches the file system for changes
-```
-
-### Use Flow
-
-We've included [flow](https://flow.org/) static typing, we recommend using it for your store and/or React components, check these two links out:
-
-* [Learn how to type React class components and stateless functional components with Flow](https://flow.org/en/docs/react/components/)
-* [Remove React PropTypes by using Flow Annotations (in CRA)](https://egghead.io/lessons/angular-1-x-remove-react-proptypes-by-using-flow-annotations-in-cra)
-
-```sh
-yarn flow # Check all flowtypes in codebase
+npm test # Runs the whole test suite
+npm test -- test/components/Dismissable-test.js # Runs a single test file
+npm test -- --watch # Runs the test suite and watches the file system for changes
+npm run test:coverage # Runs full test suite and calculates code coverage
 ```
 
 # Recommendations
@@ -131,6 +167,7 @@ This boilerplate is very opinonated, however there are no enforced rules on how 
 However you should do what makes sense to you and your app.
 
 * Use `.jsx` extension for React components.
+* Use `.ts` and `.tsx` for typescript respectively.
 * Use [domain](#domain-structure) struture/approach to writing new components.
 * When writing new tests make the folder structure match that of the feature you're testing.
 * Use flow types over prop-types

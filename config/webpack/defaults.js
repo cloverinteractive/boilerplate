@@ -2,43 +2,45 @@ const autoprefixer = require('autoprefixer');
 const path = require('path');
 const webpack = require('webpack');
 
+const projectRoot = path.join.bind(null, __dirname, '../..');
+const options = {
+  envName: 'webpack',
+};
+
 module.exports = {
   entry: [
-    path.join(__dirname, '..', 'src', 'index'),
+    projectRoot('src/index'),
   ],
 
   output: {
     chunkFilename: '[name].js',
-    path: path.join(__dirname, '..', 'public'),
+    path: projectRoot('public'),
     filename: 'bundle.js',
     publicPath: '/',
   },
 
   resolve: {
-    extensions: ['.js', '.jsx', '.json'],
+    extensions: ['.js', '.jsx', '.json', '.ts', '.tsx'],
     modules: [
-      path.join(__dirname, '..', 'src'),
-      path.join(__dirname, '..', 'node_modules'),
+      projectRoot('src'),
+      projectRoot('node_modules'),
     ],
   },
 
   module: {
     rules: [
       {
-        test: /\.jsx?$/,
+        test: /\.[jt]sx?$/,
         exclude: /node_modules/,
-        use:
-          {
-            loader: 'babel-loader',
-            options: {
-              forceEnv: 'webpack',
-            },
-          },
+        use: {
+          loader: 'babel-loader',
+          options,
+        }
       },
 
       {
         test: /global\.css$/,
-        include: path.resolve(__dirname, '../src'),
+        include: projectRoot('src'),
         exclude: /node_modules/,
         loaders: ['style-loader', 'css-loader', 'resolve-url-loader'],
       },
