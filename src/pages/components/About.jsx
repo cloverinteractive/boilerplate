@@ -14,7 +14,7 @@ const About = () => (
     </p>
 
     <p>
-      { "Think we've overlooked something? open up an " }
+      Think we&apos;ve overlooked something? open up an
       <a href="https://github.com/cloverinteractive/boilerplate/issues">issue</a> in
       Github.
     </p>
