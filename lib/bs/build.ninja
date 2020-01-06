@@ -1,0 +1,33 @@
+g_std_incl = /home/enrique/Code/boilerplate/node_modules/bs-platform/lib/ocaml
+g_pkg_flg = -bs-package-name boilerplate -bs-ns Boilerplate
+src_root_dir = /home/enrique/Code/boilerplate
+bsc = /home/enrique/.fnm/node-versions/v12.11.1/installation/lib/node_modules/bs-platform/lib/bsc.exe
+bsdep = /home/enrique/.fnm/node-versions/v12.11.1/installation/lib/node_modules/bs-platform/lib/bsb_helper.exe
+warnings = -w -30-40+6+7+27+32..39+44+45+101 -warn-error +101
+bsc_flags = 
+ppx_flags = 
+g_dpkg_incls = 
+g_ns = -bs-ns Boilerplate
+bsb_dir_group = 0
+g_lib_incls = -I . -I src/reason -I /home/enrique/Code/boilerplate/node_modules/reason-react/lib/ocaml
+rule build_ast_from_re
+  command = $bsc  $warnings -color always -bs-jsx 3 $bsc_flags -o $out -bs-syntax-only -bs-binary-ast $in
+  description = [34mBuilding[39m [2m${out}[22m
+build  src/reason/Dismissable.reast : build_ast_from_re $src_root_dir/src/reason/Dismissable.re
+rule build_deps
+  command = $bsdep -hash e2cbbd49651efeaa6c2440f31cf8dbbb $g_ns -g $bsb_dir_group $in
+  restat = 1
+  description = [34mBuilding[39m [2m${out}[22m
+build  src/reason/Dismissable.d : build_deps src/reason/Dismissable.reast
+rule ml_cmj_cmi
+  command = $bsc -nostdlib $g_pkg_flg -color always -bs-suffix $g_lib_incls -I $g_std_incl $warnings $bsc_flags -o $out $in
+  dyndep = $in_e.d
+  restat = 1
+  description = [34mBuilding[39m [2m${out}[22m
+build  src/reason/Dismissable-Boilerplate.cmj |  src/reason/Dismissable-Boilerplate.cmi $src_root_dir/src/reason/Dismissable.bs.js : ml_cmj_cmi src/reason/Dismissable.reast ||  src/reason/Dismissable.d
+  g_pkg_flg = $g_pkg_flg  -bs-package-output commonjs:src/reason
+rule build_package
+  command = $bsc -w -49 -color always -no-alias-deps  $in
+  restat = 1
+  description = [34mBuilding[39m [2m${out}[22m
+build  Boilerplate.cmi : build_package Boilerplate.mlmap

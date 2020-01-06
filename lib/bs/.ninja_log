@@ -1,0 +1,10 @@
+# ninja log v5
+# start_time end_time mtime command hash
+0	3	1578328141187077852	Boilerplate.cmi	13a011d9d251f6c2
+0	7	1578328141191077821	src/reason/Dismissable.reast	1226cc308569476f
+7	8	1578328141195077789	src/reason/Dismissable.d	36454a376d04ac2c
+0	8	1578328184274721093	src/reason/Dismissable.reast	1226cc308569476f
+8	9	1578328184274721093	src/reason/Dismissable.d	36454a376d04ac2c
+9	14	1578328184282721024	src/reason/Dismissable-Boilerplate.cmj	d49373fc3de11bcf
+9	14	1578328184282721024	src/reason/Dismissable-Boilerplate.cmi	d49373fc3de11bcf
+9	14	1578328184282721024	/home/enrique/Code/boilerplate/src/reason/Dismissable.bs.js	d49373fc3de11bcf

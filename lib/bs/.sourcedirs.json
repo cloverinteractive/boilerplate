@@ -1,0 +1,1 @@
+{ "dirs" : [ "src/reason" ] , "pkgs" : [ [ "bs-platform" , "/home/enrique/Code/boilerplate/node_modules/bs-platform" ] , [ "reason-react" , "/home/enrique/Code/boilerplate/node_modules/reason-react" ] ] , "generated" : [] }

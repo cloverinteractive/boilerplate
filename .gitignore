@@ -4,3 +4,4 @@ public/*
 .nyc_output
 yarn-error.log
 coverage
+/*.bs.js
