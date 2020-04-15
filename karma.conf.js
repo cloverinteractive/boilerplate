@@ -2,7 +2,7 @@
 // Generated on Sun Oct 28 2018 11:12:59 GMT-0700 (Pacific Daylight Time)
 const webpack = require('./config/webpack/test.js');
 
-module.exports = function(config) {
+module.exports = function (config) {
   config.set({
 
     // base path that will be used to resolve all patterns (eg. files, exclude)
@@ -16,12 +16,13 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
-      'config/karma.js'
+      'config/karma.js',
     ],
 
 
     // list of files / patterns to exclude
     exclude: [
+      'src/**/*.bs.js',
     ],
 
 
@@ -72,6 +73,6 @@ module.exports = function(config) {
 
     // Concurrency level
     // how many browser should be started simultaneous
-    concurrency: Infinity
-  })
-}
+    concurrency: Infinity,
+  });
+};
