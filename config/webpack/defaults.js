@@ -20,6 +20,7 @@ module.exports = {
   },
 
   resolve: {
+    alias: { 'react-dom': '@hot-loader/react-dom' },
     extensions: ['.js', '.jsx', '.json', '.ts', '.tsx'],
     modules: [
       projectRoot('src'),
@@ -35,7 +36,7 @@ module.exports = {
         use: {
           loader: 'babel-loader',
           options,
-        }
+        },
       },
 
       {

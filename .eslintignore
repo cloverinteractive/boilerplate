@@ -2,3 +2,4 @@ spec/*
 node_modules/*
 decls/*
 flow-typed/*
+*.bs.js
