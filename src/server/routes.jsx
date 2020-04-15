@@ -1,6 +1,6 @@
 import React from 'react';
 import Routes from 'routes';
-import { StaticRouter } from 'react-router';
+import { StaticRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import render from 'server/helpers/renderer';
 import store from 'server/store';

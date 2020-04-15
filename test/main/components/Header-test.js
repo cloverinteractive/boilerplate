@@ -2,11 +2,7 @@ import React from 'react';
 import { expect } from 'chai';
 import { mount } from 'enzyme';
 import { Provider } from 'react-redux';
-import {
-  ConnectedRouter,
-  connectRouter,
-  routerMiddleware
-} from 'connected-react-router';
+import { BrowserRouter } from 'react-router-dom';
 import { createStore, applyMiddleware } from 'redux';
 import { history } from 'store';
 import thunkMiddleware from 'redux-thunk';
@@ -28,9 +24,9 @@ const initialState = {
 };
 
 const store = createStore(
-  connectRouter(history)(rootReducer),
+  rootReducer,
   initialState,
-  applyMiddleware(routerMiddleware(history), thunkMiddleware),
+  applyMiddleware(thunkMiddleware),
 );
 
 let wrapper;
@@ -38,13 +34,11 @@ let component;
 
 context('Main', () => {
   before(() => {
-    wrapper = mount(
-      <Provider store={store}>
-        <ConnectedRouter history={history}>
-          <Header />
-        </ConnectedRouter>
-      </Provider>
-    );
+    wrapper = mount(<Provider store={store}>
+      <BrowserRouter history={history}>
+        <Header />
+      </BrowserRouter>
+    </Provider>);
 
     component = wrapper.find('Header');
   });
