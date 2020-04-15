@@ -1,11 +1,10 @@
 ####{BSB GENERATED: NO EDIT
 B lib/bs
 FLG -open Boilerplate
-FLG -ppx '/home/enrique/.fnm/node-versions/v12.11.1/installation/lib/node_modules/bs-platform/lib/bsppx.exe -bs-jsx 3'
+FLG -ppx '/home/enrique/Code/boilerplate/node_modules/bs-platform/linux/bsc.exe -as-ppx -bs-jsx 3'
 S /home/enrique/Code/boilerplate/node_modules/bs-platform/lib/ocaml
 B /home/enrique/Code/boilerplate/node_modules/bs-platform/lib/ocaml
-FLG -nostdlib
-FLG -w -30-40+6+7+27+32..39+44+45+101
+FLG -w +a-4-9-40-41-42-50-61-102
 S /home/enrique/Code/boilerplate/node_modules/reason-react/lib/ocaml
 B /home/enrique/Code/boilerplate/node_modules/reason-react/lib/ocaml
 S src/reason

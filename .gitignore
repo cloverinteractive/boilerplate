@@ -1,7 +1,8 @@
 node_modules/*
 build/*
 public/*
+lib/bs/*
 .nyc_output
 yarn-error.log
 coverage
-/*.bs.js
+*.bs.js
