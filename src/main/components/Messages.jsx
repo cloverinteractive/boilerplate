@@ -8,15 +8,17 @@ class Messages extends React.PureComponent {
     const color = { [message.type]: true };
     const { dismiss } = this.props;
 
+    const onDismiss = () => dismiss(message.id);
+
     const Flash = (
-      <Alert color={color} key={message.id} message={message} onDismiss={dismiss} />
+      <Alert color={color} key={message.id} message={message} onDismiss={onDismiss} />
     );
 
     // Only dismiss automatically if successful
     if (message.type !== 'success') return Flash;
 
     return (
-      <Dismissable key={message.id} dismiss={dismiss} dismissArgs={message.id}>
+      <Dismissable key={message.id} onDismiss={onDismiss}>
         {Flash}
       </Dismissable>
     );

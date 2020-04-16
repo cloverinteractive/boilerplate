@@ -1,12 +1,12 @@
 [@react.component]
-let make = (~dismiss=?, ~timeout=3000, ~children) => {
+let make = (~onDismiss=?, ~timeout=3000, ~children) => {
   let (render, dispatch) = React.useState(_ => true);
 
   React.useEffect0(() => {
     Js.Global.setTimeout(
       () => {
         dispatch(_ => false);
-        dismiss->Belt.Option.mapWithDefault((), x => x());
+        onDismiss->Belt.Option.mapWithDefault((), x => x());
       },
       timeout,
     )
