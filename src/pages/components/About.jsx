@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { Container, Header } from 'semantic-ui-react';
 import { Helmet } from 'react-helmet';
 
@@ -14,7 +14,11 @@ const About = () => (
     </p>
 
     <p>
-      Think we&apos;ve overlooked something? open up an <a href="https://github.com/cloverinteractive/boilerplate/issues">issue</a> in Github.
+      Think we&apos;ve overlooked something? open up an
+      {' '}
+      <a href="https://github.com/cloverinteractive/boilerplate/issues">issue</a>
+      {' '}
+      in Github.
     </p>
   </Container>
 );

@@ -34,17 +34,19 @@ module.exports = {
 
       {
         test: /global\.css$/,
-        loader: 'css-loader/locals',
+        loader: 'css-loader',
       },
 
       {
         test: /^(?!.*global.css$).*\.css/,
         use: [
           {
-            loader: 'css-loader/locals',
+            loader: 'css-loader',
             options: {
-              localIdentName: '[name]-[local]-[hash:8]',
-              modules: true,
+              localsConvention: 'camelCase',
+              modules: {
+                localIdentName: '[name]-[local]-[hash:8]',
+              },
             },
           },
         ],

@@ -1,17 +1,12 @@
-import React from 'react';
+import * as React from 'react';
 import { Message } from 'semantic-ui-react';
 
-export default class Alert extends React.PureComponent {
-  onDismiss = this.props.onDismiss.bind(this, this.props.message.id);
+/* eslint-disable react/jsx-props-no-spreading */
+const Alert = ({ color, message, onDismiss }) => (
+  <Message {...color} floating onDismiss={onDismiss}>
+    <Message.Header>{message.header}</Message.Header>
+    <p>{message.content}</p>
+  </Message>
+);
 
-  render() {
-    const { color, message } = this.props;
-
-    return (
-      <Message {...color} floating onDismiss={this.onDismiss}>
-        <Message.Header>{message.header}</Message.Header>
-        <p>{message.content}</p>
-      </Message>
-    );
-  }
-}
+export default Alert;

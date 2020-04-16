@@ -7,12 +7,13 @@ const instrumenter = {
   test: /\.[jt]sx?$/,
   loaders: 'istanbul-instrumenter-loader',
   options: { esModules: true },
-  include: path.resolve(__dirname, "../../src")
+  include: path.resolve(__dirname, '../../src'),
+  exclude: /\.bs\.js$/,
 };
 
 const rules = [].concat(
   isCoverage ? instrumenter : [],
-  defaults.module.rules
+  defaults.module.rules,
 );
 
 module.exports = {

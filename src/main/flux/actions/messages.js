@@ -1,4 +1,4 @@
-import v4 from 'uuid/v4';
+import { v4 } from 'uuid';
 import { ADD_MESSAGE, DISMISS_MESSAGE } from 'main/constants/action-types';
 
 const addMessage = (header, content, type) => {
@@ -14,15 +14,15 @@ const addMessage = (header, content, type) => {
   };
 };
 
-const removeMessage = id => ({
+const removeMessage = (id) => ({
   type: DISMISS_MESSAGE,
   id,
 });
 
-export const addNotice = content => addMessage('Succes!', content, 'success');
+export const addNotice = (content) => addMessage('Succes!', content, 'success');
 
-export const addError = content => addMessage('Something went wrong', content, 'error');
+export const addError = (content) => addMessage('Something went wrong', content, 'error');
 
-export const addWarning = content => addMessage('Warning', content, 'warning');
+export const addWarning = (content) => addMessage('Warning', content, 'warning');
 
 export default removeMessage;

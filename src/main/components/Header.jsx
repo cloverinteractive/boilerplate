@@ -1,5 +1,4 @@
-
-import React from 'react';
+import * as React from 'react';
 import { connect } from 'react-redux';
 import Messages from './Messages';
 import Nav from './Nav';

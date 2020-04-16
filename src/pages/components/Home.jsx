@@ -1,6 +1,8 @@
-import React from 'react';
+import * as React from 'react';
 import { connect } from 'react-redux';
-import { Button, Container, Header, Popup, Segment } from 'semantic-ui-react';
+import {
+  Button, Container, Header, Popup, Segment,
+} from 'semantic-ui-react';
 import { Helmet } from 'react-helmet';
 import { MAIN_TREE, PAGES_TREE } from 'pages/constants/home';
 import * as messages from 'main/flux/actions/messages';
@@ -49,8 +51,14 @@ const Home = ({ addError, addNotice, addWarning }) => {
       <Segment vertical>
         <Header as="h2">Components</Header>
         <p>
-          The app comes bundled with a super basic <strong><em>redux</em></strong> reducer for
-          adding and removing <strong><em>SemanticUI</em></strong>
+          The app comes bundled with a super basic
+          {' '}
+          <strong><em>redux</em></strong>
+          {' '}
+          reducer for
+          adding and removing
+          {' '}
+          <strong><em>SemanticUI</em></strong>
           <a
             href="https://react.semantic-ui.com/collections/message"
             rel="noopener noreferrer"
@@ -59,7 +67,11 @@ const Home = ({ addError, addNotice, addWarning }) => {
             &lt;Message /&gt;
           </a>
           . You can find the code for
-          these, under the <strong><em>client/main</em></strong> folder. You can also try
+          these, under the
+          {' '}
+          <strong><em>client/main</em></strong>
+          {' '}
+          folder. You can also try
           the basic messaging by clicking any of the following buttons.
         </p>
 
@@ -95,16 +107,26 @@ const Home = ({ addError, addNotice, addWarning }) => {
         </Segment>
 
         <p>
-          It also comes pre-packaged with 3 pages, <strong><em>&lt;Home /&gt;</em></strong>,
-          <strong><em> &lt;About /&gt;</em></strong> and
-          <strong><em>&lt;Error404 /&gt;</em></strong>. You can use the navigation at the top
+          It also comes pre-packaged with 3 pages,
+          {' '}
+          <strong><em>&lt;Home /&gt;</em></strong>
+          ,
+          <strong><em> &lt;About /&gt;</em></strong>
+          {' '}
+          and
+          <strong><em>&lt;Error404 /&gt;</em></strong>
+          . You can use the navigation at the top
           to visit the first two, and type any unexisting page in the browser URL to visit the
           latter.
         </p>
 
         <p>
           We&apos;ve organized the application by features and created a new folder per each new
-          feature, the aforementions components can be found at <em>client/pages</em> in this
+          feature, the aforementions components can be found at
+          {' '}
+          <em>client/pages</em>
+          {' '}
+          in this
           app&apos;s folder. Folder structure looks like this:
         </p>
 

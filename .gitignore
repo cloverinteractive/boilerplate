@@ -1,6 +1,12 @@
 node_modules/*
 build/*
 public/*
+.merlin
+.bsb.lock
+core
+npm-debug.log
+/lib/bs/
 .nyc_output
 yarn-error.log
 coverage
+*.bs.js

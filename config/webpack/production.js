@@ -1,4 +1,3 @@
-const autoprefixer = require('autoprefixer');
 const defaults = require('./defaults');
 const webpack = require('webpack');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
@@ -6,38 +5,23 @@ const ManifestPlugin = require('webpack-manifest-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 
-const optimization = Object.assign({}, {
-  minimizer: [
-    new TerserPlugin({
-      terserOptions: {
-        parse: {
-          ecma: 2017,
-        },
-        compress: {
-          ecma: 5,
-          warnings: false,
-          comparisons: false,
-        },
-        mangle: {
-          safari10: true,
-        },
-        output: {
-          ecma: 5,
-          comments: false,
-          ascii_only: true,
-        },
-      },
-      parallel: true,
-      cache: true,
-      sourceMap: false,
-    }),
+const optimization = Object.assign(
+  {}, {
+    minimize: true,
+    minimizer: [
+      new TerserPlugin({
+        cache: true,
+        parallel: true,
+        extractComments: true,
+      }),
 
-    new OptimizeCSSAssetsPlugin({
-      cssProcessorOptions: { safe: true, discardComments: { removeAll: true } },
-    }),
-  ],
-},
-  defaults.optimization);
+      new OptimizeCSSAssetsPlugin({
+        cssProcessorOptions: { safe: true, discardComments: { removeAll: true } },
+      }),
+    ],
+  },
+  defaults.optimization,
+);
 
 module.exports = {
   mode: 'production',
@@ -71,14 +55,7 @@ module.exports = {
         test: /global\.css$/,
         use: [
           MiniCssExtractPlugin.loader,
-
-          {
-            loader: 'css-loader',
-            options: {
-              minimize: true,
-            },
-          },
-
+          'css-loader',
           'resolve-url-loader',
         ],
       },
@@ -92,30 +69,14 @@ module.exports = {
             loader: 'css-loader',
             options: {
               importLoaders: 2,
-              localIdentName: '[name]-[local]-[hash:8]',
-              minimize: true,
-              modules: true,
+              localsConvention: 'camelCase',
+              modules: {
+                localIdentName: '[name]-[local]-[hash:8]',
+              },
             },
           },
 
           { loader: 'resolve-url-loader' },
-
-          {
-            loader: 'postcss-loader',
-            options: {
-              ident: 'postcss',
-              plugins: [
-                autoprefixer({
-                  browsers: [
-                    '>1%',
-                    'last 4 versions',
-                    'Firefox ESR',
-                    'not ie < 9', // React doesn't support IE8 anyway
-                  ],
-                }),
-              ],
-            },
-          },
         ],
       },
 
@@ -153,6 +114,7 @@ module.exports = {
     new ManifestPlugin({
       fileName: 'asset-manifest.json',
     }),
+    require('autoprefixer'),
   ],
 
   node: {

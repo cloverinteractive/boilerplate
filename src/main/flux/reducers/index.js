@@ -42,4 +42,3 @@ const messages = (state = initialState, action) => {
 const reducer = combineReducers({ messages });
 
 export default reducer;
-

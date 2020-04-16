@@ -1,7 +1,7 @@
 import first from 'lodash/first';
 import React from 'react';
 import { Provider } from 'react-redux';
-import { ConnectedRouter as Router } from 'connected-react-router';
+import { BrowserRouter } from 'react-router-dom';
 import store, { history } from 'store';
 import { expect } from 'chai';
 import { mount } from 'enzyme';
@@ -13,13 +13,11 @@ let wrapper;
 
 context('Main', () => {
   before(() => {
-    wrapper = mount(
-      <Provider store={store}>
-        <Router history={history}>
-          <Nav />
-        </Router>
-      </Provider>
-    );
+    wrapper = mount(<Provider store={store}>
+      <BrowserRouter history={history}>
+        <Nav />
+      </BrowserRouter>
+    </Provider>);
   });
 
   describe('<Nav />', () => {
