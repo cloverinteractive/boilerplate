@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Alert from 'main/components/Alert';
 import styles from 'main/css/messages.css';
-import Dismissable from '../../reason/Dismissable.bs';
+import Dismissable from 'components/Dismissable.bs';
 
 class Messages extends React.PureComponent {
   buildMessage = (message) => {

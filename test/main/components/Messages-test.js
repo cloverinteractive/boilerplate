@@ -3,7 +3,7 @@ import { expect } from 'chai';
 import { mount } from 'enzyme';
 import sinon from 'sinon';
 
-import Dismissable from '../../../src/reason/Dismissable.bs';
+import Dismissable from 'components/Dismissable.bs';
 import { Message } from 'semantic-ui-react';
 import Messages from 'main/components/Messages';
 
