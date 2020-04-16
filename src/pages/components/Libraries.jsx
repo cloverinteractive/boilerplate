@@ -1,5 +1,5 @@
-import React from 'react';
-import v4 from 'uuid/v4';
+import * as React from 'react';
+import { v4 } from 'uuid';
 
 export const Library = ({ description, library, url }) => (
   <li>

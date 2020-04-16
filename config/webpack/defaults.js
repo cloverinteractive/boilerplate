@@ -1,4 +1,3 @@
-const autoprefixer = require('autoprefixer');
 const path = require('path');
 const webpack = require('webpack');
 
@@ -55,29 +54,13 @@ module.exports = {
             loader: 'css-loader',
             options: {
               importLoaders: 2,
-              localIdentName: '[name]-[local]-[hash:8]',
-              modules: true,
+              modules: {
+                localIdentName: '[name]-[local]-[hash:8]',
+              },
             },
           },
 
           { loader: 'resolve-url-loader' },
-
-          {
-            loader: 'postcss-loader',
-            options: {
-              ident: 'postcss',
-              plugins: [
-                autoprefixer({
-                  browsers: [
-                    '>1%',
-                    'last 4 versions',
-                    'Firefox ESR',
-                    'not ie < 9', // React doesn't support IE8 anyway
-                  ],
-                }),
-              ],
-            },
-          },
         ],
       },
 
@@ -130,5 +113,6 @@ module.exports = {
         NODE_ENV: JSON.stringify(process.env.NODE_ENV),
       },
     }),
+    require('autoprefixer'),
   ],
 };

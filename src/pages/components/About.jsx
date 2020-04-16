@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { Container, Header } from 'semantic-ui-react';
 import { Helmet } from 'react-helmet';
 

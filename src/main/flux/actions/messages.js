@@ -1,4 +1,4 @@
-import v4 from 'uuid/v4';
+import { v4 } from 'uuid';
 import { ADD_MESSAGE, DISMISS_MESSAGE } from 'main/constants/action-types';
 
 const addMessage = (header, content, type) => {

@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import Alert from 'main/components/Alert';
 import styles from 'main/css/messages.css';
 import Dismissable from '../../reason/Dismissable.bs';
