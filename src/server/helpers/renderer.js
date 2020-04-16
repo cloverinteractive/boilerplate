@@ -7,14 +7,12 @@ export default (Component, store) => {
   const content = renderToString(Component);
   const helmet = Helmet.renderStatic();
 
-  const productionStyles =
-    `<link rel="stylesheet" href="/vendors.css">
+  const productionStyles = `<link rel="stylesheet" href="/vendors.css">
     <link rel="stylesheet" href="/styles.css">`;
 
   const styles = isDevelopment ? '' : productionStyles;
 
-  const template =
-    `<!doctype html>
+  const template = `<!doctype html>
     <html lang="en-US">
       <head>
         <meta charset="utf-8">

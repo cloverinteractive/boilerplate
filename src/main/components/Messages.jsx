@@ -24,7 +24,7 @@ class Messages extends React.PureComponent {
 
   render() {
     const { messages } = this.props;
-    const MessageList = messages.map(message => this.buildMessage(message));
+    const MessageList = messages.map((message) => this.buildMessage(message));
 
     return (
       <div className={styles.messages}>

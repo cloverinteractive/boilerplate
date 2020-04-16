@@ -9,7 +9,7 @@ export default () => (
   <div className="wrapper">
     <Main.Header />
     <Switch>
-      <Route exact path="/" >
+      <Route exact path="/">
         <Pages.Home />
       </Route>
       <Route path="/about">
