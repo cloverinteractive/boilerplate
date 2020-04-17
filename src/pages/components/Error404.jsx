@@ -1,16 +1,16 @@
 import * as React from 'react';
-import { Container, Header } from 'semantic-ui-react';
 import { Helmet } from 'react-helmet';
 
 const Error404 = () => (
-  <Container text>
+  <div className="container is-fluid">
+    <h1 className="title">Page not found</h1>
+    <div className="content">
+      <p>The page you we&apos;re looking for does not exist.</p>
+    </div>
     <Helmet>
       <title>Oops! Page not found</title>
     </Helmet>
-
-    <Header as="h1">Page not found</Header>
-    <p>The page you we&apos;re looking for does not exist.</p>
-  </Container>
+  </div>
 );
 
 export default Error404;

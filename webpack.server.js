@@ -33,12 +33,7 @@ module.exports = {
       },
 
       {
-        test: /global\.css$/,
-        loader: 'css-loader',
-      },
-
-      {
-        test: /^(?!.*global.css$).*\.css/,
+        test: /\.css$/,
         use: [
           {
             loader: 'css-loader',
@@ -53,10 +48,20 @@ module.exports = {
       },
 
       {
+        test: /\.s[ac]ss$/i,
+        use: [
+          'style-loader',
+          'css-loader',
+          'sass-loader',
+        ],
+      },
+
+      {
         exclude: [
           /\.html$/,
           /\.jsx?$/,
           /\.css$/,
+          /\.s[ac]ss$/i,
           /\.json$/,
         ],
         loader: 'file-loader',

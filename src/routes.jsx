@@ -1,13 +1,14 @@
 import * as React from 'react';
 import { Route, Switch } from 'react-router-dom';
-import Main from 'main';
 import Pages from 'pages';
 
-import './css/global.css';
+import Messages from './components/Messages';
+import Nav from './components/Nav.bs';
 
 export default () => (
   <div className="wrapper">
-    <Main.Header />
+    <Nav />
+    <Messages />
     <Switch>
       <Route exact path="/">
         <Pages.Home />

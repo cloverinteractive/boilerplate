@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux';
-import * as main from './main';
+import messaging from './messages';
 
 const rootReducer = combineReducers({
-  [main.constants.NAME]: main.reducer,
+  messaging,
 });
 
 export default rootReducer;

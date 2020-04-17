@@ -1,7 +1,7 @@
 import omit from 'lodash/omit';
 import without from 'lodash/without';
 import { combineReducers } from 'redux';
-import * as types from 'main/constants/action-types';
+import * as types from '../actions/types';
 
 const initialState = {
   entities: {},
