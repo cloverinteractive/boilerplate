@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Helmet } from 'react-helmet';
 import classNames from 'classnames';
 import { connect } from 'react-redux';
-import { MAIN_TREE, PAGES_TREE } from 'pages/constants/home';
+import { COMPONENT_TREE, PAGES_TREE, REDUX_TREE } from 'pages/constants/home';
 
 import libraries from 'pages/constants/libraries';
 import Libraries from 'pages/components/Libraries';
@@ -36,7 +36,7 @@ const Home = ({ addError, addNotice, addWarning }) => {
           {' '}
           reducer for adding and removing alerts. You can find the code for these, under the
           {' '}
-          <span className={highlightClass}>src/main</span>
+          <span className={highlightClass}>src/redux</span>
           {' '}
           folder. You can also try the basic messaging by clicking any of the following buttons.
         </p>
@@ -74,7 +74,7 @@ const Home = ({ addError, addNotice, addWarning }) => {
           </div>
         </div>
         <p>Folder structure looks like this:</p>
-        <pre className="is-family-monospace">{MAIN_TREE}</pre>
+        <pre className="is-family-monospace">{REDUX_TREE}</pre>
         <p>
           It also comes pre-packaged with 3 pages,
           <span className={highlightClass}>{' <Home />'}</span>
@@ -96,6 +96,13 @@ const Home = ({ addError, addNotice, addWarning }) => {
           app&apos;s folder. Folder structure looks like this:
         </p>
         <pre className="is-family-monospace">{PAGES_TREE}</pre>
+        <p>
+          Lastly we&apos;ve shipped a few regular purpose components, you can guess what they are
+          {' '}
+          for by looking at their name.
+        </p>
+        <p>Folder structure looks like this:</p>
+        <pre className="is-family-monospace">{COMPONENT_TREE}</pre>
       </article>
       <Helmet>
         <title>Home</title>

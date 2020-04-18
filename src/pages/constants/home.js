@@ -1,6 +1,6 @@
 /* eslint-disable no-irregular-whitespace */
 export const PAGES_TREE = `
-client/pages/
+src/pages/
 ├── components
 │   ├── About.jsx
 │   ├── Error404.jsx
@@ -8,30 +8,28 @@ client/pages/
 │   └── Libraries.jsx
 ├── constants
 │   ├── home.js
-│   ├── libraries.js
-│   └── types.js
-├── index.js
-└── styles
-    └── code.css
-`.trim();
-
-export const MAIN_TREE = `
-client/main/
-├── components
-│   ├── Header.jsx
-│   ├── Messages.jsx
-│   └── Nav.jsx
-├── constants
-│   ├── action-types.js
-│   ├── index.js
-│   └── types.js
-├── flux
-│   ├── actions
-│   │   └── messages.js
-│   ├── reducers
-│   │   └── index.js
-│   └── selectors
-│       └── messages.js
+│   └── libraries.js
 └── index.js
 `.trim();
-/* eslint-enable no-irregular-whitespace */
+
+export const REDUX_TREE = `
+src/redux/
+├── actions
+│   ├── messages.js
+│   └── types.js
+├── reducers
+│   ├── index.js
+│   └── messages.js
+├── selectors
+│   └── messages.js
+└── store.js
+`.trim();
+
+export const COMPONENT_TREE = `
+src/components/
+├── Dismissable.re
+├── Messages.jsx
+├── Nav.re
+├── Notification.re
+└── ReactRouter.re
+`.trim();
