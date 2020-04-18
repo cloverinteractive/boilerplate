@@ -25,11 +25,6 @@ export default [
     url: 'https://www.typescriptlang.org/',
   },
   {
-    description: 'The fun, simple, flexible JavaScript test framework',
-    library: 'Mocha',
-    url: 'https://mochajs.org',
-  },
-  {
     description: 'A JavaScript library for building user interfaces',
     library: 'React',
     url: 'https://facebook.github.io/react/',
