@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 
-import removeMessage from 'redux/actions/messages';
-import selector from 'redux/selectors/messages';
+import removeMessage from '../redux/actions/messages';
+import selector from '../redux/selectors/messages';
 import Notification from './Notification.bs';
 
 import styles from '../css/messages.css';

@@ -2,11 +2,12 @@ import * as React from 'react';
 import { Helmet } from 'react-helmet';
 import classNames from 'classnames';
 import { connect } from 'react-redux';
-import * as messages from 'redux/actions/messages';
 import { MAIN_TREE, PAGES_TREE } from 'pages/constants/home';
 
 import libraries from 'pages/constants/libraries';
 import Libraries from 'pages/components/Libraries';
+
+import * as messages from '../../redux/actions/messages';
 
 const Home = ({ addError, addNotice, addWarning }) => {
   const highlightClass = classNames([
