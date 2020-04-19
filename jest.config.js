@@ -7,6 +7,9 @@ module.exports = {
   ],
   coverageDirectory: 'coverage',
   coveragePathIgnorePatterns: [
+    'src/server',
+    'src/index.jsx',
+    'src/route*',
     '.bs.js',
   ],
   moduleNameMapper: {
