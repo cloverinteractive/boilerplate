@@ -16,6 +16,7 @@
     },
     "node": {
       "plugins": [
+        "react-hot-loader/babel",
         [
           "css-modules-transform",
           {

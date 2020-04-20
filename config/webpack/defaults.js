@@ -8,6 +8,7 @@ const options = {
 
 module.exports = {
   entry: [
+    'react-hot-loader/patch',
     projectRoot('src/index'),
   ],
 
@@ -19,7 +20,9 @@ module.exports = {
   },
 
   resolve: {
-    alias: { 'react-dom': '@hot-loader/react-dom' },
+    alias: {
+      'react-dom': '@hot-loader/react-dom',
+    },
     extensions: ['.js', '.jsx', '.json', '.ts', '.tsx'],
     modules: [
       projectRoot('src'),
