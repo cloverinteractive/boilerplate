@@ -1,3 +1,0 @@
---require ./config/jsdom.js
---full-trace
---bail
