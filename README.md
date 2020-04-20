@@ -129,9 +129,9 @@ npx tsc
 
 ### Redux
 
-You're app may not need redux, in fact with the new context API and react hooks to you should be able to plug that need, that said setting up
-Redux for apps that needed it for one reason or the other was a repetitive task that often took time, for that reason we've added a preconfigured
-store and some sample actions/reducers for you to play with.
+Your app may not need redux, in fact with the new context API and react hooks you should be able to plug that need, that said setting up *redux*
+for apps that needed it for one reason or another, was a repetitive task that often took time. For that reason we've added a preconfigured store
+and some sample actions/reducers for you to play with.
 
 ### Run eslint
 
