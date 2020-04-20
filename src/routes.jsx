@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { Route, Switch } from 'react-router-dom';
 import Pages from 'pages';
-
 import Messages from './components/Messages';
 import Nav from './components/Nav.bs';
+import './css/bulma.scss';
 
 export default () => (
   <div className="wrapper">

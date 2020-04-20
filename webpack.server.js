@@ -48,22 +48,11 @@ module.exports = {
       },
 
       {
-        test: /\.s[ac]ss$/i,
+        test: /\.s[ac]ss$/,
         use: [
-          {
-            loader: 'css-loader',
-            options: {
-             importLoaders: 2,
-              localsConvetion: 'camelCase',
-            },
-          },
-          { loader: 'resolve-url-loader' },
-          {
-            loader: 'sass-loader',
-            options: {
-              implementation: require('sass'),
-            },
-          },
+          'css-loader',
+          'resolve-url-loader',
+          'sass-loader',
         ],
       },
 
@@ -72,7 +61,7 @@ module.exports = {
           /\.html$/,
           /\.jsx?$/,
           /\.css$/,
-          /\.s[ac]ss$/i,
+          /\.s[ac]ss$/,
           /\.json$/,
         ],
         loader: 'file-loader',
