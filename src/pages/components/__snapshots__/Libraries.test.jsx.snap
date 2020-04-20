@@ -1,0 +1,40 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Libraries /> it renders correctly 1`] = `
+<ul
+  className="libraries"
+>
+  <li>
+    <a
+      href="https://alibrary.com"
+      rel="noopener noreferrer"
+      target="_blank"
+    >
+      A Library
+    </a>
+     
+    -
+    <span
+      className="is-italic"
+    >
+      A library description
+    </span>
+  </li>
+  <li>
+    <a
+      href="https://blibrary.com"
+      rel="noopener noreferrer"
+      target="_blank"
+    >
+      B Library
+    </a>
+     
+    -
+    <span
+      className="is-italic"
+    >
+      B library description
+    </span>
+  </li>
+</ul>
+`;

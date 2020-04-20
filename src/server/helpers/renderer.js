@@ -13,9 +13,10 @@ export default (Component, store) => {
   const styles = isDevelopment ? '' : productionStyles;
 
   const template = `<!doctype html>
-    <html lang="en-US">
+    <html lang="en-US" class="has-navbar-fixed-top">
       <head>
         <meta charset="utf-8">
+        <meta name="viewport"  content="width=device-width, initial-scale=1">
         ${helmet.link.toString()}
         ${helmet.title.toString()}
         ${helmet.meta.toString()}
@@ -23,7 +24,7 @@ export default (Component, store) => {
         <script src="/vendors.js"></script>
       </head>
       <body>
-        <div id="app">${content}</div>
+        <section id="app">${content}</section>
         <script>
           window.__INITIAL_STATE__ = ${serialize(store.getState())};
         </script>

@@ -37,16 +37,8 @@ module.exports = {
           options,
         },
       },
-
       {
-        test: /global\.css$/,
-        include: projectRoot('src'),
-        exclude: /node_modules/,
-        loaders: ['style-loader', 'css-loader', 'resolve-url-loader'],
-      },
-
-      {
-        test: /^(?!.*global.css$).*\.css$/,
+        test: /\.css$/,
         use: [
           { loader: 'style-loader' },
 
@@ -61,6 +53,15 @@ module.exports = {
           },
 
           { loader: 'resolve-url-loader' },
+        ],
+      },
+
+      {
+        test: /\.s[ac]ss$/i,
+        use: [
+          'style-loader',
+          'css-loader',
+          'sass-loader',
         ],
       },
 

@@ -52,16 +52,7 @@ module.exports = {
       },
 
       {
-        test: /global\.css$/,
-        use: [
-          MiniCssExtractPlugin.loader,
-          'css-loader',
-          'resolve-url-loader',
-        ],
-      },
-
-      {
-        test: /^(?!.*global.css$).*\.css$/,
+        test: /\.css$/,
         use: [
           MiniCssExtractPlugin.loader,
 
@@ -81,7 +72,29 @@ module.exports = {
       },
 
       {
+        test: /\.s[ac]ss$/,
+        use: [
+          MiniCssExtractPlugin.loader,
+          {
+            loader: 'css-loader',
+            options: {
+              importLoaders: 2,
+              localsConvention: 'camelCase',
+            }
+          },
+          { loader: 'resolve-url-loader' },
+          {
+            loader: 'sass-loader',
+            options: {
+              implementation: require('sass'),
+            },
+          },
+        ],
+      },
+
+      {
         exclude: [
+          /\.s[ac]ss$/,
           /\.html$/,
           /\.jsx?$/,
           /\.tsx?$/,

@@ -10,24 +10,19 @@ export default [
     url: 'https://eslint.org',
   },
   {
-    description: 'An extensible linter for the TypeScript Language',
-    library: 'Tslint',
-    url: 'https://palantir.github.io/tslint/',
-  },
-  {
     description: 'Fast, unopinionated, minimalist web framework for Node.js',
     library: 'Express',
     url: 'https://expressjs.com',
   },
   {
+    description: 'Reason lets you write simple, fast and quality type safe code while leveraging both the JavaScript & OCaml ecosystems.',
+    library: 'ReasonML',
+    url: 'https://reasonml.github.io/',
+  },
+  {
     description: 'A typed superset of JavaScript that compiles to plain Javascript',
     library: 'TypeScript',
     url: 'https://www.typescriptlang.org/',
-  },
-  {
-    description: 'The fun, simple, flexible JavaScript test framework',
-    library: 'Mocha',
-    url: 'https://mochajs.org',
   },
   {
     description: 'A JavaScript library for building user interfaces',
@@ -43,11 +38,6 @@ export default [
     description: 'Redux is a predictable state container for JavaScript apps.',
     library: 'Redux',
     url: 'http://redux.js.org/',
-  },
-  {
-    description: 'Semantic is a development framework that helps create beautiful, responsive layouts using human-friendly HTML.',
-    library: 'Semantic-UI',
-    url: 'https://semantic-ui.com',
   },
   {
     description: 'Webpack is a module bundler for modern JavaScript applications.',

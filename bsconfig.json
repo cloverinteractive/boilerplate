@@ -3,16 +3,27 @@
   "reason": {
     "react-jsx": 3
   },
-  "sources": {
+  "sources": [
+    {
     "dir": "src",
     "subdirs": true
   },
+  {
+    "dir": "__tests__",
+    "type": "dev"
+  }
+  ],
   "package-specs": {
     "module": "commonjs",
     "in-source": true
   },
   "suffix": ".bs.js",
   "bs-dependencies": [
+    "@glennsl/bs-jest",
+    "bs-enzyme",
+    "bs-react-testing-library",
+    "bs-react-test-renderer",
+    "re-classnames",
     "reason-react"
   ],
   "warnings": {

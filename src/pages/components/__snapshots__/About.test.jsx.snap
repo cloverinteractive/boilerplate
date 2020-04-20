@@ -1,0 +1,31 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<About /> it renders correctly 1`] = `
+<div
+  className="container is-fluid"
+>
+  <h1
+    className="title"
+  >
+    Made with love &lt;3!
+  </h1>
+  <div
+    className="content"
+  >
+    <p>
+      We've made this boilerplate because we spend too much time setting up new node apps.
+    </p>
+    <p>
+      Think we've overlooked something? open up an
+       
+      <a
+        href="https://github.com/cloverinteractive/boilerplate/issues"
+      >
+        issue
+      </a>
+       
+      in Github.
+    </p>
+  </div>
+</div>
+`;

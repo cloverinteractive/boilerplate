@@ -5,6 +5,8 @@
     "@babel/typescript"
   ],
   "plugins": [
+    "@babel/plugin-transform-runtime",
+    "@babel/plugin-transform-async-to-generator",
     "@babel/proposal-class-properties",
     "@babel/proposal-object-rest-spread"
   ],
@@ -18,7 +20,9 @@
           "css-modules-transform",
           {
             "extensions": [
-              ".css"
+              ".css",
+              ".sass",
+              ".scss"
             ],
             "generateScopedName": "[name]-[local]-[hash:8]"
           }

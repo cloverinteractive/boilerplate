@@ -1,24 +1,19 @@
 import * as React from 'react';
-import { v4 } from 'uuid';
+import { v1 } from 'uuid';
 
-export const Library = ({ description, library, url }) => (
-  <li>
-    <a href={url} rel="noopener noreferrer" target="_blank">{library}</a>
-    {' '}
-    -
-    <em>{description}</em>
-  </li>
+const Libraries = ({ libraries }) => (
+  <ul className="libraries">
+    {libraries.map(({ description, library, url }) => (
+      <li key={v1()}>
+        <a href={url} rel="noopener noreferrer" target="_blank">
+          {library}
+        </a>
+        {' '}
+        -
+        <span className="is-italic">{description}</span>
+      </li>
+    ))}
+  </ul>
 );
-
-/* eslint-disable react/jsx-props-no-spreading */
-const Libraries = ({ libraries }) => {
-  const items = libraries.map((library) => <Library key={v4()} {...library} />);
-
-  return (
-    <ul className="libraries">
-      { items }
-    </ul>
-  );
-};
 
 export default Libraries;

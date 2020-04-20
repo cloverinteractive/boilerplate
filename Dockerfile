@@ -1,4 +1,4 @@
-FROM node:alpine
+FROM node:stretch
 
 EXPOSE 8080
 
@@ -13,11 +13,15 @@ COPY src/ src/
 COPY config/ config/
 COPY webpack.client.js .
 COPY webpack.server.js .
+COPY bsconfig.json .
 
+RUN apt-get update
+RUN apt-get install build-essential -y
 RUN npm install --ignore-engines 
+RUN mkdir __tests__
 
 ENV NODE_ENV=production
 
-RUN npm run build 
+RUN npm run build
 
 CMD ["node", "build/bundle.js"]
