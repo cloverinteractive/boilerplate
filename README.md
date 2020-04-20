@@ -45,29 +45,19 @@ npm install
 
 * [Babel](https://babeljs.io/) - The compiler for writing next generation JavaScript
 * [Eslint](https://eslint.org/) - Pluggable JavaScript linter
-* [Tslint](https://palantir.github.io/tslint/) - An extensible linter for the TypeScript Language
 * [Express](https://expressjs.com/) - Fast, unopinionated, minimalist web framework for Node.js
+* [ReasonML](https://reasonml.github.io/) - Reason lets you write simple, fast and quality type safe code while leveraging both the JavaScript & OCaml ecosystems.
 * [TypeScript](https://www.typescriptlang.org/) - A typed superset of JavaScript that compiles to plain Javascript.
-* [Mocha](https://mochajs.org/) - The fun, simple, flexible JavaScript test framework
+* [Jest](https://jestjs.io/) - Jest is a delightful JavaScript Testing Framework with a focus on simplicity.
 * [React](https://facebook.github.io/react/) - A JavaScript library for building user interfaces
 * [React Router](https://reacttraining.com/react-router/) - Declarative Routing for React.js
 * [Redux](http://redux.js.org/) - Redux is a predictable state container for JavaScript apps.
-* [Semantic-UI](https://semantic-ui.com/) - Semantic is a development framework that helps create beautiful, responsive layouts using human-friendly HTML.
 * [Webpack](https://webpack.js.org/concepts/) - Webpack is a module bundler for modern JavaScript applications.
 
 ## Server Rendering
 
-The server code lives in `src/server` the reason for this is Server Rendering, express will automatically render your components
+The server code lives in `src/server`, express will automatically render your components
 with every new request, the idea is that search engines can index pages with content instead of blank html templates.
-
-## CSS modules
-
-By default css-modules are turned on, meaning that your class names will change to somewhat semi-random strings, however
-this may not be ideal if you're using some vendor css framework (like semantic-ui or bootstrap), to work around this,
-you can create stysheet files suffixed with `global.css` and `css-modules` will be turned off for said file, this is meant
-to help you deal with vendor overrides, check `src/css/global.css` to see it in action.
-
-Because using `:global {}` and `@import` don't work together and there's no css-modules compatible version of every css framework, being able to have files ignored by css-modules make's it easy to import our css framework or global css and immediately override things in the same file.
 
 # Running the app
 
@@ -109,18 +99,23 @@ Every part of the app's boilerplate is organized in it's own folder, here's a qu
 1. Webpack configuration is in the `config/webpack` folder.
 1. All code live in the `src/` folder.
 1. Server code specifically can ben found at `src/server`.
-1. Tests live inside of the `test/` folder, test filenames are suffixed with *-test.js* and folder structure will match that of the `src/` folder structure.
+1. ReasonML tests live inside `__tests__` folder, tests are suffixed by *_test.re* and flat directory structure.
+1. TypeScript and Javascript tests are at the same folder the file they're testing is, tests are suffixed by *.test*.
 
 ## Practices
 
-Make sure you do the following whenever you're coding:
+These are recommendations, you should write code in any way that makes sense for you and your app.
 
-### Use TypeScript
+### ReasonML
 
-We've included [TypeScript](https://www.typescriptlang.org/) support, we recommend using it for your store and/or React components, check
+We've includen support for [ReasonML](https://reasonml.github.io/), we think it's a step in the right direction for writing type safe,
+code that builds fast and is runtime error free, it also feels like the perfect language to write react components in.
+
+### TypeScript
+
+We've included [TypeScript](https://www.typescriptlang.org/) support, if you're not ready to get your feet wet with ReasonML we recommend using 
+typescript you should feel right at home and can start adding type annotations at your own pace, we recommend reading
 [this](https://www.typescriptlang.org/docs/handbook/react-&-webpack.html#write-some-code) guide on how to write React components with TypeScript.
-
-Note that this is completely optional, but we recommend you start writing statically typed code.
 
 ```sh
 npm run check-types # Check all TypeScript files
@@ -132,21 +127,25 @@ You can still access `tsc` directly via `npx` like so:
 npx tsc
 ```
 
-### Run eslint and tslint
+### Redux
+
+You're app may not need redux, in fact with the new context API and react hooks to you should be able to plug that need, that said setting up
+Redux for apps that needed it for one reason or the other was a repetitive task that often took time, for that reason we've added a preconfigured
+store and some sample actions/reducers for you to play with.
+
+### Run eslint
 
 Even if we're sure we haven't introduced anything new, it can't hurt to lint check our files, you can lint your whole project by running:
 
 ```sh
-npm run lint # Runs eslint and tslint against the whole codebase
-npm run lint:eslint # Only runs eslint agains the whole project
-npm run lint:tslint # Only runs tslint agains the whole project
+npm run lint # Runs eslint against the whole codebase (except compiled code)
 ```
 
-You can access `eslint` and `tslint` directly via `npx` like so:
+You can access `eslint` directly via `npx` like so:
 
 ```sh
-npx eslint --ext .jsx src/components/Dismissable.jsx # Lint a single file
-npx eslint --fix --ext .jsx src/components/Dismissable.jsx # Lint and try to fix a single file
+npx eslint --ext .jsx src/components/Messages.jsx # Lint a single file
+npx eslint --fix --ext .jsx src/components/Messages.jsx # Lint and try to fix a single file
 ```
 
 ### Write tests, run tests
@@ -156,38 +155,17 @@ the code you removed.
 
 ```sh
 npm test # Runs the whole test suite
-npm test -- test/components/Dismissable-test.js # Runs a single test file
-npm test -- --watch # Runs the test suite and watches the file system for changes
+npm test -- src/components/Messages.test.jsx # Runs a single test file
 npm run test:coverage # Runs full test suite and calculates code coverage
 ```
 
 # Recommendations
 
-This boilerplate is very opinonated, however there are no enforced rules on how to write your code, this is how we've written things and what works for us.
+There are no enforced rules on how to write your code, this is how we've written things and what works for us.
 However you should do what makes sense to you and your app.
 
-* Use `.jsx` extension for React components.
-* Use `.ts` and `.tsx` for typescript respectively.
-* Use [domain](#domain-structure) struture/approach to writing new components.
-* When writing new tests make the folder structure match that of the feature you're testing.
-* Use flow types over prop-types
-
-# Domain structure
-
-I recommend that rather than having a single folder for every component in your app and having a single folder for the store and another for the actions, instead you
-write a folder by domain/feature containing every layer that feature requires, the reason for this is scalability, think of your features as independent npm packages that
-can be removed or added into your app.
-
-If you look into this projects `src` folder you can see that there are two feature folders `main` and `pages` and a general `components` folder where standalone
-components live. I recommend reading these two articles by [Jack Hsu](https://jaysoo.ca) that go over this in a more eloquently.
-
-* [Three Rules For Structuring (Redux) Applications](https://jaysoo.ca/2016/02/28/organizing-redux-application/)
-* [The Anatomy Of A React & Redux Module (Applying The Three Rules)](https://jaysoo.ca/2016/02/28/applying-code-organization-rules-to-concrete-redux-code/)
-
-I also recommend reading the following article by redux co-author [Dan Abramov](https://medium.com/@dan_abramov).
-
-* [Presentational and Container Components](https://medium.com/@dan_abramov/smart-and-dumb-components-7ca2f9a7c7d0)
-
-Again, go with what makes sense for you and your app, we've gone with this approached because it has worked for us and has made maintaining our app, testing, and adding
-new features a lot simpler. Another good approach to application structure is the [Ducks](https://github.com/erikras/ducks-modular-redux), I recommend taking a look into
-it as well and make an educated decision about your application structure.
+* Use [ReasonML](https://reasonml.github.io/) to write as much code as you feel comfortable with.
+* Use `.jsx` and `.tsx` extension for React components written in ES6 or TypeScript.
+* When writing [ReasonML](https://reasonml.github.io/) use valid module names for each test suffixed by `_test.re` and place them under `__tests__`
+* When writing tests for ES6 or TypeScript put tests right next to the file they're testing so they're caught by `eslint` too.
+* Favor types over `PropTypes`.
