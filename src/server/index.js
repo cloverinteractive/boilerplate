@@ -1,5 +1,5 @@
 import express from 'express';
-import StaticRouter from 'server/routes';
+import StaticRouter, { errorHandler } from 'server/routes';
 import { isDevelopment } from 'server/helpers/env-access';
 import dotEnv from 'dotenv';
 
@@ -17,11 +17,10 @@ if (isDevelopment) {
 }
 
 app.get('*', StaticRouter);
+app.use(errorHandler);
 
-app.listen(port, '0.0.0.0', (err) => {
+app.listen(port, '0.0.0.0', () => {
   /* eslint-disable no-console */
-  if (err) console.error(err);
-
   console.info('Listening on port %s. Open up http://localhost:%s/ in your browser.', port, port);
   /* eslint-enable no-console */
 });

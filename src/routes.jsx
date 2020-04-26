@@ -5,20 +5,29 @@ import Messages from './components/Messages';
 import Nav from './components/Nav.bs';
 import './css/bulma.scss';
 
-export default () => (
+export const routes = [
+  { path: '/', exact: true, component: Pages.Home },
+  { path: '/about', component: Pages.About },
+];
+
+/* eslint-disable react/jsx-props-no-spreading */
+export default ({ children }) => (
   <div className="wrapper">
     <Nav />
     <Messages />
     <Switch>
-      <Route exact path="/">
-        <Pages.Home />
-      </Route>
-      <Route path="/about">
-        <Pages.About />
-      </Route>
-      <Route>
-        <Pages.Error404 />
-      </Route>
+      {routes.map(({
+        path, exact, component: C, ...rest
+      }) => (
+        <Route
+          key={path}
+          path={path}
+          exact={exact}
+          render={(props) => <C {...props} {...rest} />}
+        />
+      ))}
+      {children}
+      <Route render={(props) => <Pages.Error404 {...props} />} />
     </Switch>
   </div>
 );
