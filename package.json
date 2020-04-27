@@ -1,6 +1,6 @@
 {
   "name": "boilerplate",
-  "version": "5.1.0",
+  "version": "5.2.0",
   "description": "React App Boilerplate",
   "main": "src/index.js",
   "repository": "git@github.com:cloverinteractive/boilerplate.git",
