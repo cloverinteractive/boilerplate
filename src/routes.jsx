@@ -6,8 +6,15 @@ import Nav from './components/Nav.bs';
 import './css/bulma.scss';
 
 export const routes = [
-  { path: '/', exact: true, component: Pages.Home },
-  { path: '/about', component: Pages.About },
+  {
+    path: '/',
+    exact: true,
+    component: Pages.Home,
+  },
+  {
+    path: '/about',
+    component: Pages.About,
+  },
 ];
 
 /* eslint-disable react/jsx-props-no-spreading */
