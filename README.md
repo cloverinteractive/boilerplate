@@ -74,6 +74,25 @@ npm run start:prod # Run in production mode
 
 ## Running in Docker
 
+### Development
+
+You may want to do all your development in docker and keep dependencies locked for the whole team, we
+added a `Dockerfile.dev` and `docker-compose.yml` so you can build one and run many instances:
+
+```sh
+docker-compose build
+docker-compose up
+```
+
+Application will be proxied by `nginx` you can browse the app at `http://localhost/`, you can turn the app
+off by running:
+
+```sh
+docker-compose down
+```
+
+### Production
+
 Another way to run the app in production is to use docker just try the following:
 
 ```sh
