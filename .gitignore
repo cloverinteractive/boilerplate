@@ -5,7 +5,7 @@ public/*
 .bsb.lock
 core
 npm-debug.log
-/lib/bs/
+lib
 .nyc_output
 yarn-error.log
 coverage

@@ -1,0 +1,11 @@
+node_modules
+lib
+__tests__
+.merlin
+core
+build
+public
+.bsb.lock
+npm-debug.log
+coverage
+*.bs.js
