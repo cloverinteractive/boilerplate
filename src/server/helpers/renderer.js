@@ -1,9 +1,8 @@
 import { renderToString } from 'react-dom/server';
 import { Helmet } from 'react-helmet';
-import serialize from 'serialize-javascript';
 import { isDevelopment } from './env-access';
 
-export default (Component, store) => {
+export default (Component) => {
   const content = renderToString(Component);
   const helmet = Helmet.renderStatic();
   const staticStyles = isDevelopment ? '' : '<link rel="stylesheet" href="/styles.css">';
@@ -21,9 +20,6 @@ export default (Component, store) => {
       </head>
       <body>
         <section id="app">${content}</section>
-        <script>
-          window.__INITIAL_STATE__ = ${serialize(store.getState())};
-        </script>
         <script async src="/bundle.js"></script>
       </body>
     </html>`;

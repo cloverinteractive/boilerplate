@@ -53,9 +53,6 @@ let make = () => {
     <div id="navbar" className=menuClass>
       <div className="navbar-start">
         <Link className={linkClass("/")} _to="/"> "Home"->React.string </Link>
-        <Link className={linkClass("/about")} _to="/about">
-          "About"->React.string
-        </Link>
       </div>
     </div>
   </nav>;

@@ -1,11 +1,16 @@
 import * as React from 'react';
+import { StaticRouter } from 'react-router-dom';
 import renderer from 'react-test-renderer';
-import Error500 from './Error500';
+import App from './App';
 
-describe('<Error500 />', () => {
+describe('<App />', () => {
   test('it renders correctly', () => {
     const tree = renderer
-      .create(<Error500 />)
+      .create(
+        <StaticRouter>
+          <App />
+        </StaticRouter>,
+      )
       .toJSON();
 
     expect(tree).toMatchSnapshot();
