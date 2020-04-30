@@ -63,4 +63,21 @@ describe("<Messages />", () => {
     |> Expect.expect
     |> Expect.toBe(1);
   });
+
+  test("it removes notifications", () => {
+    ReactTestingLibrary.act(() =>
+      wrapper
+      |> Enzyme.Mount.find(".delete")
+      |> Enzyme.Mount.first
+      |> Enzyme.Mount.simulate("click")
+    );
+
+    wrapper |> Enzyme.Mount.update;
+
+    wrapper
+    |> Enzyme.Mount.find(".notification")
+    |> Enzyme.Mount.length
+    |> Expect.expect
+    |> Expect.toBe(0);
+  });
 });

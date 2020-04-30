@@ -11,7 +11,7 @@ module.exports = {
     'src/shims',
     'src/index.jsx',
     'src/route*',
-    '.bs.js',
+    'src/components/ReactRouter.bs.js', // This is a reason binding
   ],
   moduleNameMapper: {
     '\\.(css|s[ac]ss)$': '<rootDir>/node_modules/jest-css-modules',

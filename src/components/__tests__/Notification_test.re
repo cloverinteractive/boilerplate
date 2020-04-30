@@ -1,7 +1,11 @@
 open Jest;
 
 describe("<Notification />", () => {
-  let onDismiss = () => ();
+  let clicked = ref(false);
+  let onDismiss = () => {
+    clicked := ! clicked^;
+    ();
+  };
 
   test("It mounts", () =>
     Enzyme.mount(
@@ -37,4 +41,22 @@ describe("<Notification />", () => {
     |> Expect.expect
     |> Expect.toBe(0)
   );
+
+  test("it calls onDismiss when clicked", () => {
+    let wrapper =
+      Enzyme.mount(
+        <Notification className="is-danger" onDismiss>
+          "This is not dismissable"->React.string
+        </Notification>,
+      );
+
+    ReactTestingLibrary.act(() =>
+      wrapper
+      |> Enzyme.Mount.find(".delete")
+      |> Enzyme.Mount.first
+      |> Enzyme.Mount.simulate("click")
+    );
+
+    Expect.expect(clicked^) |> Expect.toBe(true);
+  });
 });

@@ -45,4 +45,14 @@ describe("MessageContext", () => {
     |> Expect.expect
     |> Expect.toEqual(Belt.Map.String.empty);
   });
+
+  test("initValue is mocked", () => {
+    let (state, dispatch) = initValue;
+
+    dispatch(AddMessage("is-danger", "This won't show in the state"))
+    |> Expect.expect
+    |> Expect.toBe();
+
+    state |> Expect.expect |> Expect.toEqual(Belt.Map.String.empty);
+  });
 });

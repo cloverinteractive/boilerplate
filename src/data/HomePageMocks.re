@@ -12,7 +12,8 @@ let pagesTree = "src/pages/
 
 let componentTree = "src/components/
 |__ Dismissable.re
-|__ Messages.jsx
+|__ MessageContext.re
+|__ Messages.re
 |__ Nav.re
 |__ Notification.re
 |__ ReactRouter.re";

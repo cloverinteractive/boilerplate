@@ -306,7 +306,8 @@ exports[`<App /> it renders correctly 1`] = `
       >
         src/components/
 |__ Dismissable.re
-|__ Messages.jsx
+|__ MessageContext.re
+|__ Messages.re
 |__ Nav.re
 |__ Notification.re
 |__ ReactRouter.re
