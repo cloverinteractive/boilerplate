@@ -1,5 +1,24 @@
 {
+  "gentypeconfig": {
+    "language": "typescript",
+    "module": "commonjs",
+    "importPath": "relative",
+    "shims": {
+      "Js": "Js",
+      "React": "ReactShim",
+      "ReactEvent": "ReactEvent",
+      "ReasonPervasives": "ReasonPervasives",
+      "ReasonReact": "ReactShim"
+    },
+    "debug": {
+      "all": false
+    },
+    "exportInterfaces": false
+  },
   "name": "boilerplate",
+  "bsc-flags": [
+    "-bs-super-errors"
+  ],
   "reason": {
     "react-jsx": 3
   },

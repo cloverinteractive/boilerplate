@@ -51,7 +51,6 @@ npm install
 * [Jest](https://jestjs.io/) - Jest is a delightful JavaScript Testing Framework with a focus on simplicity.
 * [React](https://facebook.github.io/react/) - A JavaScript library for building user interfaces
 * [React Router](https://reacttraining.com/react-router/) - Declarative Routing for React.js
-* [Redux](http://redux.js.org/) - Redux is a predictable state container for JavaScript apps.
 * [Webpack](https://webpack.js.org/concepts/) - Webpack is a module bundler for modern JavaScript applications.
 
 ## Server Rendering
@@ -99,7 +98,7 @@ Every part of the app's boilerplate is organized in it's own folder, here's a qu
 1. Webpack configuration is in the `config/webpack` folder.
 1. All code live in the `src/` folder.
 1. Server code specifically can ben found at `src/server`.
-1. ReasonML tests live inside `__tests__` folder, tests are suffixed by *_test.re* and flat directory structure.
+1. ReasonML tests live inside `__tests__` folder, tests are suffixed by *_test.re* and flat directory structure at the module level.
 1. TypeScript and Javascript tests are at the same folder the file they're testing is, tests are suffixed by *.test*.
 
 ## Practices
@@ -110,6 +109,12 @@ These are recommendations, you should write code in any way that makes sense for
 
 We've includen support for [ReasonML](https://reasonml.github.io/), we think it's a step in the right direction for writing type safe,
 code that builds fast and is runtime error free, it also feels like the perfect language to write react components in.
+
+Reason types will be checked automatically at compile time; if you need to share types with [TypeScript](https://www.typescriptlang.org/)
+we've preconfigured [genType](https://github.com/cristianoc/genType), just tag the types you'd like to share with `[@genType]` and voilà
+you just need to import from `YourFile.gen` in your [TypeScript](https://www.typescriptlang.org/) and you'll be good to go.
+
+We recommend looking at the [genType](https://github.com/cristianoc/genType) documentation for more advance tagging tips.
 
 ### TypeScript
 
@@ -126,12 +131,6 @@ You can still access `tsc` directly via `npx` like so:
 ```sh
 npx tsc
 ```
-
-### Redux
-
-Your app may not need redux, in fact with the new context API and react hooks you should be able to plug that need, that said setting up *redux*
-for apps that needed it for one reason or another, was a repetitive task that often took time. For that reason we've added a preconfigured store
-and some sample actions/reducers for you to play with.
 
 ### Run eslint
 
@@ -167,5 +166,6 @@ However you should do what makes sense to you and your app.
 * Use [ReasonML](https://reasonml.github.io/) to write as much code as you feel comfortable with.
 * Use `.jsx` and `.tsx` extension for React components written in ES6 or TypeScript.
 * When writing [ReasonML](https://reasonml.github.io/) use valid module names for each test suffixed by `_test.re` and place them under `__tests__`
+at your module level
 * When writing tests for ES6 or TypeScript put tests right next to the file they're testing so they're caught by `eslint` too.
 * Favor types over `PropTypes`.

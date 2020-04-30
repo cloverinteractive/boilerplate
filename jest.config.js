@@ -8,6 +8,7 @@ module.exports = {
   coverageDirectory: 'coverage',
   coveragePathIgnorePatterns: [
     'src/server',
+    'src/shims',
     'src/index.jsx',
     'src/route*',
     '.bs.js',

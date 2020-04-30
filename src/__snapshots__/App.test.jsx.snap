@@ -273,10 +273,7 @@ exports[`<App /> it renders correctly 1`] = `
         >
           &lt;Error404 /&gt;
         </span>
-      </p>
-      <p>
-        We've organized the application in a simple structure making it easy to find
-          everyting in the project;
+         and organized the application in a simple structure making it easy to find everyting in the project;
       </p>
       <p>
         This is the 
