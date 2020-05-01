@@ -27,7 +27,8 @@
     "import/no-duplicates": ["off"],
     "import/no-unresolved": ["off"],
     "no-unexpected-multiline": ["warn"],
-    "react/prop-types": ["off"]
+    "react/prop-types": ["off"],
+    "react/jsx-filename-extension": [1, { "extensions": [".jsx", ".tsx"] }]
   },
 
   "plugins": [ 

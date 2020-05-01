@@ -18,7 +18,6 @@ COPY bsconfig.json .
 RUN apt-get update
 RUN apt-get install build-essential -y
 RUN npm install --ignore-engines 
-RUN mkdir __tests__
 
 ENV NODE_ENV=production
 

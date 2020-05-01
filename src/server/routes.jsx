@@ -1,17 +1,14 @@
 import * as React from 'react';
-import Routes, { routes } from 'routes';
-import { Provider } from 'react-redux';
 import { StaticRouter, Route, matchPath } from 'react-router-dom';
 import render from './helpers/renderer';
-import store from './store';
-import Error500 from '../pages/components/Error500';
+import App from '../App';
+import routes from '../routes';
+import Error500 from '../pages/Error500.bs';
 
 const SSR = ({ context, location }) => (
-  <Provider store={store}>
-    <StaticRouter context={context} location={location}>
-      <Routes />
-    </StaticRouter>
-  </Provider>
+  <StaticRouter context={context} location={location}>
+    <App />
+  </StaticRouter>
 );
 
 /* eslint-disable no-console */
@@ -27,14 +24,12 @@ export const errorHandler = (error, _, res) => {
             <Error500 />
           </Route>
         </SSR>,
-        store,
       ),
     );
 };
 /* eslint-disable no-console */
 
-export default
-async (req, res, next) => {
+export default async (req, res, next) => {
   try {
     const activeRoute = routes.find((route) => matchPath(req.url, route)) || {};
 
@@ -47,7 +42,7 @@ async (req, res, next) => {
     res
       .status(status)
       .send(
-        render(<SSR context={context} location={req.url} />, store),
+        render(<SSR context={context} location={req.url} />),
       );
   } catch (err) { next(err); }
 };

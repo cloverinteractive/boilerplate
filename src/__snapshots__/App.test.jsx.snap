@@ -1,0 +1,318 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<App /> it renders correctly 1`] = `
+<div
+  className="wrapper"
+>
+  <nav
+    aria-label="main navigation"
+    className="navbar is-fixed-top  is-link"
+    role="navigation"
+  >
+    <div
+      className="navbar-brand"
+    >
+      <a
+        aria-expanded={false}
+        aria-label="menu"
+        className="navbar-burger burger"
+        data-target="navbar"
+        onClick={[Function]}
+        role="button"
+      >
+        <span
+          aria-hidden={true}
+        />
+        <span
+          aria-hidden={true}
+        />
+        <span
+          aria-hidden={true}
+        />
+      </a>
+    </div>
+    <div
+      className="navbar-menu"
+      id="navbar"
+    >
+      <div
+        className="navbar-start"
+      >
+        <a
+          className="navbar-item is-active"
+          href="/"
+          onClick={[Function]}
+        >
+          Home
+        </a>
+      </div>
+    </div>
+  </nav>
+  <div
+    className="css-16owzkg"
+  />
+  <div
+    className="container is-fluid"
+  >
+    <article
+      className="content"
+    >
+      <h1
+        className="title"
+      >
+        Everything is Running!
+      </h1>
+      <p>
+        Awesome, you've got this far, here are some pointers to make development easier.
+      </p>
+    </article>
+    <article
+      className="content"
+    >
+      <h2
+        className="title"
+      >
+        Bundled goodies
+      </h2>
+      <p>
+        Here's the list of packages this boilerplate pre-configures for you.
+      </p>
+      <ul
+        className="libraries"
+      >
+        <li>
+          <a
+            href="https://babeljs.io"
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            Babel
+          </a>
+           - 
+          <span
+            className="is-italic"
+          >
+            The compiler for writing next generation JavaScript
+          </span>
+        </li>
+        <li>
+          <a
+            href="https://eslint.org"
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            Eslint
+          </a>
+           - 
+          <span
+            className="is-italic"
+          >
+            Pluggable JavaScript linter
+          </span>
+        </li>
+        <li>
+          <a
+            href="https://expressjs.com"
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            Express
+          </a>
+           - 
+          <span
+            className="is-italic"
+          >
+            Fast, unopinionated, minimalist web framework for Node.js
+          </span>
+        </li>
+        <li>
+          <a
+            href="https://reasonml.github.io/"
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            ReasonML
+          </a>
+           - 
+          <span
+            className="is-italic"
+          >
+            Reason lets you write simple, fast and quality type safe code while leveraging both the JavaScript & OCaml ecosystems.
+          </span>
+        </li>
+        <li>
+          <a
+            href="https://www.typescriptlang.org/"
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            TypeScript
+          </a>
+           - 
+          <span
+            className="is-italic"
+          >
+            A typed superset of JavaScript that compiles to plain Javascript
+          </span>
+        </li>
+        <li>
+          <a
+            href="https://facebook.github.io/react/"
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            React
+          </a>
+           - 
+          <span
+            className="is-italic"
+          >
+            A JavaScript library for building user interfaces
+          </span>
+        </li>
+        <li>
+          <a
+            href="https://reacttraining.com/react-router/"
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            React Router
+          </a>
+           - 
+          <span
+            className="is-italic"
+          >
+            Declarative Routing for React.js
+          </span>
+        </li>
+        <li>
+          <a
+            href="https://webpack.js.org/concepts/"
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            Webpack
+          </a>
+           - 
+          <span
+            className="is-italic"
+          >
+            Webpack is a module bundler for modern JavaScript applications.
+          </span>
+        </li>
+      </ul>
+    </article>
+    <article
+      className="content"
+    >
+      <h2
+        className="title"
+      >
+        Components
+      </h2>
+      <p>
+        The app comes bundled with super basic notification and dismissable components
+        you can try them out by clicking the buttons below.
+      </p>
+      <div
+        className="field is-grouped is-grouped-centered"
+      >
+        <div
+          className="control"
+        >
+          <button
+            className="button is-success"
+            onClick={[Function]}
+            title="Successful alerts will automatically close"
+            type="button"
+          >
+            Notice
+          </button>
+        </div>
+        <div
+          className="control"
+        >
+          <button
+            className="button is-warning"
+            onClick={[Function]}
+            title="Warning alerts will stay until manually closed"
+            type="button"
+          >
+            Warning
+          </button>
+        </div>
+        <div
+          className="control"
+        >
+          <button
+            className="button is-danger"
+            onClick={[Function]}
+            title="Error alerts will stay until manually closed"
+            type="button"
+          >
+            Error
+          </button>
+        </div>
+      </div>
+      <p>
+        We've also packaged 3 page components,
+        <span
+          className="has-text-weight-bold is-family-monospace is-italic"
+        >
+          &lt;Home /&gt;
+        </span>
+        , 
+        <span
+          className="has-text-weight-bold is-family-monospace is-italic"
+        >
+          &lt;Error500 /&gt;
+        </span>
+         and 
+        <span
+          className="has-text-weight-bold is-family-monospace is-italic"
+        >
+          &lt;Error404 /&gt;
+        </span>
+         and organized the application in a simple structure making it easy to find everyting in the project;
+      </p>
+      <p>
+        This is the 
+        <span
+          className="has-text-weight-bold is-family-monospace is-italic"
+        >
+          src/pages
+        </span>
+         structure:
+      </p>
+      <pre
+        className="is-family-monospace"
+      >
+        src/pages/
+|__ Error404.re
+|__ Error505.re
+|__ Home.re
+
+      </pre>
+      <p>
+        This is the 
+        <span
+          className="has-text-weight-bold is-family-monospace is-italic"
+        >
+          src/components
+        </span>
+      </p>
+      <pre
+        className="is-family-monospace"
+      >
+        src/components/
+|__ Dismissable.re
+|__ MessageContext.re
+|__ Messages.re
+|__ Nav.re
+|__ Notification.re
+|__ ReactRouter.re
+      </pre>
+    </article>
+  </div>
+</div>
+`;

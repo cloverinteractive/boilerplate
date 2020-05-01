@@ -8,9 +8,11 @@ module.exports = {
   coverageDirectory: 'coverage',
   coveragePathIgnorePatterns: [
     'src/server',
+    'src/shims',
     'src/index.jsx',
     'src/route*',
-    '.bs.js',
+    'src/components/ReactRouter.bs.js', // This is a reason binding
+    '.*\.gen\.tsx?',
   ],
   moduleNameMapper: {
     '\\.(css|s[ac]ss)$': '<rootDir>/node_modules/jest-css-modules',

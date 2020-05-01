@@ -1,17 +1,12 @@
 import * as React from 'react';
 import { hot } from 'react-hot-loader';
-import { Router } from 'react-router-dom';
-import { Provider } from 'react-redux';
-import Routes from 'routes';
+import { BrowserRouter as Router } from 'react-router-dom';
+import App from './App';
 
-import store, { history } from './redux/store';
-
-const HMR = hot(module)(Routes);
+const HMR = hot(module)(App);
 
 export default () => (
-  <Provider store={store}>
-    <Router history={history}>
-      <HMR />
-    </Router>
-  </Provider>
+  <Router>
+    <HMR />
+  </Router>
 );
