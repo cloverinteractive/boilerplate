@@ -1,0 +1,16 @@
+FROM node:stretch
+
+EXPOSE 8080
+
+WORKDIR /opt/src
+
+COPY package.json .
+COPY package-lock.json .
+
+RUN apt-get update
+RUN apt-get install build-essential -y
+RUN npm install --ignore-engines
+
+CMD ["npm" "start"]
+
+# vim: set ft=dockerfile:
